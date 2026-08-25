@@ -1,0 +1,46 @@
+{
+  "num_rows": 500,
+  "num_unique_concepts": 100,
+  "num_C_train": 70,
+  "num_C_val": 15,
+  "num_C_test": 15,
+  "rows_per_S_family": {
+    "declarative": 100,
+    "question": 100,
+    "paraphrase": 100,
+    "formal": 100,
+    "structured": 100
+  },
+  "concepts_missing_S_families": [],
+  "duplicate_text_count": 0,
+  "cross_C_split_leakage_count": 0,
+  "cross_S_split_leakage_count": 0,
+  "C_field_inconsistency_count": 0,
+  "missing_value_count": 0,
+  "text_factor_omission_count": 0,
+  "known_factual_contradiction_count": 0,
+  "coverage_matrix": {
+    "C_train": {
+      "declarative": 70,
+      "formal": 70,
+      "paraphrase": 70,
+      "question": 70,
+      "structured": 70
+    },
+    "C_val": {
+      "declarative": 15,
+      "formal": 15,
+      "paraphrase": 15,
+      "question": 15,
+      "structured": 15
+    },
+    "C_test": {
+      "declarative": 15,
+      "formal": 15,
+      "paraphrase": 15,
+      "question": 15,
+      "structured": 15
+    }
+  },
+  "missing_columns": []
+}

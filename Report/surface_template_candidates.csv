@@ -1,0 +1,91 @@
+candidate_id,fact_id,C_relation,C_subject_label,C_value_label,S_family,S_variant,candidate_text
+science-Q1038-atomic_number_of-declarative,science-Q1038-atomic_number_of,atomic_number_of,zirconium,40,declarative,v1_candidate,zirconium has atomic number 40.
+science-Q1038-atomic_number_of-question,science-Q1038-atomic_number_of,atomic_number_of,zirconium,40,question,v1_candidate,What is the atomic number of zirconium? 40.
+science-Q1038-atomic_number_of-paraphrase,science-Q1038-atomic_number_of,atomic_number_of,zirconium,40,paraphrase,v1_candidate,"For zirconium, the number of protons is 40."
+science-Q1038-atomic_number_of-formal,science-Q1038-atomic_number_of,atomic_number_of,zirconium,40,formal,v1_candidate,Element: zirconium. Atomic number: 40.
+science-Q1038-atomic_number_of-structured,science-Q1038-atomic_number_of,atomic_number_of,zirconium,40,structured,v1_candidate,"{""atomic_number"": ""40"", ""element"": ""zirconium""}"
+science-Q1046-atomic_number_of-declarative,science-Q1046-atomic_number_of,atomic_number_of,niobium,41,declarative,v1_candidate,niobium has atomic number 41.
+science-Q1046-atomic_number_of-question,science-Q1046-atomic_number_of,atomic_number_of,niobium,41,question,v1_candidate,What is the atomic number of niobium? 41.
+science-Q1046-atomic_number_of-paraphrase,science-Q1046-atomic_number_of,atomic_number_of,niobium,41,paraphrase,v1_candidate,"For niobium, the number of protons is 41."
+science-Q1046-atomic_number_of-formal,science-Q1046-atomic_number_of,atomic_number_of,niobium,41,formal,v1_candidate,Element: niobium. Atomic number: 41.
+science-Q1046-atomic_number_of-structured,science-Q1046-atomic_number_of,atomic_number_of,niobium,41,structured,v1_candidate,"{""atomic_number"": ""41"", ""element"": ""niobium""}"
+science-Q1053-atomic_number_of-declarative,science-Q1053-atomic_number_of,atomic_number_of,molybdenum,42,declarative,v1_candidate,molybdenum has atomic number 42.
+science-Q1053-atomic_number_of-question,science-Q1053-atomic_number_of,atomic_number_of,molybdenum,42,question,v1_candidate,What is the atomic number of molybdenum? 42.
+science-Q1053-atomic_number_of-paraphrase,science-Q1053-atomic_number_of,atomic_number_of,molybdenum,42,paraphrase,v1_candidate,"For molybdenum, the number of protons is 42."
+science-Q1053-atomic_number_of-formal,science-Q1053-atomic_number_of,atomic_number_of,molybdenum,42,formal,v1_candidate,Element: molybdenum. Atomic number: 42.
+science-Q1053-atomic_number_of-structured,science-Q1053-atomic_number_of,atomic_number_of,molybdenum,42,structured,v1_candidate,"{""atomic_number"": ""42"", ""element"": ""molybdenum""}"
+geography-Q1000-capital_of-declarative,geography-Q1000-capital_of,capital_of,Gabon,Libreville,declarative,v1_candidate,Libreville is the capital city of Gabon.
+geography-Q1000-capital_of-question,geography-Q1000-capital_of,capital_of,Gabon,Libreville,question,v1_candidate,Which city is the capital of Gabon? Libreville.
+geography-Q1000-capital_of-paraphrase,geography-Q1000-capital_of,capital_of,Gabon,Libreville,paraphrase,v1_candidate,Gabon's national capital is Libreville.
+geography-Q1000-capital_of-formal,geography-Q1000-capital_of,capital_of,Gabon,Libreville,formal,v1_candidate,Country: Gabon. Capital city: Libreville.
+geography-Q1000-capital_of-structured,geography-Q1000-capital_of,capital_of,Gabon,Libreville,structured,v1_candidate,"{""capital_city"": ""Libreville"", ""country"": ""Gabon""}"
+geography-Q1005-capital_of-declarative,geography-Q1005-capital_of,capital_of,The Gambia,Banjul,declarative,v1_candidate,Banjul is the capital city of The Gambia.
+geography-Q1005-capital_of-question,geography-Q1005-capital_of,capital_of,The Gambia,Banjul,question,v1_candidate,Which city is the capital of The Gambia? Banjul.
+geography-Q1005-capital_of-paraphrase,geography-Q1005-capital_of,capital_of,The Gambia,Banjul,paraphrase,v1_candidate,The Gambia's national capital is Banjul.
+geography-Q1005-capital_of-formal,geography-Q1005-capital_of,capital_of,The Gambia,Banjul,formal,v1_candidate,Country: The Gambia. Capital city: Banjul.
+geography-Q1005-capital_of-structured,geography-Q1005-capital_of,capital_of,The Gambia,Banjul,structured,v1_candidate,"{""capital_city"": ""Banjul"", ""country"": ""The Gambia""}"
+geography-Q1006-capital_of-declarative,geography-Q1006-capital_of,capital_of,Guinea,Conakry,declarative,v1_candidate,Conakry is the capital city of Guinea.
+geography-Q1006-capital_of-question,geography-Q1006-capital_of,capital_of,Guinea,Conakry,question,v1_candidate,Which city is the capital of Guinea? Conakry.
+geography-Q1006-capital_of-paraphrase,geography-Q1006-capital_of,capital_of,Guinea,Conakry,paraphrase,v1_candidate,Guinea's national capital is Conakry.
+geography-Q1006-capital_of-formal,geography-Q1006-capital_of,capital_of,Guinea,Conakry,formal,v1_candidate,Country: Guinea. Capital city: Conakry.
+geography-Q1006-capital_of-structured,geography-Q1006-capital_of,capital_of,Guinea,Conakry,structured,v1_candidate,"{""capital_city"": ""Conakry"", ""country"": ""Guinea""}"
+science-Q1038-chemical_symbol_of-declarative,science-Q1038-chemical_symbol_of,chemical_symbol_of,zirconium,Zr,declarative,v1_candidate,The chemical symbol for zirconium is Zr.
+science-Q1038-chemical_symbol_of-question,science-Q1038-chemical_symbol_of,chemical_symbol_of,zirconium,Zr,question,v1_candidate,What is the chemical symbol for zirconium? Zr.
+science-Q1038-chemical_symbol_of-paraphrase,science-Q1038-chemical_symbol_of,chemical_symbol_of,zirconium,Zr,paraphrase,v1_candidate,zirconium is written as Zr on the periodic table.
+science-Q1038-chemical_symbol_of-formal,science-Q1038-chemical_symbol_of,chemical_symbol_of,zirconium,Zr,formal,v1_candidate,Element: zirconium. Symbol: Zr.
+science-Q1038-chemical_symbol_of-structured,science-Q1038-chemical_symbol_of,chemical_symbol_of,zirconium,Zr,structured,v1_candidate,"{""element"": ""zirconium"", ""symbol"": ""Zr""}"
+science-Q1046-chemical_symbol_of-declarative,science-Q1046-chemical_symbol_of,chemical_symbol_of,niobium,Nb,declarative,v1_candidate,The chemical symbol for niobium is Nb.
+science-Q1046-chemical_symbol_of-question,science-Q1046-chemical_symbol_of,chemical_symbol_of,niobium,Nb,question,v1_candidate,What is the chemical symbol for niobium? Nb.
+science-Q1046-chemical_symbol_of-paraphrase,science-Q1046-chemical_symbol_of,chemical_symbol_of,niobium,Nb,paraphrase,v1_candidate,niobium is written as Nb on the periodic table.
+science-Q1046-chemical_symbol_of-formal,science-Q1046-chemical_symbol_of,chemical_symbol_of,niobium,Nb,formal,v1_candidate,Element: niobium. Symbol: Nb.
+science-Q1046-chemical_symbol_of-structured,science-Q1046-chemical_symbol_of,chemical_symbol_of,niobium,Nb,structured,v1_candidate,"{""element"": ""niobium"", ""symbol"": ""Nb""}"
+science-Q1053-chemical_symbol_of-declarative,science-Q1053-chemical_symbol_of,chemical_symbol_of,molybdenum,Mo,declarative,v1_candidate,The chemical symbol for molybdenum is Mo.
+science-Q1053-chemical_symbol_of-question,science-Q1053-chemical_symbol_of,chemical_symbol_of,molybdenum,Mo,question,v1_candidate,What is the chemical symbol for molybdenum? Mo.
+science-Q1053-chemical_symbol_of-paraphrase,science-Q1053-chemical_symbol_of,chemical_symbol_of,molybdenum,Mo,paraphrase,v1_candidate,molybdenum is written as Mo on the periodic table.
+science-Q1053-chemical_symbol_of-formal,science-Q1053-chemical_symbol_of,chemical_symbol_of,molybdenum,Mo,formal,v1_candidate,Element: molybdenum. Symbol: Mo.
+science-Q1053-chemical_symbol_of-structured,science-Q1053-chemical_symbol_of,chemical_symbol_of,molybdenum,Mo,structured,v1_candidate,"{""element"": ""molybdenum"", ""symbol"": ""Mo""}"
+geography-Q1000-continent_of-declarative,geography-Q1000-continent_of,continent_of,Gabon,Africa,declarative,v1_candidate,Gabon is in Africa.
+geography-Q1000-continent_of-question,geography-Q1000-continent_of,continent_of,Gabon,Africa,question,v1_candidate,Which continent is Gabon in? Africa.
+geography-Q1000-continent_of-paraphrase,geography-Q1000-continent_of,continent_of,Gabon,Africa,paraphrase,v1_candidate,Africa is the continent that includes Gabon.
+geography-Q1000-continent_of-formal,geography-Q1000-continent_of,continent_of,Gabon,Africa,formal,v1_candidate,Country: Gabon. Continent: Africa.
+geography-Q1000-continent_of-structured,geography-Q1000-continent_of,continent_of,Gabon,Africa,structured,v1_candidate,"{""continent"": ""Africa"", ""country"": ""Gabon""}"
+geography-Q1005-continent_of-declarative,geography-Q1005-continent_of,continent_of,The Gambia,Africa,declarative,v1_candidate,The Gambia is in Africa.
+geography-Q1005-continent_of-question,geography-Q1005-continent_of,continent_of,The Gambia,Africa,question,v1_candidate,Which continent is The Gambia in? Africa.
+geography-Q1005-continent_of-paraphrase,geography-Q1005-continent_of,continent_of,The Gambia,Africa,paraphrase,v1_candidate,Africa is the continent that includes The Gambia.
+geography-Q1005-continent_of-formal,geography-Q1005-continent_of,continent_of,The Gambia,Africa,formal,v1_candidate,Country: The Gambia. Continent: Africa.
+geography-Q1005-continent_of-structured,geography-Q1005-continent_of,continent_of,The Gambia,Africa,structured,v1_candidate,"{""continent"": ""Africa"", ""country"": ""The Gambia""}"
+geography-Q1006-continent_of-declarative,geography-Q1006-continent_of,continent_of,Guinea,Africa,declarative,v1_candidate,Guinea is in Africa.
+geography-Q1006-continent_of-question,geography-Q1006-continent_of,continent_of,Guinea,Africa,question,v1_candidate,Which continent is Guinea in? Africa.
+geography-Q1006-continent_of-paraphrase,geography-Q1006-continent_of,continent_of,Guinea,Africa,paraphrase,v1_candidate,Africa is the continent that includes Guinea.
+geography-Q1006-continent_of-formal,geography-Q1006-continent_of,continent_of,Guinea,Africa,formal,v1_candidate,Country: Guinea. Continent: Africa.
+geography-Q1006-continent_of-structured,geography-Q1006-continent_of,continent_of,Guinea,Africa,structured,v1_candidate,"{""continent"": ""Africa"", ""country"": ""Guinea""}"
+geography-Q1000-currency_of-declarative,geography-Q1000-currency_of,currency_of,Gabon,Central African CFA franc,declarative,v1_candidate,Gabon uses the Central African CFA franc.
+geography-Q1000-currency_of-question,geography-Q1000-currency_of,currency_of,Gabon,Central African CFA franc,question,v1_candidate,Which currency does Gabon use? Central African CFA franc.
+geography-Q1000-currency_of-paraphrase,geography-Q1000-currency_of,currency_of,Gabon,Central African CFA franc,paraphrase,v1_candidate,The currency used in Gabon is the Central African CFA franc.
+geography-Q1000-currency_of-formal,geography-Q1000-currency_of,currency_of,Gabon,Central African CFA franc,formal,v1_candidate,Country: Gabon. Currency: Central African CFA franc.
+geography-Q1000-currency_of-structured,geography-Q1000-currency_of,currency_of,Gabon,Central African CFA franc,structured,v1_candidate,"{""country"": ""Gabon"", ""currency"": ""Central African CFA franc""}"
+geography-Q1005-currency_of-declarative,geography-Q1005-currency_of,currency_of,The Gambia,dalasi,declarative,v1_candidate,The Gambia uses the dalasi.
+geography-Q1005-currency_of-question,geography-Q1005-currency_of,currency_of,The Gambia,dalasi,question,v1_candidate,Which currency does The Gambia use? dalasi.
+geography-Q1005-currency_of-paraphrase,geography-Q1005-currency_of,currency_of,The Gambia,dalasi,paraphrase,v1_candidate,The currency used in The Gambia is the dalasi.
+geography-Q1005-currency_of-formal,geography-Q1005-currency_of,currency_of,The Gambia,dalasi,formal,v1_candidate,Country: The Gambia. Currency: dalasi.
+geography-Q1005-currency_of-structured,geography-Q1005-currency_of,currency_of,The Gambia,dalasi,structured,v1_candidate,"{""country"": ""The Gambia"", ""currency"": ""dalasi""}"
+geography-Q1006-currency_of-declarative,geography-Q1006-currency_of,currency_of,Guinea,Guinean franc,declarative,v1_candidate,Guinea uses the Guinean franc.
+geography-Q1006-currency_of-question,geography-Q1006-currency_of,currency_of,Guinea,Guinean franc,question,v1_candidate,Which currency does Guinea use? Guinean franc.
+geography-Q1006-currency_of-paraphrase,geography-Q1006-currency_of,currency_of,Guinea,Guinean franc,paraphrase,v1_candidate,The currency used in Guinea is the Guinean franc.
+geography-Q1006-currency_of-formal,geography-Q1006-currency_of,currency_of,Guinea,Guinean franc,formal,v1_candidate,Country: Guinea. Currency: Guinean franc.
+geography-Q1006-currency_of-structured,geography-Q1006-currency_of,currency_of,Guinea,Guinean franc,structured,v1_candidate,"{""country"": ""Guinea"", ""currency"": ""Guinean franc""}"
+science-Q1038-period_of-declarative,science-Q1038-period_of,period_of,zirconium,5,declarative,v1_candidate,zirconium is in period 5 of the periodic table.
+science-Q1038-period_of-question,science-Q1038-period_of,period_of,zirconium,5,question,v1_candidate,Which period contains zirconium on the periodic table? 5.
+science-Q1038-period_of-paraphrase,science-Q1038-period_of,period_of,zirconium,5,paraphrase,v1_candidate,"On the periodic table, zirconium appears in row 5."
+science-Q1038-period_of-formal,science-Q1038-period_of,period_of,zirconium,5,formal,v1_candidate,Element: zirconium. Period: 5.
+science-Q1038-period_of-structured,science-Q1038-period_of,period_of,zirconium,5,structured,v1_candidate,"{""element"": ""zirconium"", ""period"": ""5""}"
+science-Q1046-period_of-declarative,science-Q1046-period_of,period_of,niobium,5,declarative,v1_candidate,niobium is in period 5 of the periodic table.
+science-Q1046-period_of-question,science-Q1046-period_of,period_of,niobium,5,question,v1_candidate,Which period contains niobium on the periodic table? 5.
+science-Q1046-period_of-paraphrase,science-Q1046-period_of,period_of,niobium,5,paraphrase,v1_candidate,"On the periodic table, niobium appears in row 5."
+science-Q1046-period_of-formal,science-Q1046-period_of,period_of,niobium,5,formal,v1_candidate,Element: niobium. Period: 5.
+science-Q1046-period_of-structured,science-Q1046-period_of,period_of,niobium,5,structured,v1_candidate,"{""element"": ""niobium"", ""period"": ""5""}"
+science-Q1053-period_of-declarative,science-Q1053-period_of,period_of,molybdenum,5,declarative,v1_candidate,molybdenum is in period 5 of the periodic table.
+science-Q1053-period_of-question,science-Q1053-period_of,period_of,molybdenum,5,question,v1_candidate,Which period contains molybdenum on the periodic table? 5.
+science-Q1053-period_of-paraphrase,science-Q1053-period_of,period_of,molybdenum,5,paraphrase,v1_candidate,"On the periodic table, molybdenum appears in row 5."
+science-Q1053-period_of-formal,science-Q1053-period_of,period_of,molybdenum,5,formal,v1_candidate,Element: molybdenum. Period: 5.
+science-Q1053-period_of-structured,science-Q1053-period_of,period_of,molybdenum,5,structured,v1_candidate,"{""element"": ""molybdenum"", ""period"": ""5""}"

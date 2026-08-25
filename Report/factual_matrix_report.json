@@ -1,0 +1,16 @@
+{
+  "num_facts": 876,
+  "domain_subject_counts": {
+    "geography": 174,
+    "science": 118
+  },
+  "domain_fact_counts": {
+    "geography": 522,
+    "science": 354
+  },
+  "split_fact_counts": {
+    "C_train": 615,
+    "C_val": 132,
+    "C_test": 129
+  }
+}
