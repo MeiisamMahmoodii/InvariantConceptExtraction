@@ -79,3 +79,11 @@ What we did: generated all approved variants from the strict source-validated fa
 Why: V1 rejects unresolved labels instead of introducing a second label source.
 
 What we found: 148 geography subjects and 118 science subjects produce 798 facts and 9,576 rows. All validations and the 50-fact audit pass.
+
+## Step 11 — final stratified semantic spot audit
+
+What we did: checked a fixed sample of 60 facts, with 10 facts from every relation and all 12 variants for each fact.
+
+Why: structural checks alone cannot confirm that every surface form preserves its proposition.
+
+What we found: all 60 fact groups passed proposition preservation, surface variation, and no-factual-drift checks.
