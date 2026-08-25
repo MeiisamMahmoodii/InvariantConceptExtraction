@@ -87,3 +87,27 @@ What we did: checked a fixed sample of 60 facts, with 10 facts from every relati
 Why: structural checks alone cannot confirm that every surface form preserves its proposition.
 
 What we found: all 60 fact groups passed proposition preservation, surface variation, and no-factual-drift checks.
+
+## Step 12 — audited frozen representations
+
+What we did: extracted frozen Gemma 2 2B activations at pre-registered early, middle, and late layers, then measured pair similarities and diagnostic linear decodability.
+
+Why: C and S both need to be measurable before any separation method is considered.
+
+What we found: C domain/relation and S family are strongly decodable on held-out subjects at all three layers. Same-fact rows are similar across S but are not identical. No InfoNCE or SAE training was run.
+
+## Step 13 — added layer 8 to the representation audit
+
+What we did: extracted the same frozen, masked-mean activations at layer 8 and reran the fixed diagnostics.
+
+Why: layer choice remains a diagnostic sweep decision rather than a single arbitrary layer.
+
+What we found: layer 8 also has strong held-out C and S decodability, with same-fact/different-S mean cosine similarity of 0.969.
+
+## Step 14 — tested C/S linear subspace overlap
+
+What we did: projected out learned S-family directions and remeasured C, then projected out learned C directions and remeasured S.
+
+Why: decodability alone does not show whether desired and nuisance information share directions.
+
+What we found: C and S remain almost perfectly decodable after removing each other’s learned linear subspaces. The frozen representation is linearly separable on this diagnostic.

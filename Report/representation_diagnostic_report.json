@@ -1,0 +1,314 @@
+{
+  "layers": {
+    "5": {
+      "activation_shape": [
+        9576,
+        2304
+      ],
+      "pair_similarity_distributions": {
+        "A_same_fact_different_S": {
+          "n": 10000,
+          "mean": 0.965334951877594,
+          "std": 0.01697826385498047,
+          "p05": 0.9311438202857971,
+          "p25": 0.9560768008232117,
+          "median": 0.9704552888870239,
+          "p75": 0.9774566888809204,
+          "p95": 0.9861787557601929
+        },
+        "B_different_fact_same_relation": {
+          "n": 10000,
+          "mean": 0.9530460834503174,
+          "std": 0.018581073731184006,
+          "p05": 0.9168434143066406,
+          "p25": 0.9436882734298706,
+          "median": 0.9553266167640686,
+          "p75": 0.96474289894104,
+          "p95": 0.9816443920135498
+        },
+        "C_different_relation_same_subject": {
+          "n": 10000,
+          "mean": 0.9511735439300537,
+          "std": 0.016482189297676086,
+          "p05": 0.918366551399231,
+          "p25": 0.942253053188324,
+          "median": 0.9541420936584473,
+          "p75": 0.9629377126693726,
+          "p95": 0.9741582274436951
+        },
+        "D_different_domain": {
+          "n": 10000,
+          "mean": 0.9232425689697266,
+          "std": 0.016655806452035904,
+          "p05": 0.8930684328079224,
+          "p25": 0.9126448631286621,
+          "median": 0.9249080419540405,
+          "p75": 0.9351602792739868,
+          "p95": 0.9479089379310608
+        }
+      },
+      "diagnostic_linear_probes": {
+        "S_family": {
+          "test_accuracy": 1.0,
+          "chance": 0.2,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_domain": {
+          "test_accuracy": 1.0,
+          "chance": 0.5,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_relation": {
+          "test_accuracy": 1.0,
+          "chance": 0.16666666666666666,
+          "train_rows": 6732,
+          "test_rows": 1404
+        }
+      },
+      "linear_subspace_removal": {
+        "S_family_subspace_rank": 5,
+        "C_subspace_rank": 7,
+        "C_test_accuracy_after_removing_S_subspace": {
+          "C_domain": 1.0,
+          "C_relation": 1.0
+        },
+        "S_family_test_accuracy_after_removing_C_subspace": 1.0
+      }
+    },
+    "8": {
+      "activation_shape": [
+        9576,
+        2304
+      ],
+      "pair_similarity_distributions": {
+        "A_same_fact_different_S": {
+          "n": 10000,
+          "mean": 0.9693049788475037,
+          "std": 0.01402728445827961,
+          "p05": 0.9433078765869141,
+          "p25": 0.9608602523803711,
+          "median": 0.9730106592178345,
+          "p75": 0.9794793725013733,
+          "p95": 0.9867644906044006
+        },
+        "B_different_fact_same_relation": {
+          "n": 10000,
+          "mean": 0.9620344042778015,
+          "std": 0.015285830944776535,
+          "p05": 0.934685468673706,
+          "p25": 0.9534693956375122,
+          "median": 0.9635970592498779,
+          "p75": 0.971469521522522,
+          "p95": 0.9870913028717041
+        },
+        "C_different_relation_same_subject": {
+          "n": 10000,
+          "mean": 0.9565169811248779,
+          "std": 0.013803163543343544,
+          "p05": 0.9307113885879517,
+          "p25": 0.9483761787414551,
+          "median": 0.9585548043251038,
+          "p75": 0.9662322402000427,
+          "p95": 0.9761174321174622
+        },
+        "D_different_domain": {
+          "n": 10000,
+          "mean": 0.9219955205917358,
+          "std": 0.019329236820340157,
+          "p05": 0.8881633877754211,
+          "p25": 0.9091686010360718,
+          "median": 0.922928512096405,
+          "p75": 0.9360449314117432,
+          "p95": 0.9518110752105713
+        }
+      },
+      "diagnostic_linear_probes": {
+        "S_family": {
+          "test_accuracy": 1.0,
+          "chance": 0.2,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_domain": {
+          "test_accuracy": 1.0,
+          "chance": 0.5,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_relation": {
+          "test_accuracy": 1.0,
+          "chance": 0.16666666666666666,
+          "train_rows": 6732,
+          "test_rows": 1404
+        }
+      },
+      "linear_subspace_removal": {
+        "S_family_subspace_rank": 5,
+        "C_subspace_rank": 7,
+        "C_test_accuracy_after_removing_S_subspace": {
+          "C_domain": 1.0,
+          "C_relation": 1.0
+        },
+        "S_family_test_accuracy_after_removing_C_subspace": 1.0
+      }
+    },
+    "13": {
+      "activation_shape": [
+        9576,
+        2304
+      ],
+      "pair_similarity_distributions": {
+        "A_same_fact_different_S": {
+          "n": 10000,
+          "mean": 0.9813474416732788,
+          "std": 0.008462192490696907,
+          "p05": 0.965307891368866,
+          "p25": 0.9761426448822021,
+          "median": 0.9836691617965698,
+          "p75": 0.987445592880249,
+          "p95": 0.991815984249115
+        },
+        "B_different_fact_same_relation": {
+          "n": 10000,
+          "mean": 0.9792714715003967,
+          "std": 0.009308471344411373,
+          "p05": 0.9622324705123901,
+          "p25": 0.9737863540649414,
+          "median": 0.980391263961792,
+          "p75": 0.9852018356323242,
+          "p95": 0.994334876537323
+        },
+        "C_different_relation_same_subject": {
+          "n": 10000,
+          "mean": 0.9754681587219238,
+          "std": 0.008588754571974277,
+          "p05": 0.9595155715942383,
+          "p25": 0.9703344106674194,
+          "median": 0.9769403338432312,
+          "p75": 0.98162442445755,
+          "p95": 0.9874290227890015
+        },
+        "D_different_domain": {
+          "n": 10000,
+          "mean": 0.9620581269264221,
+          "std": 0.010587641038000584,
+          "p05": 0.943038821220398,
+          "p25": 0.9553688764572144,
+          "median": 0.9631266593933105,
+          "p75": 0.9698755741119385,
+          "p95": 0.9774712324142456
+        }
+      },
+      "diagnostic_linear_probes": {
+        "S_family": {
+          "test_accuracy": 0.9992877492877493,
+          "chance": 0.2,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_domain": {
+          "test_accuracy": 1.0,
+          "chance": 0.5,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_relation": {
+          "test_accuracy": 1.0,
+          "chance": 0.16666666666666666,
+          "train_rows": 6732,
+          "test_rows": 1404
+        }
+      },
+      "linear_subspace_removal": {
+        "S_family_subspace_rank": 5,
+        "C_subspace_rank": 7,
+        "C_test_accuracy_after_removing_S_subspace": {
+          "C_domain": 1.0,
+          "C_relation": 1.0
+        },
+        "S_family_test_accuracy_after_removing_C_subspace": 1.0
+      }
+    },
+    "21": {
+      "activation_shape": [
+        9576,
+        2304
+      ],
+      "pair_similarity_distributions": {
+        "A_same_fact_different_S": {
+          "n": 10000,
+          "mean": 0.9664695262908936,
+          "std": 0.014537454582750797,
+          "p05": 0.9385915994644165,
+          "p25": 0.9575226306915283,
+          "median": 0.9700620174407959,
+          "p75": 0.9769878387451172,
+          "p95": 0.9847673177719116
+        },
+        "B_different_fact_same_relation": {
+          "n": 10000,
+          "mean": 0.9574514627456665,
+          "std": 0.016171958297491074,
+          "p05": 0.9292214512825012,
+          "p25": 0.9472076892852783,
+          "median": 0.9588394165039062,
+          "p75": 0.9674939513206482,
+          "p95": 0.9841088652610779
+        },
+        "C_different_relation_same_subject": {
+          "n": 10000,
+          "mean": 0.9534933567047119,
+          "std": 0.015037083998322487,
+          "p05": 0.9260838031768799,
+          "p25": 0.944668173789978,
+          "median": 0.9553946256637573,
+          "p75": 0.9640113711357117,
+          "p95": 0.9748687148094177
+        },
+        "D_different_domain": {
+          "n": 10000,
+          "mean": 0.9196841716766357,
+          "std": 0.019640658050775528,
+          "p05": 0.8850661516189575,
+          "p25": 0.9073638916015625,
+          "median": 0.9206012487411499,
+          "p75": 0.9335613250732422,
+          "p95": 0.9502437114715576
+        }
+      },
+      "diagnostic_linear_probes": {
+        "S_family": {
+          "test_accuracy": 0.9992877492877493,
+          "chance": 0.2,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_domain": {
+          "test_accuracy": 1.0,
+          "chance": 0.5,
+          "train_rows": 6732,
+          "test_rows": 1404
+        },
+        "C_relation": {
+          "test_accuracy": 1.0,
+          "chance": 0.16666666666666666,
+          "train_rows": 6732,
+          "test_rows": 1404
+        }
+      },
+      "linear_subspace_removal": {
+        "S_family_subspace_rank": 5,
+        "C_subspace_rank": 7,
+        "C_test_accuracy_after_removing_S_subspace": {
+          "C_domain": 1.0,
+          "C_relation": 1.0
+        },
+        "S_family_test_accuracy_after_removing_C_subspace": 0.9992877492877493
+      }
+    }
+  },
+  "split": "C_train versus C_test; subject-disjoint by construction",
+  "training_performed": "diagnostic logistic-regression probes only; no InfoNCE or SAE"
+}
