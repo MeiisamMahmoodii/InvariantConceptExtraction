@@ -32,15 +32,6 @@ def canonical_value_id(row):
     return raw.rsplit("/", 1)[1] if raw.startswith("http://www.wikidata.org/entity/") else f"literal:{row['value'].get('datatype', 'string')}:{raw}"
 
 
-def resolve_labels(ids):
-    if not ids:
-        return {}
-    url = "https://www.wikidata.org/w/api.php?" + urlencode({"action": "wbgetentities", "ids": "|".join(sorted(ids)), "props": "labels", "languages": "en", "format": "json"})
-    with urlopen(Request(url, headers={"User-Agent": "InvariantConceptExtraction/1.0"}), timeout=60) as response:
-        entities = json.load(response)["entities"]
-    return {entity_id: entity.get("labels", {}).get("en", {}).get("value") for entity_id, entity in entities.items()}
-
-
 def rsc_period(number_and_record):
     number, record = number_and_record
     slug = re.sub(r"[^a-z0-9]+", "-", record["subject_label"].lower()).strip("-")
@@ -62,18 +53,12 @@ def main():
         bindings = json.load(response)["results"]["bindings"]
     DATA.mkdir(parents=True, exist_ok=True)
     (DATA / "wikidata_relation_snapshot.json").write_text(json.dumps(bindings, ensure_ascii=False, indent=2), encoding="utf-8")
-    unresolved_ids = {value(row, field).rsplit("/", 1)[1] for row in bindings for field in ("subject", "value") if value(row, field).startswith("http://www.wikidata.org/entity/") and value(row, f"{field}Label").startswith("Q") and value(row, f"{field}Label")[1:].isdigit()}
-    resolved_labels = resolve_labels(unresolved_ids)
-    with (DATA / "label_resolution_log.csv").open("w", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(file, fieldnames=("entity_id", "resolved_label", "source")); writer.writeheader(); writer.writerows({"entity_id": entity_id, "resolved_label": label or "", "source": f"https://www.wikidata.org/wiki/{entity_id}"} for entity_id, label in resolved_labels.items())
     property_map = {f"http://www.wikidata.org/prop/direct/{pid}": relation for relation, pid in RELATIONS.items() if pid}
     candidates = defaultdict(lambda: defaultdict(list))
     for row in bindings:
         relation = property_map[value(row, "property")]
         subject_id, value_id = value(row, "subject").rsplit("/", 1)[1], canonical_value_id(row)
-        subject_label = resolved_labels.get(subject_id) or value(row, "subjectLabel")
-        raw_value_label = value(row, "valueLabel")
-        candidates[relation][subject_id].append({"subject_id": subject_id, "subject_label": subject_label, "relation": relation, "value_id": value_id, "value_label": resolved_labels.get(value_id) or raw_value_label, "qualifiers_status": "Wikidata direct best-rank claim; qualifiers not used"})
+        candidates[relation][subject_id].append({"subject_id": subject_id, "subject_label": value(row, "subjectLabel"), "relation": relation, "value_id": value_id, "value_label": value(row, "valueLabel"), "qualifiers_status": "Wikidata direct best-rank claim; qualifiers not used"})
     clean, rejected = {relation: {} for relation in RELATIONS}, []
     for relation, subjects in candidates.items():
         for subject_id, rows in subjects.items():

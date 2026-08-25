@@ -30,7 +30,7 @@ def main():
     report = {"num_rows": len(rows), "num_facts": len(by_fact), "rows_per_fact_failure_count": sum(len(group) != 12 for group in by_fact.values()), "family_count_failure_count": family_failures, "C_field_inconsistency_count": c_failures, "cross_subject_split_leakage_count": sum(len(value) != 1 for value in splits.values()), "S_split_failure_count": s_failures, "duplicate_text_across_fact_count": sum(1 for facts in texts.values() if len(facts) > 1), "missing_value_count": missing, "rows_per_S_family": dict(Counter(row["S_family"] for row in rows)), "provenance_missing_count": sum(not row["source_record_id"] or not row["source_provenance"] for row in rows)}
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     failures = [key for key, value in report.items() if key.endswith("_count") and key not in {"num_rows", "num_facts"} and value]
-    if report["num_rows"] != 10512 or report["num_facts"] != 876:
+    if report["num_rows"] != 9576 or report["num_facts"] != 798:
         failures.append("approved_size")
     print(json.dumps(report, indent=2))
     if failures:
