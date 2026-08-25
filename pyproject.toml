@@ -1,0 +1,31 @@
+[project]
+name = "factor-sae"
+version = "0.1.0"
+description = "Controlled reconstruction-only partitioned SAE baseline"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "accelerate>=1.14.0",
+    "datasets>=5.0.1",
+    "matplotlib>=3.11.1",
+    "numpy>=2.0",
+    "sae-lens>=6.49.1",
+    "scikit-learn>=1.9.0",
+    "torch==2.7.1+cu128",
+    "transformers>=4.51",
+    "wordfreq>=3.1.1",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["test"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
