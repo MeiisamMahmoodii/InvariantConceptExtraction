@@ -2,10 +2,10 @@
   "source": "Wikidata SPARQL direct best-rank claims; Royal Society of Chemistry element fact boxes for period_of",
   "relation_stats": {
     "capital_of": {
-      "retained_subjects": 193,
-      "distinct_values": 192,
-      "mean_subjects_per_value": 1.0052083333333333,
-      "singleton_value_fraction": 0.9947916666666666
+      "retained_subjects": 192,
+      "distinct_values": 191,
+      "mean_subjects_per_value": 1.0052356020942408,
+      "singleton_value_fraction": 0.9947643979057592
     },
     "continent_of": {
       "retained_subjects": 193,
@@ -14,10 +14,10 @@
       "singleton_value_fraction": 0.0
     },
     "currency_of": {
-      "retained_subjects": 186,
-      "distinct_values": 139,
-      "mean_subjects_per_value": 1.3381294964028776,
-      "singleton_value_fraction": 0.9424460431654677
+      "retained_subjects": 161,
+      "distinct_values": 138,
+      "mean_subjects_per_value": 1.1666666666666667,
+      "singleton_value_fraction": 0.9492753623188406
     },
     "atomic_number_of": {
       "retained_subjects": 174,
@@ -45,7 +45,7 @@
         "continent_of",
         "currency_of"
       ],
-      "shared_subject_count": 174
+      "shared_subject_count": 148
     },
     "science": {
       "relations": [
@@ -56,7 +56,7 @@
       "shared_subject_count": 118
     }
   },
-  "rejected_record_count": 31,
+  "rejected_record_count": 57,
   "policy": {
     "country_continent": "reject if P30 count is not exactly one",
     "period_of": "retain one explicit Royal Society of Chemistry period value; no derivation from atomic number"

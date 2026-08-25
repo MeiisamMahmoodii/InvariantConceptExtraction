@@ -6,7 +6,7 @@ For every candidate, the underlying proposition `(relation, subject, value)` mus
 
 ## Families
 
-`declarative` states the proposition. `question` asks and immediately answers it so no factor is omitted. `paraphrase` changes the wording without adding facts. `formal` uses ordinary human-readable field labels. `structured` uses natural JSON keys, never canonical metadata labels such as `capital_of`.
+`declarative`, `question`, and `paraphrase` each have three independent controlled variants. `formal` has two variants; `structured` has one. `question` asks and immediately answers so no factor is omitted. `formal` uses ordinary human-readable field labels. `structured` uses natural JSON keys, never canonical metadata labels such as `capital_of`.
 
 ## Relation-specific preservation rules
 
@@ -21,4 +21,4 @@ For every candidate, the underlying proposition `(relation, subject, value)` mus
 
 ## Candidate audit scope
 
-`surface_template_candidates.csv` has three source-backed facts for every relation and every proposed family: 90 rows in total. This is the only text produced in this stage. Full generation remains unapproved.
+`surface_template_candidates.csv` has three source-backed facts for every relation: 216 rows in total (12 variants per fact). Natural-language text uses normal sentence-initial capitalization while metadata labels remain unchanged. This is the only text produced in this stage. Full generation remains unapproved.

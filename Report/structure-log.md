@@ -70,4 +70,4 @@ What we did: rendered three factual examples per relation across five surface fa
 
 Why: templates must preserve each proposition before full text generation is allowed.
 
-What we found: all 90 candidates contain their fixed subject and value, and all 18 sampled facts have five complete families. No full surface dataset was generated.
+What we found: 216 candidates contain their fixed subject and value. Each sampled fact has 3 declarative, 3 question, 3 paraphrase, 2 formal, and 1 structured variant. No full surface dataset was generated.
