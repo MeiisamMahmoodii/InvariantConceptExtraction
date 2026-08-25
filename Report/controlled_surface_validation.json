@@ -1,0 +1,23 @@
+{
+  "num_rows": 9576,
+  "num_facts": 798,
+  "geography_subject_count": 148,
+  "science_subject_count": 118,
+  "rows_per_fact_failure_count": 0,
+  "family_count_failure_count": 0,
+  "C_field_inconsistency_count": 0,
+  "cross_subject_split_leakage_count": 0,
+  "S_split_failure_count": 0,
+  "duplicate_text_across_fact_count": 0,
+  "missing_value_count": 0,
+  "unresolved_value_label_count": 0,
+  "rejected_due_to_unresolved_label": 26,
+  "rows_per_S_family": {
+    "declarative": 2394,
+    "question": 2394,
+    "paraphrase": 2394,
+    "formal": 1596,
+    "structured": 798
+  },
+  "provenance_missing_count": 0
+}

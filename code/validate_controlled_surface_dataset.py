@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATASET = ROOT / "data" / "controlled_surface_dataset.csv"
 REPORT = ROOT / "Report" / "controlled_surface_validation.json"
+SOURCE_REJECTIONS = ROOT / "data" / "relation_feasibility" / "rejected_records.csv"
 FAMILY_COUNTS = {"declarative": 3, "question": 3, "paraphrase": 3, "formal": 2, "structured": 1}
 COLUMNS = ("C_domain", "C_relation", "C_subject_id", "C_subject_label", "C_value_id", "C_value_label", "C_subject_type", "C_value_type", "source_name", "source_record_id", "source_provenance", "C_split")
 
@@ -17,6 +18,8 @@ COLUMNS = ("C_domain", "C_relation", "C_subject_id", "C_subject_label", "C_value
 def main():
     with DATASET.open(newline="", encoding="utf-8") as file:
         rows = list(csv.DictReader(file))
+    with SOURCE_REJECTIONS.open(newline="", encoding="utf-8") as file:
+        rejected_due_to_unresolved_label = sum(row["reason"] == "missing English source label" for row in csv.DictReader(file))
     by_fact, splits, texts = defaultdict(list), defaultdict(set), defaultdict(set)
     missing = 0
     for row in rows:
@@ -27,9 +30,9 @@ def main():
     family_failures = sum(Counter(row["S_family"] for row in group) != FAMILY_COUNTS for group in by_fact.values())
     c_failures = sum(len({tuple(row[column] for column in COLUMNS) for row in group}) != 1 for group in by_fact.values())
     s_failures = sum((row["S_family"] in {"declarative", "question", "paraphrase"}) != (row["S_split"] == "S_train") for row in rows)
-    report = {"num_rows": len(rows), "num_facts": len(by_fact), "rows_per_fact_failure_count": sum(len(group) != 12 for group in by_fact.values()), "family_count_failure_count": family_failures, "C_field_inconsistency_count": c_failures, "cross_subject_split_leakage_count": sum(len(value) != 1 for value in splits.values()), "S_split_failure_count": s_failures, "duplicate_text_across_fact_count": sum(1 for facts in texts.values() if len(facts) > 1), "missing_value_count": missing, "rows_per_S_family": dict(Counter(row["S_family"] for row in rows)), "provenance_missing_count": sum(not row["source_record_id"] or not row["source_provenance"] for row in rows)}
+    report = {"num_rows": len(rows), "num_facts": len(by_fact), "geography_subject_count": len({row["C_subject_id"] for row in rows if row["C_domain"] == "geography"}), "science_subject_count": len({row["C_subject_id"] for row in rows if row["C_domain"] == "science"}), "rows_per_fact_failure_count": sum(len(group) != 12 for group in by_fact.values()), "family_count_failure_count": family_failures, "C_field_inconsistency_count": c_failures, "cross_subject_split_leakage_count": sum(len(value) != 1 for value in splits.values()), "S_split_failure_count": s_failures, "duplicate_text_across_fact_count": sum(1 for facts in texts.values() if len(facts) > 1), "missing_value_count": missing, "unresolved_value_label_count": sum(row["C_value_label"].startswith("Q") and row["C_value_label"][1:].isdigit() for row in rows), "rejected_due_to_unresolved_label": rejected_due_to_unresolved_label, "rows_per_S_family": dict(Counter(row["S_family"] for row in rows)), "provenance_missing_count": sum(not row["source_record_id"] or not row["source_provenance"] for row in rows)}
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    failures = [key for key, value in report.items() if key.endswith("_count") and key not in {"num_rows", "num_facts"} and value]
+    failures = [key for key in ("rows_per_fact_failure_count", "family_count_failure_count", "C_field_inconsistency_count", "cross_subject_split_leakage_count", "S_split_failure_count", "duplicate_text_across_fact_count", "missing_value_count", "unresolved_value_label_count", "provenance_missing_count") if report[key]]
     if report["num_rows"] != 9576 or report["num_facts"] != 798:
         failures.append("approved_size")
     print(json.dumps(report, indent=2))

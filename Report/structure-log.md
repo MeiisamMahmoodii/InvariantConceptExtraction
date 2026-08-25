@@ -71,3 +71,11 @@ What we did: rendered three factual examples per relation across five surface fa
 Why: templates must preserve each proposition before full text generation is allowed.
 
 What we found: 216 candidates contain their fixed subject and value. Each sampled fact has 3 declarative, 3 question, 3 paraphrase, 2 formal, and 1 structured variant. No full surface dataset was generated.
+
+## Step 10 — generated strict V1 surface rows
+
+What we did: generated all approved variants from the strict source-validated factual matrix.
+
+Why: V1 rejects unresolved labels instead of introducing a second label source.
+
+What we found: 148 geography subjects and 118 science subjects produce 798 facts and 9,576 rows. All validations and the 50-fact audit pass.

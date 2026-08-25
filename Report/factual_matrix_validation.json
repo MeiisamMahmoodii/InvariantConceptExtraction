@@ -1,7 +1,7 @@
 {
-  "num_facts": 876,
+  "num_facts": 798,
   "subject_count_by_domain": {
-    "geography": 174,
+    "geography": 148,
     "science": 118
   },
   "facts_per_subject_failure_count": 0,
@@ -10,38 +10,38 @@
   "common_universe_mismatch_count": 0,
   "missing_value_count": 0,
   "missing_required_columns": [],
-  "universe_subject_count": 292,
+  "universe_subject_count": 266,
   "unexpected_text_or_S_columns": [],
   "value_reuse": {
+    "atomic_number_of": {
+      "distinct_values": 118,
+      "mean_subjects_per_value": 1.0,
+      "singleton_value_fraction": 1.0
+    },
     "continent_of": {
       "distinct_values": 7,
-      "mean_subjects_per_value": 24.857142857142858,
+      "mean_subjects_per_value": 21.142857142857142,
       "singleton_value_fraction": 0.0
     },
-    "capital_of": {
-      "distinct_values": 173,
-      "mean_subjects_per_value": 1.0057803468208093,
-      "singleton_value_fraction": 0.9942196531791907
+    "currency_of": {
+      "distinct_values": 128,
+      "mean_subjects_per_value": 1.15625,
+      "singleton_value_fraction": 0.953125
     },
     "period_of": {
       "distinct_values": 7,
       "mean_subjects_per_value": 16.857142857142858,
       "singleton_value_fraction": 0.0
     },
-    "currency_of": {
-      "distinct_values": 129,
-      "mean_subjects_per_value": 1.3488372093023255,
-      "singleton_value_fraction": 0.9457364341085271
-    },
-    "atomic_number_of": {
-      "distinct_values": 118,
-      "mean_subjects_per_value": 1.0,
-      "singleton_value_fraction": 1.0
-    },
     "chemical_symbol_of": {
       "distinct_values": 118,
       "mean_subjects_per_value": 1.0,
       "singleton_value_fraction": 1.0
+    },
+    "capital_of": {
+      "distinct_values": 147,
+      "mean_subjects_per_value": 1.0068027210884354,
+      "singleton_value_fraction": 0.9931972789115646
     }
   }
 }
