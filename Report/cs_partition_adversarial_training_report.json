@@ -1,0 +1,206 @@
+{
+  "device": "cuda",
+  "training_rows": 8964,
+  "training_facts": 747,
+  "training_subjects_per_domain": {
+    "books": 83,
+    "geography": 83,
+    "science": 83
+  },
+  "S_train_families": [
+    "declarative",
+    "question",
+    "paraphrase",
+    "formal",
+    "structured"
+  ],
+  "held_out_S_family": "indirect",
+  "architecture": "2304 -> z_C(128) + z_S(128)",
+  "loss": "same two contrastive objectives plus two gradient-reversal probes",
+  "adversarial_weight": 0.1,
+  "decoder": false,
+  "reconstruction": false,
+  "SAE": false,
+  "history": [
+    {
+      "epoch": 1,
+      "C_triplet_loss": 0.080316395844732,
+      "S_triplet_loss": 0.18917252993477243,
+      "adversarial_probe_loss": 3.876067304611206
+    },
+    {
+      "epoch": 2,
+      "C_triplet_loss": 0.021657333217029062,
+      "S_triplet_loss": 0.012843289079942874,
+      "adversarial_probe_loss": 3.893007026399885
+    },
+    {
+      "epoch": 3,
+      "C_triplet_loss": 0.010851246604163731,
+      "S_triplet_loss": 0.008859272560636912,
+      "adversarial_probe_loss": 3.8404713017599925
+    },
+    {
+      "epoch": 4,
+      "C_triplet_loss": 0.00837474343633013,
+      "S_triplet_loss": 0.005594680457475729,
+      "adversarial_probe_loss": 3.784882416043963
+    },
+    {
+      "epoch": 5,
+      "C_triplet_loss": 0.007400603675549584,
+      "S_triplet_loss": 0.007998122251592577,
+      "adversarial_probe_loss": 3.7810178211757113
+    },
+    {
+      "epoch": 6,
+      "C_triplet_loss": 0.0047580466422784545,
+      "S_triplet_loss": 0.006683597648848912,
+      "adversarial_probe_loss": 3.7977673394339426
+    },
+    {
+      "epoch": 7,
+      "C_triplet_loss": 0.006313896714709699,
+      "S_triplet_loss": 0.006093337996363906,
+      "adversarial_probe_loss": 3.791604655129569
+    },
+    {
+      "epoch": 8,
+      "C_triplet_loss": 0.002963655107305385,
+      "S_triplet_loss": 0.0064975239120290745,
+      "adversarial_probe_loss": 3.777694000516619
+    },
+    {
+      "epoch": 9,
+      "C_triplet_loss": 0.0040642983488006785,
+      "S_triplet_loss": 0.00544195385882631,
+      "adversarial_probe_loss": 3.7796577521732875
+    },
+    {
+      "epoch": 10,
+      "C_triplet_loss": 0.005794323641540749,
+      "S_triplet_loss": 0.002839476880451132,
+      "adversarial_probe_loss": 3.7825609956468855
+    },
+    {
+      "epoch": 11,
+      "C_triplet_loss": 0.005228987501634817,
+      "S_triplet_loss": 0.0031637054510481122,
+      "adversarial_probe_loss": 3.7820786952972414
+    },
+    {
+      "epoch": 12,
+      "C_triplet_loss": 0.004222904049259212,
+      "S_triplet_loss": 0.00521184927950214,
+      "adversarial_probe_loss": 3.7850934777941023
+    },
+    {
+      "epoch": 13,
+      "C_triplet_loss": 0.0025768697800231167,
+      "S_triplet_loss": 0.00331498154305986,
+      "adversarial_probe_loss": 3.7819065162113734
+    },
+    {
+      "epoch": 14,
+      "C_triplet_loss": 0.003055971918261743,
+      "S_triplet_loss": 0.002031646326317319,
+      "adversarial_probe_loss": 3.786580174309867
+    },
+    {
+      "epoch": 15,
+      "C_triplet_loss": 0.004534168592155246,
+      "S_triplet_loss": 0.00538148181014029,
+      "adversarial_probe_loss": 3.7825668334960936
+    },
+    {
+      "epoch": 16,
+      "C_triplet_loss": 0.0036343256560420352,
+      "S_triplet_loss": 0.0028466549531523406,
+      "adversarial_probe_loss": 3.780926125390189
+    },
+    {
+      "epoch": 17,
+      "C_triplet_loss": 0.003164683310647628,
+      "S_triplet_loss": 0.0035167779524012334,
+      "adversarial_probe_loss": 3.7883297102791924
+    },
+    {
+      "epoch": 18,
+      "C_triplet_loss": 0.0031575072718883998,
+      "S_triplet_loss": 0.004425881329059069,
+      "adversarial_probe_loss": 3.7895909105028425
+    },
+    {
+      "epoch": 19,
+      "C_triplet_loss": 0.0027572581644303034,
+      "S_triplet_loss": 0.010377134662121534,
+      "adversarial_probe_loss": 3.784116704123361
+    },
+    {
+      "epoch": 20,
+      "C_triplet_loss": 0.004261706074300621,
+      "S_triplet_loss": 0.0032980040414258838,
+      "adversarial_probe_loss": 3.7894670282091414
+    },
+    {
+      "epoch": 21,
+      "C_triplet_loss": 0.0028512396816430348,
+      "S_triplet_loss": 0.002562089679330321,
+      "adversarial_probe_loss": 3.7799061570848735
+    },
+    {
+      "epoch": 22,
+      "C_triplet_loss": 0.0028569749340281955,
+      "S_triplet_loss": 0.0011097156841840064,
+      "adversarial_probe_loss": 3.778151777812413
+    },
+    {
+      "epoch": 23,
+      "C_triplet_loss": 0.0035022771102376283,
+      "S_triplet_loss": 0.0012475645227823407,
+      "adversarial_probe_loss": 3.7753082615988593
+    },
+    {
+      "epoch": 24,
+      "C_triplet_loss": 0.0029543357822279046,
+      "S_triplet_loss": 0.004006799603147166,
+      "adversarial_probe_loss": 3.787228958947318
+    },
+    {
+      "epoch": 25,
+      "C_triplet_loss": 0.0028775774092147394,
+      "S_triplet_loss": 0.0033750399589605098,
+      "adversarial_probe_loss": 3.802318981715611
+    },
+    {
+      "epoch": 26,
+      "C_triplet_loss": 0.003493646615450936,
+      "S_triplet_loss": 0.0029060953288405603,
+      "adversarial_probe_loss": 3.790783623286656
+    },
+    {
+      "epoch": 27,
+      "C_triplet_loss": 0.0034685555255107047,
+      "S_triplet_loss": 0.005231237642666591,
+      "adversarial_probe_loss": 3.7821830000196184
+    },
+    {
+      "epoch": 28,
+      "C_triplet_loss": 0.002119519337845434,
+      "S_triplet_loss": 0.0022387420010220793,
+      "adversarial_probe_loss": 3.774012163707188
+    },
+    {
+      "epoch": 29,
+      "C_triplet_loss": 0.002675048149623243,
+      "S_triplet_loss": 0.0014719230451321762,
+      "adversarial_probe_loss": 3.7862686089106967
+    },
+    {
+      "epoch": 30,
+      "C_triplet_loss": 0.0031446182751096786,
+      "S_triplet_loss": 0.004384211262056072,
+      "adversarial_probe_loss": 3.7931227479662213
+    }
+  ]
+}

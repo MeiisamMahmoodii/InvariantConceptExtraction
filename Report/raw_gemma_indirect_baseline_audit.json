@@ -1,0 +1,71 @@
+{
+  "encoder": "raw_gemma_indirect_baseline_layer8 frozen",
+  "evaluation": "C_test only",
+  "S_train_families": [
+    "declarative",
+    "formal",
+    "paraphrase",
+    "question",
+    "structured"
+  ],
+  "held_out_families": [
+    "indirect"
+  ],
+  "S_family_probe": {
+    "overall_accuracy": 1.0,
+    "S_train_rows_accuracy": 1.0,
+    "held_out_family_accuracy": 1.0,
+    "chance": 0.16666666666666666
+  },
+  "unseen_S_fact_retrieval": {
+    "held_out_S_to_train_S": {
+      "queries": 117,
+      "bank_rows": 1404,
+      "R@1": 0.9829059829059829,
+      "R@5": 1.0,
+      "R@10": 1.0,
+      "MRR": 0.9914529914529915
+    },
+    "train_S_to_held_out_S": {
+      "queries": 1404,
+      "bank_rows": 117,
+      "R@1": 0.8589743589743589,
+      "R@5": 0.9330484330484331,
+      "R@10": 0.9537037037037037,
+      "MRR": 0.8954903372106346
+    }
+  },
+  "matched_pair_geometry": {
+    "positive_same_fact_different_S": {
+      "n": 10000,
+      "mean": 0.9693025350570679,
+      "std": 0.013208143413066864,
+      "p05": 0.9449527263641357,
+      "median": 0.9722663760185242,
+      "p95": 0.9863685369491577
+    },
+    "negative_different_fact_same_template_variant": {
+      "n": 10000,
+      "mean": 0.9499322175979614,
+      "std": 0.026022134348750114,
+      "p05": 0.9054221510887146,
+      "median": 0.9512335062026978,
+      "p95": 0.9919853210449219
+    },
+    "positive_cosine_exceeds_negative_cosine": 0.7283
+  },
+  "collapse": {
+    "dimensions": 2304,
+    "participation_ratio": 4.964272499084473,
+    "entropy_effective_rank": 17.216279983520508,
+    "norm": {
+      "mean": 161.7468719482422,
+      "std": 27.724130630493164,
+      "p05": 128.9578857421875,
+      "median": 156.3441925048828,
+      "p95": 207.50843811035156
+    }
+  },
+  "new_training": "none",
+  "sae_trained": false
+}

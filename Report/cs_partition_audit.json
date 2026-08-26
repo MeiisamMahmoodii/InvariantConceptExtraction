@@ -1,0 +1,53 @@
+{
+  "evaluation": "held-out C_test subjects; S probe trained on C_train",
+  "z_C": {
+    "C_domain_probe": {
+      "accuracy": 0.9747925182707792,
+      "chance": 0.3333333333333333
+    },
+    "C_relation_probe": {
+      "accuracy": 0.9963458441719312,
+      "chance": 0.1111111111111111
+    },
+    "S_family_probe": {
+      "accuracy": 0.655580329493373,
+      "chance": 0.16666666666666666
+    },
+    "effective_rank": {
+      "participation_ratio": 15.41559886932373,
+      "entropy_effective_rank": 26.263893127441406
+    },
+    "same_C_different_S_retrieval": {
+      "queries": 657,
+      "bank_rows": 7884,
+      "R@1": 0.9984779299847792,
+      "R@5": 1.0,
+      "MRR": 0.9988584474885844
+    }
+  },
+  "z_S": {
+    "C_domain_probe": {
+      "accuracy": 0.9423386597299641,
+      "chance": 0.3333333333333333
+    },
+    "C_relation_probe": {
+      "accuracy": 0.8369255543168587,
+      "chance": 0.1111111111111111
+    },
+    "S_family_probe": {
+      "accuracy": 0.9902762294066642,
+      "chance": 0.16666666666666666
+    },
+    "effective_rank": {
+      "participation_ratio": 3.480468511581421,
+      "entropy_effective_rank": 4.398292541503906
+    },
+    "same_S_different_C_retrieval": {
+      "queries": 500,
+      "target": "same S family and variant, different fact",
+      "R@1": 0.948
+    }
+  },
+  "new_training": "none",
+  "SAE_trained": false
+}

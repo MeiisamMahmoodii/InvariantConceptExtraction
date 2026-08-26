@@ -1,0 +1,8 @@
+{
+  "facts": 3948,
+  "surface_rows": 51324,
+  "rejected_subjects": 64,
+  "rows_per_fact_failures": 0,
+  "same_subject_population_as_natural_rewrite": true,
+  "training_performed": false
+}

@@ -1,0 +1,57 @@
+{
+  "evaluation": "frozen partition; published C_test entities and published test templates only",
+  "z_C": {
+    "attribute_probe_train_to_heldout": {
+      "accuracy": 0.48493570400631353,
+      "chance": 0.05263157894736842,
+      "train_rows": 42355,
+      "heldout_test_rows": 21541
+    },
+    "heldout_template_identity_probe": {
+      "accuracy": 0.8901065449010654,
+      "chance": 0.004347826086956522,
+      "scope": "diagnostic probe fitted only within frozen C_test/test-template rows; it does not update the partition",
+      "template_classes": 230
+    },
+    "same_fact_cross_heldout_template_retrieval": {
+      "queries": 21541,
+      "target": "fact_id",
+      "R@1": 0.5606982034260248,
+      "R@5": 0.819414140476301,
+      "R@10": 0.8890023675781069,
+      "MRR": 0.6735485117845871
+    },
+    "effective_rank": {
+      "participation_ratio": 22.964731216430664,
+      "entropy_effective_rank": 33.654048919677734
+    }
+  },
+  "z_S": {
+    "attribute_probe_train_to_heldout": {
+      "accuracy": 0.4920848614270461,
+      "chance": 0.05263157894736842,
+      "train_rows": 42355,
+      "heldout_test_rows": 21541
+    },
+    "heldout_template_identity_probe": {
+      "accuracy": 0.9998477929984779,
+      "chance": 0.004347826086956522,
+      "scope": "diagnostic probe fitted only within frozen C_test/test-template rows; it does not update the partition",
+      "template_classes": 230
+    },
+    "same_template_different_fact_retrieval": {
+      "queries": 21541,
+      "target": "template_id",
+      "R@1": 0.997261037092057,
+      "R@5": 0.9998607306995961,
+      "R@10": 0.9999071537997307,
+      "MRR": 0.9984734038065943
+    },
+    "effective_rank": {
+      "participation_ratio": 18.282228469848633,
+      "entropy_effective_rank": 27.817251205444336
+    }
+  },
+  "partition_retrained": false,
+  "SAE_trained": false
+}

@@ -1,0 +1,149 @@
+{
+  "device": "cuda",
+  "training_rows": 8964,
+  "training_facts": 747,
+  "domain_balanced": true,
+  "training_subjects_per_domain": {
+    "books": 83,
+    "geography": 83,
+    "science": 83
+  },
+  "output_dim": 256,
+  "positive": "same fact, different S_family",
+  "negative": "different fact, same S_family and S_variant",
+  "negative_count": 31,
+  "S_train_families": [
+    "declarative",
+    "formal",
+    "paraphrase",
+    "question",
+    "structured"
+  ],
+  "held_out_families": [
+    "indirect"
+  ],
+  "final_loss": 0.0008002557209692895,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.6810792229005269
+    },
+    {
+      "epoch": 2,
+      "loss": 0.07873626947402954
+    },
+    {
+      "epoch": 3,
+      "loss": 0.024211999507887022
+    },
+    {
+      "epoch": 4,
+      "loss": 0.012386223899998836
+    },
+    {
+      "epoch": 5,
+      "loss": 0.008749614682580743
+    },
+    {
+      "epoch": 6,
+      "loss": 0.006165037131203073
+    },
+    {
+      "epoch": 7,
+      "loss": 0.005121284570278866
+    },
+    {
+      "epoch": 8,
+      "loss": 0.004165360338187644
+    },
+    {
+      "epoch": 9,
+      "loss": 0.003090591189850654
+    },
+    {
+      "epoch": 10,
+      "loss": 0.0026790158324209706
+    },
+    {
+      "epoch": 11,
+      "loss": 0.002644591891605939
+    },
+    {
+      "epoch": 12,
+      "loss": 0.0022062989816601787
+    },
+    {
+      "epoch": 13,
+      "loss": 0.0020263394274349722
+    },
+    {
+      "epoch": 14,
+      "loss": 0.001977394784002432
+    },
+    {
+      "epoch": 15,
+      "loss": 0.0016349894659859793
+    },
+    {
+      "epoch": 16,
+      "loss": 0.0014992832937943085
+    },
+    {
+      "epoch": 17,
+      "loss": 0.0014851140523595469
+    },
+    {
+      "epoch": 18,
+      "loss": 0.0013031641636709018
+    },
+    {
+      "epoch": 19,
+      "loss": 0.001209579043955143
+    },
+    {
+      "epoch": 20,
+      "loss": 0.0011610517028852233
+    },
+    {
+      "epoch": 21,
+      "loss": 0.0011332316706622286
+    },
+    {
+      "epoch": 22,
+      "loss": 0.0010837235487997532
+    },
+    {
+      "epoch": 23,
+      "loss": 0.0010131690202147834
+    },
+    {
+      "epoch": 24,
+      "loss": 0.0009998103686874465
+    },
+    {
+      "epoch": 25,
+      "loss": 0.0009407018377844776
+    },
+    {
+      "epoch": 26,
+      "loss": 0.0008783175427067493
+    },
+    {
+      "epoch": 27,
+      "loss": 0.0008908795591975961
+    },
+    {
+      "epoch": 28,
+      "loss": 0.0008180493538800094
+    },
+    {
+      "epoch": 29,
+      "loss": 0.000807227086209293
+    },
+    {
+      "epoch": 30,
+      "loss": 0.0008002557209692895
+    }
+  ],
+  "sae_trained": false
+}

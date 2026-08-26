@@ -1,0 +1,66 @@
+{
+  "encoder": "checkpoint/contrastive_encoder_layer8.pt; frozen during audit",
+  "diagnostic_probe_training": "C_train subjects; probes may use all five S labels, unlike the contrastive encoder",
+  "evaluation": "C_test subjects",
+  "held_out_surface_families": [
+    "formal",
+    "structured"
+  ],
+  "diagnostic_linear_probes": {
+    "S_family": {
+      "C_test_accuracy": 0.6809116809116809,
+      "chance": 0.2
+    },
+    "C_domain": {
+      "C_test_accuracy": 1.0,
+      "chance": 0.5
+    },
+    "C_relation": {
+      "C_test_accuracy": 1.0,
+      "chance": 0.16666666666666666
+    }
+  },
+  "S_family_accuracy_on_C_test_S_train_rows": 0.5935422602089269,
+  "S_family_accuracy_on_C_test_held_out_S_rows": 0.9430199430199431,
+  "pair_similarity_distributions_C_test": {
+    "A_same_fact_different_S": {
+      "n": 10000,
+      "mean": 0.858360230922699,
+      "std": 0.13259756565093994,
+      "p05": 0.5902788639068604,
+      "median": 0.9059426784515381,
+      "p95": 0.982833981513977
+    },
+    "B_different_fact_same_relation": {
+      "n": 10000,
+      "mean": 0.3616640567779541,
+      "std": 0.2503969669342041,
+      "p05": -0.09333140403032303,
+      "median": 0.3872634172439575,
+      "p95": 0.7363710999488831
+    },
+    "C_different_relation_same_subject": {
+      "n": 10000,
+      "mean": 0.22661955654621124,
+      "std": 0.1833917498588562,
+      "p05": -0.0678064152598381,
+      "median": 0.2220674604177475,
+      "p95": 0.5495887398719788
+    },
+    "D_different_domain": {
+      "n": 10000,
+      "mean": -0.0051043215207755566,
+      "std": 0.14468808472156525,
+      "p05": -0.22539022564888,
+      "median": -0.014024384319782257,
+      "p95": 0.24297282099723816
+    }
+  },
+  "rows": {
+    "C_train": 6732,
+    "C_test": 1404,
+    "C_test_S_train": 1053,
+    "C_test_S_test": 351
+  },
+  "sae_trained": false
+}

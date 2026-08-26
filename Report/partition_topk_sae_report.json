@@ -1,0 +1,62 @@
+{
+  "device": "cuda",
+  "method": "Top-k ReLU SAE with unit-norm decoder columns",
+  "fixed_k": 64,
+  "expansion_factor": 4,
+  "epochs": 30,
+  "training_rows": 8964,
+  "training_facts": 747,
+  "training_subjects_per_domain": {
+    "books": 83,
+    "geography": 83,
+    "science": 83
+  },
+  "raw_gemma_layer8_reused_from_matched_topk_sweep": {
+    "standardized_reconstruction_mse": 0.24541068808139702,
+    "mean_L0": 64.0,
+    "active_feature_count": 3671,
+    "active_feature_fraction": 0.3983289930555556,
+    "mean_top50_C_relation_purity": 0.5790432023718073,
+    "mean_top50_C_domain_purity": 0.8526411680949405,
+    "mean_top50_S_family_purity": 0.5171698702721595,
+    "C_relation_selective_features": 198,
+    "C_relation_selective_fraction": 0.053936257150640154,
+    "S_family_selective_features": 68,
+    "S_family_selective_fraction": 0.018523563061836012,
+    "feature_details": "data\\sae_features\\topk_raw_gemma_layer8_k64_feature_selectivity.csv"
+  },
+  "nonadversarial_z_C": {
+    "input_width": 128,
+    "feature_width": 512,
+    "standardized_reconstruction_mse": 0.09446966021419088,
+    "mean_L0": 64.0,
+    "effective_active_dictionary_size": 512,
+    "effective_active_dictionary_fraction": 1.0,
+    "mean_top50_C_relation_purity": 0.6014080999405577,
+    "mean_top50_C_domain_purity": 0.883406277481923,
+    "mean_top50_S_family_purity": 0.3052230641529868,
+    "C_relation_selective_features": 103,
+    "C_relation_selective_fraction_of_dictionary": 0.201171875,
+    "S_family_selective_features": 0,
+    "S_family_selective_fraction_of_dictionary": 0.0,
+    "feature_details": "data\\sae_features\\partition_z_C_k64_feature_selectivity.csv"
+  },
+  "nonadversarial_z_S": {
+    "input_width": 128,
+    "feature_width": 512,
+    "standardized_reconstruction_mse": 0.013874392196258663,
+    "mean_L0": 64.0,
+    "effective_active_dictionary_size": 469,
+    "effective_active_dictionary_fraction": 0.916015625,
+    "mean_top50_C_relation_purity": 0.5193211939917345,
+    "mean_top50_C_domain_purity": 0.8792951116564528,
+    "mean_top50_S_family_purity": 0.7316206793815938,
+    "C_relation_selective_features": 1,
+    "C_relation_selective_fraction_of_dictionary": 0.001953125,
+    "S_family_selective_features": 99,
+    "S_family_selective_fraction_of_dictionary": 0.193359375,
+    "feature_details": "data\\sae_features\\partition_z_S_k64_feature_selectivity.csv"
+  },
+  "partition_retrained": false,
+  "new_losses_added": false
+}

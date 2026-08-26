@@ -1,0 +1,462 @@
+{
+  "source": "official ConCA repository: AutoEncodeBatchNorm + PAnnealSoftPlusTrainer",
+  "settings": {
+    "objective": "official reconstruction plus alpha*Lp(softplus(features)); p_start=p_end=1",
+    "steps": 24000,
+    "batch_size": 256,
+    "lr": 0.0001,
+    "warmup_steps": 200,
+    "sparsity_warmup_steps": 400,
+    "alpha": 0.001,
+    "expansion": 4,
+    "training_rows": 1120,
+    "frozen_inputs": true,
+    "partition_retrained": false
+  },
+  "raw": {
+    "concepts": [
+      {
+        "sentence_id": 170,
+        "feature": 8255,
+        "seen_auc": 0.9994612068965517,
+        "heldout_auc": 1.0,
+        "stability": 0.9198659658432007
+      },
+      {
+        "sentence_id": 171,
+        "feature": 3422,
+        "seen_auc": 0.9865301724137931,
+        "heldout_auc": 0.9137931034482759,
+        "stability": 0.9010254144668579
+      },
+      {
+        "sentence_id": 172,
+        "feature": 6737,
+        "seen_auc": 0.9391163793103449,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9372686147689819
+      },
+      {
+        "sentence_id": 173,
+        "feature": 8302,
+        "seen_auc": 0.9908405172413793,
+        "heldout_auc": 1.0,
+        "stability": 0.9998137354850769
+      },
+      {
+        "sentence_id": 174,
+        "feature": 4740,
+        "seen_auc": 0.9983836206896551,
+        "heldout_auc": 1.0,
+        "stability": 0.9155415892601013
+      },
+      {
+        "sentence_id": 175,
+        "feature": 6339,
+        "seen_auc": 0.9919181034482758,
+        "heldout_auc": 0.9482758620689655,
+        "stability": 0.8712295889854431
+      },
+      {
+        "sentence_id": 176,
+        "feature": 3947,
+        "seen_auc": 0.9897629310344828,
+        "heldout_auc": 1.0,
+        "stability": 0.9199745655059814
+      },
+      {
+        "sentence_id": 177,
+        "feature": 7166,
+        "seen_auc": 0.9337284482758621,
+        "heldout_auc": 0.8448275862068966,
+        "stability": 0.8001570701599121
+      },
+      {
+        "sentence_id": 178,
+        "feature": 8927,
+        "seen_auc": 0.9967672413793103,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9948709011077881
+      },
+      {
+        "sentence_id": 179,
+        "feature": 7511,
+        "seen_auc": 0.9606681034482758,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.986191987991333
+      },
+      {
+        "sentence_id": 180,
+        "feature": 4923,
+        "seen_auc": 0.9924568965517241,
+        "heldout_auc": 0.9482758620689655,
+        "stability": 0.9953573942184448
+      },
+      {
+        "sentence_id": 181,
+        "feature": 2951,
+        "seen_auc": 0.9994612068965517,
+        "heldout_auc": 1.0,
+        "stability": 0.9679833650588989
+      },
+      {
+        "sentence_id": 182,
+        "feature": 3339,
+        "seen_auc": 0.9919181034482758,
+        "heldout_auc": 0.9568965517241379,
+        "stability": 0.9641819000244141
+      },
+      {
+        "sentence_id": 183,
+        "feature": 2545,
+        "seen_auc": 1.0,
+        "heldout_auc": 1.0,
+        "stability": 0.9997559189796448
+      },
+      {
+        "sentence_id": 184,
+        "feature": 349,
+        "seen_auc": 0.9913793103448276,
+        "heldout_auc": 0.9655172413793104,
+        "stability": 0.9212581515312195
+      },
+      {
+        "sentence_id": 185,
+        "feature": 2389,
+        "seen_auc": 0.9978448275862069,
+        "heldout_auc": 1.0,
+        "stability": 0.9293806552886963
+      },
+      {
+        "sentence_id": 186,
+        "feature": 4324,
+        "seen_auc": 0.984375,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9710467457771301
+      },
+      {
+        "sentence_id": 187,
+        "feature": 5257,
+        "seen_auc": 1.0,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9463248252868652
+      },
+      {
+        "sentence_id": 188,
+        "feature": 6798,
+        "seen_auc": 0.9881465517241379,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9901164770126343
+      },
+      {
+        "sentence_id": 189,
+        "feature": 6916,
+        "seen_auc": 0.9994612068965517,
+        "heldout_auc": 1.0,
+        "stability": 0.7713095545768738
+      },
+      {
+        "sentence_id": 190,
+        "feature": 6038,
+        "seen_auc": 0.9752155172413793,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9312164783477783
+      },
+      {
+        "sentence_id": 191,
+        "feature": 1122,
+        "seen_auc": 0.9719827586206896,
+        "heldout_auc": 0.896551724137931,
+        "stability": 0.8013590574264526
+      },
+      {
+        "sentence_id": 192,
+        "feature": 4998,
+        "seen_auc": 0.9811422413793103,
+        "heldout_auc": 0.896551724137931,
+        "stability": 0.8335763812065125
+      },
+      {
+        "sentence_id": 193,
+        "feature": 3689,
+        "seen_auc": 1.0,
+        "heldout_auc": 1.0,
+        "stability": 0.9454717636108398
+      },
+      {
+        "sentence_id": 194,
+        "feature": 2251,
+        "seen_auc": 0.9935344827586207,
+        "heldout_auc": 1.0,
+        "stability": 0.9651005864143372
+      },
+      {
+        "sentence_id": 195,
+        "feature": 1349,
+        "seen_auc": 0.9886853448275862,
+        "heldout_auc": 0.7844827586206896,
+        "stability": 0.7702258229255676
+      },
+      {
+        "sentence_id": 196,
+        "feature": 6658,
+        "seen_auc": 0.962823275862069,
+        "heldout_auc": 0.9655172413793104,
+        "stability": 0.9895557165145874
+      },
+      {
+        "sentence_id": 197,
+        "feature": 8940,
+        "seen_auc": 0.984375,
+        "heldout_auc": 1.0,
+        "stability": 0.9247450232505798
+      },
+      {
+        "sentence_id": 198,
+        "feature": 7380,
+        "seen_auc": 0.990301724137931,
+        "heldout_auc": 0.9741379310344828,
+        "stability": 0.9014895558357239
+      },
+      {
+        "sentence_id": 199,
+        "feature": 5488,
+        "seen_auc": 0.9908405172413793,
+        "heldout_auc": 0.9482758620689655,
+        "stability": 0.761070966720581
+      }
+    ],
+    "mean_seen_concept_auc": 0.9857040229885058,
+    "mean_heldout_concept_auc": 0.9649425287356322,
+    "mean_component_stability": 0.9175488591194153,
+    "sentence_oriented_fraction": 0.4098307291666667,
+    "language_oriented_fraction": 0.4887152777777778,
+    "language_probe_accuracy": 0.9933333333333333,
+    "effective_rank": 9.859077453613281,
+    "reconstruction_mse": 0.0029551826883107424,
+    "dictionary_size": 9216
+  },
+  "z_C": {
+    "concepts": [
+      {
+        "sentence_id": 170,
+        "feature": 468,
+        "seen_auc": 0.9956896551724138,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9289117455482483
+      },
+      {
+        "sentence_id": 171,
+        "feature": 181,
+        "seen_auc": 0.9886853448275862,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9659070372581482
+      },
+      {
+        "sentence_id": 172,
+        "feature": 456,
+        "seen_auc": 0.9714439655172413,
+        "heldout_auc": 1.0,
+        "stability": 0.9436181783676147
+      },
+      {
+        "sentence_id": 173,
+        "feature": 98,
+        "seen_auc": 0.9919181034482758,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9498416781425476
+      },
+      {
+        "sentence_id": 174,
+        "feature": 14,
+        "seen_auc": 1.0,
+        "heldout_auc": 1.0,
+        "stability": 0.9321591854095459
+      },
+      {
+        "sentence_id": 175,
+        "feature": 259,
+        "seen_auc": 0.984375,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9924743175506592
+      },
+      {
+        "sentence_id": 176,
+        "feature": 300,
+        "seen_auc": 0.9827586206896552,
+        "heldout_auc": 0.9741379310344828,
+        "stability": 0.977401852607727
+      },
+      {
+        "sentence_id": 177,
+        "feature": 10,
+        "seen_auc": 0.9520474137931034,
+        "heldout_auc": 0.9310344827586207,
+        "stability": 0.941302478313446
+      },
+      {
+        "sentence_id": 178,
+        "feature": 110,
+        "seen_auc": 0.9865301724137931,
+        "heldout_auc": 1.0,
+        "stability": 0.9978740215301514
+      },
+      {
+        "sentence_id": 179,
+        "feature": 79,
+        "seen_auc": 0.9962284482758621,
+        "heldout_auc": 1.0,
+        "stability": 0.9955623149871826
+      },
+      {
+        "sentence_id": 180,
+        "feature": 37,
+        "seen_auc": 0.9849137931034483,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9872565269470215
+      },
+      {
+        "sentence_id": 181,
+        "feature": 368,
+        "seen_auc": 1.0,
+        "heldout_auc": 1.0,
+        "stability": 0.976815938949585
+      },
+      {
+        "sentence_id": 182,
+        "feature": 295,
+        "seen_auc": 0.9962284482758621,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9679558873176575
+      },
+      {
+        "sentence_id": 183,
+        "feature": 26,
+        "seen_auc": 1.0,
+        "heldout_auc": 1.0,
+        "stability": 0.9729894399642944
+      },
+      {
+        "sentence_id": 184,
+        "feature": 469,
+        "seen_auc": 0.9989224137931034,
+        "heldout_auc": 1.0,
+        "stability": 0.9837380647659302
+      },
+      {
+        "sentence_id": 185,
+        "feature": 197,
+        "seen_auc": 0.9994612068965517,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9224410057067871
+      },
+      {
+        "sentence_id": 186,
+        "feature": 250,
+        "seen_auc": 0.9983836206896551,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.8697918057441711
+      },
+      {
+        "sentence_id": 187,
+        "feature": 116,
+        "seen_auc": 0.9994612068965517,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9378979802131653
+      },
+      {
+        "sentence_id": 188,
+        "feature": 194,
+        "seen_auc": 1.0,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9468337893486023
+      },
+      {
+        "sentence_id": 189,
+        "feature": 96,
+        "seen_auc": 0.9994612068965517,
+        "heldout_auc": 0.9913793103448276,
+        "stability": 0.9838091731071472
+      },
+      {
+        "sentence_id": 190,
+        "feature": 45,
+        "seen_auc": 0.9989224137931034,
+        "heldout_auc": 1.0,
+        "stability": 0.9587812423706055
+      },
+      {
+        "sentence_id": 191,
+        "feature": 118,
+        "seen_auc": 0.9326508620689655,
+        "heldout_auc": 0.8793103448275862,
+        "stability": 0.6581178903579712
+      },
+      {
+        "sentence_id": 192,
+        "feature": 63,
+        "seen_auc": 0.9935344827586207,
+        "heldout_auc": 0.9655172413793104,
+        "stability": 0.962791383266449
+      },
+      {
+        "sentence_id": 193,
+        "feature": 90,
+        "seen_auc": 1.0,
+        "heldout_auc": 1.0,
+        "stability": 0.9912724494934082
+      },
+      {
+        "sentence_id": 194,
+        "feature": 83,
+        "seen_auc": 0.9897629310344828,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9907085299491882
+      },
+      {
+        "sentence_id": 195,
+        "feature": 269,
+        "seen_auc": 0.9962284482758621,
+        "heldout_auc": 1.0,
+        "stability": 0.9432083368301392
+      },
+      {
+        "sentence_id": 196,
+        "feature": 68,
+        "seen_auc": 0.9806034482758621,
+        "heldout_auc": 0.9827586206896551,
+        "stability": 0.9980990290641785
+      },
+      {
+        "sentence_id": 197,
+        "feature": 95,
+        "seen_auc": 0.9929956896551724,
+        "heldout_auc": 1.0,
+        "stability": 0.9929772615432739
+      },
+      {
+        "sentence_id": 198,
+        "feature": 231,
+        "seen_auc": 0.9563577586206897,
+        "heldout_auc": 0.896551724137931,
+        "stability": 0.9482982754707336
+      },
+      {
+        "sentence_id": 199,
+        "feature": 190,
+        "seen_auc": 0.9859913793103449,
+        "heldout_auc": 0.9655172413793104,
+        "stability": 0.991446316242218
+      }
+    ],
+    "mean_seen_concept_auc": 0.9884518678160918,
+    "mean_heldout_concept_auc": 0.9818965517241379,
+    "mean_component_stability": 0.9536761045455933,
+    "sentence_oriented_fraction": 1.0,
+    "language_oriented_fraction": 0.0,
+    "language_probe_accuracy": 0.28,
+    "effective_rank": 4.630260467529297,
+    "reconstruction_mse": 0.0007389694219455123,
+    "dictionary_size": 512
+  }
+}

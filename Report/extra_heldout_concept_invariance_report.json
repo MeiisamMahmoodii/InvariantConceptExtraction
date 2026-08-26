@@ -1,0 +1,197 @@
+{
+  "selection_split": "original C-test rows from five seen S families only",
+  "evaluation_families": [
+    "conversational",
+    "reordered"
+  ],
+  "support_rules": {
+    "relation_minimum_distinct_facts": 5,
+    "reusable_value_minimum_distinct_facts": 10,
+    "subject_minimum_distinct_facts": 3
+  },
+  "bootstrap_replicates": 5000,
+  "summaries": {
+    "conversational": {
+      "all": {
+        "raw_mean_AUC": 0.7111531945568191,
+        "z_C_mean_AUC": 0.8971818419229922,
+        "AUC_paired_difference": {
+          "mean_difference": 0.18602864736617314,
+          "bootstrap_95_CI": [
+            0.1596745091911418,
+            0.213005740416324
+          ],
+          "concepts": 238
+        },
+        "raw_mean_stability": 0.30722428420010733,
+        "z_C_mean_stability": 0.6749877989793024,
+        "stability_paired_difference": {
+          "mean_difference": 0.36776351477919506,
+          "bootstrap_95_CI": [
+            0.3303040991247702,
+            0.40636161248348335
+          ],
+          "concepts": 238
+        }
+      },
+      "relation": {
+        "raw_mean_AUC": 0.862967573877605,
+        "z_C_mean_AUC": 0.9682064235802338,
+        "AUC_paired_difference": {
+          "mean_difference": 0.1052388497026286,
+          "bootstrap_95_CI": [
+            0.012970135710972113,
+            0.22022018280304306
+          ],
+          "concepts": 9
+        },
+        "raw_mean_stability": 0.5696152713563707,
+        "z_C_mean_stability": 0.7880380352338155,
+        "stability_paired_difference": {
+          "mean_difference": 0.2184227638774448,
+          "bootstrap_95_CI": [
+            0.007975479794873138,
+            0.4648471227950519
+          ],
+          "concepts": 9
+        }
+      },
+      "reusable_value": {
+        "raw_mean_AUC": 0.848673277163267,
+        "z_C_mean_AUC": 0.9290446049649852,
+        "AUC_paired_difference": {
+          "mean_difference": 0.0803713278017181,
+          "bootstrap_95_CI": [
+            -0.009436627742416359,
+            0.18872821366056258
+          ],
+          "concepts": 10
+        },
+        "raw_mean_stability": 0.6578936636447906,
+        "z_C_mean_stability": 0.8139633297920227,
+        "stability_paired_difference": {
+          "mean_difference": 0.15606966614723206,
+          "bootstrap_95_CI": [
+            -0.010222080647945402,
+            0.36590351670980437
+          ],
+          "concepts": 10
+        }
+      },
+      "subject": {
+        "raw_mean_AUC": 0.6986347916346661,
+        "z_C_mean_AUC": 0.892808102811873,
+        "AUC_paired_difference": {
+          "mean_difference": 0.19417331117720713,
+          "bootstrap_95_CI": [
+            0.16523169675896834,
+            0.22228517634135328
+          ],
+          "concepts": 219
+        },
+        "raw_mean_stability": 0.2804287925158461,
+        "z_C_mean_stability": 0.6639959842102713,
+        "stability_paired_difference": {
+          "mean_difference": 0.3835671916944251,
+          "bootstrap_95_CI": [
+            0.3440160941315568,
+            0.4216777708568528
+          ],
+          "concepts": 219
+        }
+      }
+    },
+    "reordered": {
+      "all": {
+        "raw_mean_AUC": 0.6992252186187323,
+        "z_C_mean_AUC": 0.9110279769330298,
+        "AUC_paired_difference": {
+          "mean_difference": 0.21180275831429743,
+          "bootstrap_95_CI": [
+            0.18464937716880483,
+            0.23951642513888063
+          ],
+          "concepts": 238
+        },
+        "raw_mean_stability": 0.284326961060532,
+        "z_C_mean_stability": 0.7057999089485457,
+        "stability_paired_difference": {
+          "mean_difference": 0.4214729478880137,
+          "bootstrap_95_CI": [
+            0.3845147058367729,
+            0.4600960449824313
+          ],
+          "concepts": 238
+        }
+      },
+      "relation": {
+        "raw_mean_AUC": 0.802735721063725,
+        "z_C_mean_AUC": 0.971426984385388,
+        "AUC_paired_difference": {
+          "mean_difference": 0.16869126332166298,
+          "bootstrap_95_CI": [
+            0.012689505215930794,
+            0.32558579088229017
+          ],
+          "concepts": 9
+        },
+        "raw_mean_stability": 0.46640511353810626,
+        "z_C_mean_stability": 0.8291233513090346,
+        "stability_paired_difference": {
+          "mean_difference": 0.36271823777092826,
+          "bootstrap_95_CI": [
+            0.1210961229271359,
+            0.5972319674160745
+          ],
+          "concepts": 9
+        }
+      },
+      "reusable_value": {
+        "raw_mean_AUC": 0.9034762396934519,
+        "z_C_mean_AUC": 0.9380490472203201,
+        "AUC_paired_difference": {
+          "mean_difference": 0.03457280752686807,
+          "bootstrap_95_CI": [
+            -0.009553962203588586,
+            0.10404988509859696
+          ],
+          "concepts": 10
+        },
+        "raw_mean_stability": 0.6830055415630341,
+        "z_C_mean_stability": 0.8316270470619201,
+        "stability_paired_difference": {
+          "mean_difference": 0.14862150549888611,
+          "bootstrap_95_CI": [
+            -0.020289740860462185,
+            0.36162904664874057
+          ],
+          "concepts": 10
+        }
+      },
+      "subject": {
+        "raw_mean_AUC": 0.6856448317111884,
+        "z_C_mean_AUC": 0.9073119871159333,
+        "AUC_paired_difference": {
+          "mean_difference": 0.22166715540474494,
+          "bootstrap_95_CI": [
+            0.19360590954156368,
+            0.25014897783921913
+          ],
+          "concepts": 219
+        },
+        "raw_mean_stability": 0.2586397958672754,
+        "z_C_mean_stability": 0.6949862908554948,
+        "stability_paired_difference": {
+          "mean_difference": 0.43634649498821937,
+          "bootstrap_95_CI": [
+            0.3970710075064881,
+            0.474822494659794
+          ],
+          "concepts": 219
+        }
+      }
+    }
+  },
+  "per_concept_details": "data\\sae_features\\extra_heldout_concept_invariance.csv",
+  "new_training": "none"
+}

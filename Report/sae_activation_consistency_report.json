@@ -1,0 +1,115 @@
+{
+  "evaluation": "frozen persisted C-test sparse activations only",
+  "consistency_definition": "1 - sum_pair_abs_difference / sum_pair_activation_mass; cross-condition comparison excludes features with zero total activation in either pair set",
+  "same_C_different_S_pairs": 10000,
+  "same_S_different_C_pairs": 10000,
+  "pair_seed": 20260825,
+  "models": {
+    "raw_gemma_layer8": {
+      "feature_width": 9216,
+      "evaluated_features": 6196,
+      "inactive_in_either_pair_set": 3020,
+      "Cons_C_fixed": {
+        "n": 6196,
+        "mean": 0.13562103969655623,
+        "std": 0.18014329117795858,
+        "p05": 0.0,
+        "median": 0.05121614246066375,
+        "p95": 0.5242027636137794
+      },
+      "Cons_S_fixed": {
+        "n": 6196,
+        "mean": 0.02058318052699694,
+        "std": 0.051523213181456286,
+        "p05": 0.0,
+        "median": 0.0,
+        "p95": 0.09872677991332607
+      },
+      "delta_C_minus_S": {
+        "n": 6196,
+        "mean": 0.11503785916955929,
+        "std": 0.1815648965892586,
+        "p05": -0.033545646165262066,
+        "median": 0.022327575358173368,
+        "p95": 0.49346217876062937
+      },
+      "C_invariant_oriented_features": 3216,
+      "C_invariant_oriented_fraction": 0.5190445448676565,
+      "S_invariant_oriented_features": 449,
+      "S_invariant_oriented_fraction": 0.0724661071659135,
+      "ties": 2531,
+      "feature_details": "data\\sae_features\\raw_gemma_layer8_k64_activation_consistency.csv"
+    },
+    "z_C": {
+      "feature_width": 512,
+      "evaluated_features": 512,
+      "inactive_in_either_pair_set": 0,
+      "Cons_C_fixed": {
+        "n": 512,
+        "mean": 0.6821192989038892,
+        "std": 0.12261252631524024,
+        "p05": 0.44328930749390466,
+        "median": 0.7048919997212649,
+        "p95": 0.8423250189368048
+      },
+      "Cons_S_fixed": {
+        "n": 512,
+        "mean": 0.09986421313157667,
+        "std": 0.06414801656353274,
+        "p05": 0.016952499474299932,
+        "median": 0.08533271085804639,
+        "p95": 0.22347203418139824
+      },
+      "delta_C_minus_S": {
+        "n": 512,
+        "mean": 0.5822550857723126,
+        "std": 0.09897983168120217,
+        "p05": 0.40465028417528154,
+        "median": 0.5908267584488982,
+        "p95": 0.7159506978104977
+      },
+      "C_invariant_oriented_features": 512,
+      "C_invariant_oriented_fraction": 1.0,
+      "S_invariant_oriented_features": 0,
+      "S_invariant_oriented_fraction": 0.0,
+      "ties": 0,
+      "feature_details": "data\\sae_features\\z_C_k64_activation_consistency.csv"
+    },
+    "z_S": {
+      "feature_width": 512,
+      "evaluated_features": 508,
+      "inactive_in_either_pair_set": 4,
+      "Cons_C_fixed": {
+        "n": 508,
+        "mean": 0.09180527147015267,
+        "std": 0.10058426835411938,
+        "p05": 0.0,
+        "median": 0.06628924040724643,
+        "p95": 0.30241654478387475
+      },
+      "Cons_S_fixed": {
+        "n": 508,
+        "mean": 0.36979251594435836,
+        "std": 0.3990051412999067,
+        "p05": 0.0,
+        "median": 0.06238145212698465,
+        "p95": 0.9504726771087575
+      },
+      "delta_C_minus_S": {
+        "n": 508,
+        "mean": -0.27798724447420564,
+        "std": 0.4109876547520356,
+        "p05": -0.934244890535362,
+        "median": -0.03541672631355103,
+        "p95": 0.19118699986083207
+      },
+      "C_invariant_oriented_features": 183,
+      "C_invariant_oriented_fraction": 0.36023622047244097,
+      "S_invariant_oriented_features": 266,
+      "S_invariant_oriented_fraction": 0.5236220472440944,
+      "ties": 59,
+      "feature_details": "data\\sae_features\\z_S_k64_activation_consistency.csv"
+    }
+  },
+  "new_training": "none"
+}

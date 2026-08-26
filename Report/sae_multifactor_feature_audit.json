@@ -1,0 +1,203 @@
+{
+  "evaluation": "frozen persisted C-test sparse activations only",
+  "top_active_examples_per_feature": 50,
+  "minimum_feature_active_examples": 10,
+  "support_rules": {
+    "subject_minimum_distinct_C_test_facts": 3,
+    "reusable_value_minimum_distinct_C_test_facts": 10,
+    "minimum_distinct_top_facts_for_subject_or_value_assignment": 3
+  },
+  "primary_assignment": "eligible factor with largest purity minus its C-test example-frequency baseline",
+  "models": {
+    "raw_gemma_layer8": {
+      "feature_width": 9216,
+      "evaluated_features": 3671,
+      "excluded_low_activity_features": 5545,
+      "primary_factor_counts": {
+        "reusable_value": 321,
+        "domain": 410,
+        "subject": 976,
+        "relation": 1105,
+        "S_family": 859
+      },
+      "primary_factor_fractions": {
+        "domain": 0.11168618904930537,
+        "relation": 0.3010078997548352,
+        "subject": 0.2658676110051757,
+        "reusable_value": 0.08744211386543176,
+        "S_family": 0.233996186325252,
+        "unclassified": 0.0
+      },
+      "purity_distributions": {
+        "domain": {
+          "n": 3671,
+          "mean": 0.8507103331077177,
+          "max": 1.0,
+          "p05": 0.52,
+          "median": 0.9333333333333333,
+          "p95": 1.0
+        },
+        "relation": {
+          "n": 3671,
+          "mean": 0.553776704971487,
+          "max": 1.0,
+          "p05": 0.0,
+          "median": 0.5,
+          "p95": 1.0
+        },
+        "subject": {
+          "n": 3671,
+          "mean": 0.16882456755410016,
+          "max": 1.0,
+          "p05": 0.0,
+          "median": 0.0,
+          "p95": 0.62
+        },
+        "reusable_value": {
+          "n": 3671,
+          "mean": 0.20317823475242078,
+          "max": 1.0,
+          "p05": 0.0,
+          "median": 0.0,
+          "p95": 0.7204651162790697
+        },
+        "S_family": {
+          "n": 3671,
+          "mean": 0.5160662306538101,
+          "max": 1.0,
+          "p05": 0.28,
+          "median": 0.45,
+          "p95": 1.0
+        }
+      },
+      "feature_details": "data\\sae_features\\raw_gemma_layer8_k64_multifactor_feature_audit.csv"
+    },
+    "z_C": {
+      "feature_width": 512,
+      "evaluated_features": 512,
+      "excluded_low_activity_features": 0,
+      "primary_factor_counts": {
+        "relation": 196,
+        "domain": 43,
+        "reusable_value": 91,
+        "subject": 156,
+        "S_family": 26
+      },
+      "primary_factor_fractions": {
+        "domain": 0.083984375,
+        "relation": 0.3828125,
+        "subject": 0.3046875,
+        "reusable_value": 0.177734375,
+        "S_family": 0.05078125,
+        "unclassified": 0.0
+      },
+      "purity_distributions": {
+        "domain": {
+          "n": 512,
+          "mean": 0.883406277481923,
+          "max": 1.0,
+          "p05": 0.54,
+          "median": 0.98,
+          "p95": 1.0
+        },
+        "relation": {
+          "n": 512,
+          "mean": 0.581742921369129,
+          "max": 1.0,
+          "p05": 0.0,
+          "median": 0.56,
+          "p95": 1.0
+        },
+        "subject": {
+          "n": 512,
+          "mean": 0.20910642527359782,
+          "max": 0.78,
+          "p05": 0.0,
+          "median": 0.0,
+          "p95": 0.7
+        },
+        "reusable_value": {
+          "n": 512,
+          "mean": 0.223515625,
+          "max": 1.0,
+          "p05": 0.0,
+          "median": 0.0,
+          "p95": 0.8289999999999997
+        },
+        "S_family": {
+          "n": 512,
+          "mean": 0.3052230641529868,
+          "max": 0.96,
+          "p05": 0.231,
+          "median": 0.3,
+          "p95": 0.42
+        }
+      },
+      "feature_details": "data\\sae_features\\z_C_k64_multifactor_feature_audit.csv"
+    },
+    "z_S": {
+      "feature_width": 512,
+      "evaluated_features": 469,
+      "excluded_low_activity_features": 43,
+      "primary_factor_counts": {
+        "S_family": 347,
+        "relation": 50,
+        "subject": 56,
+        "domain": 5,
+        "reusable_value": 11
+      },
+      "primary_factor_fractions": {
+        "domain": 0.010660980810234541,
+        "relation": 0.10660980810234541,
+        "subject": 0.11940298507462686,
+        "reusable_value": 0.023454157782515993,
+        "S_family": 0.7398720682302772,
+        "unclassified": 0.0
+      },
+      "purity_distributions": {
+        "domain": {
+          "n": 469,
+          "mean": 0.8792951116564528,
+          "max": 1.0,
+          "p05": 0.54,
+          "median": 0.96875,
+          "p95": 1.0
+        },
+        "relation": {
+          "n": 469,
+          "mean": 0.5155484672712466,
+          "max": 1.0,
+          "p05": 0.3138157894736842,
+          "median": 0.48,
+          "p95": 0.8519999999999993
+        },
+        "subject": {
+          "n": 469,
+          "mean": 0.13696944022127003,
+          "max": 0.8333333333333334,
+          "p05": 0.0,
+          "median": 0.1,
+          "p95": 0.40705882352941136
+        },
+        "reusable_value": {
+          "n": 469,
+          "mean": 0.2133339937393245,
+          "max": 0.78,
+          "p05": 0.0,
+          "median": 0.2,
+          "p95": 0.52
+        },
+        "S_family": {
+          "n": 469,
+          "mean": 0.7316206793815938,
+          "max": 1.0,
+          "p05": 0.35135135135135137,
+          "median": 0.74,
+          "p95": 1.0
+        }
+      },
+      "feature_details": "data\\sae_features\\z_S_k64_multifactor_feature_audit.csv"
+    }
+  },
+  "new_training": "none"
+}

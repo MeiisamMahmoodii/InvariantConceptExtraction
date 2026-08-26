@@ -1,0 +1,71 @@
+{
+  "encoder": "fact_bottleneck_three_domain_balanced_layer8 frozen",
+  "evaluation": "C_test only",
+  "S_train_families": [
+    "declarative",
+    "formal",
+    "paraphrase",
+    "question",
+    "structured"
+  ],
+  "held_out_families": [
+    "indirect"
+  ],
+  "S_family_probe": {
+    "overall_accuracy": 0.4326784326784327,
+    "S_train_rows_accuracy": 0.38576238576238575,
+    "held_out_family_accuracy": 0.9956709956709957,
+    "chance": 0.16666666666666666
+  },
+  "unseen_S_fact_retrieval": {
+    "held_out_S_to_train_S": {
+      "queries": 693,
+      "bank_rows": 8316,
+      "R@1": 0.9855699855699855,
+      "R@5": 0.9971139971139971,
+      "R@10": 0.9985569985569985,
+      "MRR": 0.9916535484717304
+    },
+    "train_S_to_held_out_S": {
+      "queries": 8316,
+      "bank_rows": 693,
+      "R@1": 0.9897787397787398,
+      "R@5": 1.0,
+      "R@10": 1.0,
+      "MRR": 0.9947390572390572
+    }
+  },
+  "matched_pair_geometry": {
+    "positive_same_fact_different_S": {
+      "n": 10000,
+      "mean": 0.927078902721405,
+      "std": 0.06636204570531845,
+      "p05": 0.7907739877700806,
+      "median": 0.9490323066711426,
+      "p95": 0.9819304347038269
+    },
+    "negative_different_fact_same_template_variant": {
+      "n": 10000,
+      "mean": 0.016866983845829964,
+      "std": 0.23203270137310028,
+      "p05": -0.31233644485473633,
+      "median": -0.013451633974909782,
+      "p95": 0.4614543318748474
+    },
+    "positive_cosine_exceeds_negative_cosine": 0.9998
+  },
+  "collapse": {
+    "dimensions": 256,
+    "participation_ratio": 18.870145797729492,
+    "entropy_effective_rank": 45.560386657714844,
+    "norm": {
+      "mean": 1.0,
+      "std": 3.7871583202786496e-08,
+      "p05": 0.9999999403953552,
+      "median": 1.0,
+      "p95": 1.0
+    }
+  },
+  "new_training": "none",
+  "sae_trained": false
+}

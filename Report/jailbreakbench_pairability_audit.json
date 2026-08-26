@@ -1,0 +1,72 @@
+{
+  "status": "passed_strict_structural_pairability",
+  "scope": {
+    "target_model": "vicuna-13b-v1.5",
+    "excluded_artifacts": [
+      "test-artifact"
+    ],
+    "artifact_files": [
+      "DSN\\white_box\\vicuna-13b-v1.5.json",
+      "GCG\\white_box\\vicuna-13b-v1.5.json",
+      "JBC\\manual\\vicuna-13b-v1.5.json",
+      "PAIR\\black_box\\vicuna-13b-v1.5.json",
+      "prompt_with_random_search\\black_box\\vicuna-13b-v1.5.json"
+    ]
+  },
+  "source_harmful_behavior_ids": 100,
+  "rejected_behavior_ids_due_to_canonical_conflict": [
+    3,
+    40,
+    43,
+    47,
+    67,
+    82
+  ],
+  "retained_harmful_behavior_ids": 94,
+  "attack_methods": [
+    "DSN",
+    "GCG",
+    "JBC",
+    "PAIR",
+    "prompt_with_random_search"
+  ],
+  "retained_valid_records": 454,
+  "records_per_method": {
+    "DSN": 94,
+    "GCG": 94,
+    "JBC": 94,
+    "PAIR": 78,
+    "prompt_with_random_search": 94
+  },
+  "methods_per_behavior": {
+    "min": 4,
+    "max": 5,
+    "mean": 4.829787234042553
+  },
+  "behaviors_with_at_least_two_methods": 94,
+  "same_C_different_S_positive_pairs_unordered": 876,
+  "different_C_same_S_negative_pairs_unordered": 20487,
+  "attack_methods_eligible_for_full_holdout": [
+    "DSN",
+    "GCG",
+    "JBC",
+    "prompt_with_random_search"
+  ],
+  "goal_string_verbatim_in_prompt_records": 283,
+  "goal_string_not_verbatim_in_prompt_records": 171,
+  "semantic_preservation": "Artifact records retain a canonical behavior and goal. Non-verbatim goal wording is expected in jailbreak prompts and is not evidence of a changed intent; semantic equivalence still requires a separate blinded audit before training.",
+  "benign_controls": {
+    "count": 100,
+    "source": "published JBB-Behaviors benign split",
+    "fields": [
+      "Index",
+      "Goal",
+      "Target",
+      "Behavior",
+      "Category",
+      "Source"
+    ],
+    "note": "The benign split is behavior-matched thematically, not paired row-for-row with harmful artifacts."
+  },
+  "training_performed": false
+}

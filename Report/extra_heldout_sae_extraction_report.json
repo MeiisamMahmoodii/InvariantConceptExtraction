@@ -1,0 +1,11 @@
+{
+  "rows": 1314,
+  "families": [
+    "conversational",
+    "reordered"
+  ],
+  "raw_sparse_activations": "data\\sae_activations\\extra_heldout_raw_gemma_layer8_k64_sparse_activations.npz",
+  "z_C_sparse_activations": "data\\sae_activations\\extra_heldout_z_C_k64_sparse_activations.npz",
+  "partition_retrained": false,
+  "SAE_retrained": false
+}

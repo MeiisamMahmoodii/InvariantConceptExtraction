@@ -1,0 +1,52 @@
+{
+  "language_split": {
+    "train": [
+      "eng_Latn",
+      "fra_Latn",
+      "spa_Latn",
+      "deu_Latn",
+      "rus_Cyrl",
+      "hin_Deva",
+      "swh_Latn",
+      "tur_Latn"
+    ],
+    "heldout": [
+      "arb_Arab",
+      "zho_Hans"
+    ]
+  },
+  "sentence_split": {
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  "training": "same sentence/different language positive; different sentence/same language negative",
+  "z_C": {
+    "heldout_language_probe": 0.8666666666666667,
+    "sentence_retrieval": {
+      "R@1": 0.9666666666666667,
+      "R@5": 1.0,
+      "MRR": 0.9833333333333333
+    },
+    "rank": {
+      "participation_ratio": 9.531607627868652,
+      "entropy_effective_rank": 15.910905838012695
+    }
+  },
+  "z_S": {
+    "heldout_language_probe": 1.0,
+    "sentence_retrieval": {
+      "R@1": 0.1,
+      "R@5": 0.23333333333333334,
+      "MRR": 0.18761859271342687
+    },
+    "rank": {
+      "participation_ratio": 1.887123942375183,
+      "entropy_effective_rank": 3.822418451309204
+    }
+  },
+  "raw": {
+    "heldout_language_probe": 1.0
+  },
+  "SAE_trained": false
+}

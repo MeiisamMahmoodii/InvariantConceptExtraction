@@ -1,0 +1,20 @@
+{
+  "facts": 798,
+  "unordered_distinct_fact_pairs": 318003,
+  "categories": {
+    "same_exact_fact_different_S": "surface-row pairs within one fact; handled as strong positives during training",
+    "same_subject_different_relation": 798,
+    "same_relation_different_subject": 53343,
+    "same_domain_only": 106686,
+    "no_shared_C_factor": 157176
+  },
+  "rule": {
+    "strong_positive": "same exact fact, different S_family",
+    "weak_positive": [
+      "same relation, different subject",
+      "same subject, different relation"
+    ],
+    "neutral": "same domain only",
+    "negative": "no shared C factor"
+  }
+}

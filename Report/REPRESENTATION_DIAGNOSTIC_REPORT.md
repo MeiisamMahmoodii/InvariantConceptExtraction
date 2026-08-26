@@ -46,3 +46,27 @@ For each layer, an S-family logistic probe was fitted on `C_train`; its learned 
 | 21 | 5 | 7 | 1.000 | 1.000 | 0.999 |
 
 At this linear-probe level, C and S are separable: removing the learned S span does not damage held-out C decoding, and removing the learned C span does not materially damage S decoding. This does **not** support a claim of meaningful linear C/S entanglement. Under the stated gate, contrastive training is not yet justified merely to mute a linearly separable S direction.
+
+## Iterative linear-erasure diagnostic
+
+For each target, a logistic probe was fitted on `C_train`; its raw-coordinate row space was projected out. The next probe was trained only on the already-projected `C_train` activations. All metrics are fresh probes evaluated on held-out `C_test` subjects. The predeclared stopping rule was: stop at chance + 0.02, no accuracy decrease of at least 0.005 after two iterations, or cumulative rank 64.
+
+### S-family erasure
+
+| Layer | Iteration 0: S / domain / relation | After rank 4: S / domain / relation | After rank 8: S / domain / relation | Stop |
+|---:|---|---|---|---|
+| 5 | 1.000 / 1.000 / 1.000 | 0.999 / 1.000 / 1.000 | 1.000 / 1.000 / 1.000 | no material decrease |
+| 8 | 1.000 / 1.000 / 1.000 | 0.998 / 1.000 / 1.000 | 0.999 / 1.000 / 1.000 | no material decrease |
+| 13 | 0.999 / 1.000 / 1.000 | 0.999 / 1.000 / 1.000 | 1.000 / 1.000 / 1.000 | no material decrease |
+| 21 | 0.999 / 1.000 / 1.000 | 0.997 / 1.000 / 1.000 | 0.997 / 1.000 / 1.000 | no material decrease |
+
+### Own-target and reciprocal checks
+
+| Layer | S after its own rank-4 removal | Domain after its own rank-1 removal | Relation after its own rank-5 removal | Relation after iterative rank-10 removal | S after iterative relation rank-10 removal |
+|---:|---:|---:|---:|---:|---:|
+| 5 | 0.999 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 8 | 0.998 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 13 | 0.999 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 21 | 0.997 | 1.000 | 1.000 | 1.000 | 0.999 |
+
+The desired reduction did not occur: both S-family and C-relation are redundantly linearly decodable after their own first and second learned subspaces are removed. The experiment therefore establishes redundancy, not a finite linear nuisance subspace that can be muted by this procedure. No InfoNCE or SAE training occurred.

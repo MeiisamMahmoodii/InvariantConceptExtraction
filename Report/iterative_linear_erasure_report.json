@@ -1,0 +1,343 @@
+{
+  "configuration": {
+    "layers": [
+      5,
+      8,
+      13,
+      21
+    ],
+    "max_cumulative_rank": 64,
+    "near_chance_margin": 0.02,
+    "material_drop": 0.005,
+    "min_iterations": 2,
+    "projection_learning_split": "C_train only",
+    "evaluation_split": "C_test only"
+  },
+  "layers": {
+    "5": {
+      "own_subspace_removal": {
+        "S_family": {
+          "rank": 4,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 0.9992877492877493
+        },
+        "C_domain": {
+          "rank": 1,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        },
+        "C_relation": {
+          "rank": 5,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        }
+      },
+      "iterative_S_family_erasure": {
+        "target": "S_family",
+        "chance": 0.2,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 4,
+            "cumulative_rank": 4,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 4,
+            "cumulative_rank": 8,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      },
+      "iterative_C_relation_erasure": {
+        "target": "C_relation",
+        "chance": 0.16666666666666666,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 5,
+            "cumulative_rank": 5,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 5,
+            "cumulative_rank": 10,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      }
+    },
+    "8": {
+      "own_subspace_removal": {
+        "S_family": {
+          "rank": 4,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 0.9978632478632479
+        },
+        "C_domain": {
+          "rank": 1,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        },
+        "C_relation": {
+          "rank": 5,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        }
+      },
+      "iterative_S_family_erasure": {
+        "target": "S_family",
+        "chance": 0.2,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 4,
+            "cumulative_rank": 4,
+            "S_family": 0.9978632478632479,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 4,
+            "cumulative_rank": 8,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      },
+      "iterative_C_relation_erasure": {
+        "target": "C_relation",
+        "chance": 0.16666666666666666,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 5,
+            "cumulative_rank": 5,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 5,
+            "cumulative_rank": 10,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      }
+    },
+    "13": {
+      "own_subspace_removal": {
+        "S_family": {
+          "rank": 4,
+          "test_accuracy_before": 0.9992877492877493,
+          "test_accuracy_after_own_subspace_removal": 0.9992877492877493
+        },
+        "C_domain": {
+          "rank": 1,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        },
+        "C_relation": {
+          "rank": 5,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        }
+      },
+      "iterative_S_family_erasure": {
+        "target": "S_family",
+        "chance": 0.2,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 4,
+            "cumulative_rank": 4,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 4,
+            "cumulative_rank": 8,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      },
+      "iterative_C_relation_erasure": {
+        "target": "C_relation",
+        "chance": 0.16666666666666666,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 5,
+            "cumulative_rank": 5,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 5,
+            "cumulative_rank": 10,
+            "S_family": 1.0,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      }
+    },
+    "21": {
+      "own_subspace_removal": {
+        "S_family": {
+          "rank": 4,
+          "test_accuracy_before": 0.9992877492877493,
+          "test_accuracy_after_own_subspace_removal": 0.9971509971509972
+        },
+        "C_domain": {
+          "rank": 1,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        },
+        "C_relation": {
+          "rank": 5,
+          "test_accuracy_before": 1.0,
+          "test_accuracy_after_own_subspace_removal": 1.0
+        }
+      },
+      "iterative_S_family_erasure": {
+        "target": "S_family",
+        "chance": 0.2,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 4,
+            "cumulative_rank": 4,
+            "S_family": 0.9971509971509972,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 4,
+            "cumulative_rank": 8,
+            "S_family": 0.9971509971509972,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      },
+      "iterative_C_relation_erasure": {
+        "target": "C_relation",
+        "chance": 0.16666666666666666,
+        "stop": "no_material_decrease",
+        "history": [
+          {
+            "iteration": 0,
+            "new_rank": 0,
+            "cumulative_rank": 0,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 1,
+            "new_rank": 5,
+            "cumulative_rank": 5,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          },
+          {
+            "iteration": 2,
+            "new_rank": 5,
+            "cumulative_rank": 10,
+            "S_family": 0.9992877492877493,
+            "C_domain": 1.0,
+            "C_relation": 1.0
+          }
+        ]
+      }
+    }
+  },
+  "training_performed": "diagnostic logistic-regression probes only; no InfoNCE or SAE"
+}

@@ -1,0 +1,120 @@
+{
+  "encoder": "checkpoint/contrastive_encoder_layer8.pt; existing frozen checkpoint only",
+  "evaluation": "C_test subjects only",
+  "S_train_families": [
+    "declarative",
+    "paraphrase",
+    "question"
+  ],
+  "held_out_families": [
+    "formal",
+    "structured"
+  ],
+  "same_fact_cosine_distributions": {
+    "train_S_train_S": {
+      "n": 4212,
+      "mean": 0.9498838186264038,
+      "std": 0.03238913044333458,
+      "p05": 0.8852155208587646,
+      "median": 0.9578312635421753,
+      "p95": 0.9869827032089233
+    },
+    "train_S_held_out_S": {
+      "n": 3159,
+      "mean": 0.771373987197876,
+      "std": 0.13534453511238098,
+      "p05": 0.4895429015159607,
+      "median": 0.800844132900238,
+      "p95": 0.935166597366333
+    },
+    "held_out_S_held_out_S": {
+      "n": 351,
+      "mean": 0.8176699280738831,
+      "std": 0.10613735765218735,
+      "p05": 0.6099916696548462,
+      "median": 0.8436107635498047,
+      "p95": 0.9548631906509399
+    }
+  },
+  "S_family_confusion_matrix": {
+    "rows_actual": [
+      "declarative",
+      "question",
+      "paraphrase",
+      "formal",
+      "structured"
+    ],
+    "columns_predicted": [
+      "declarative",
+      "question",
+      "paraphrase",
+      "formal",
+      "structured"
+    ],
+    "counts": {
+      "declarative": {
+        "declarative": 147,
+        "question": 90,
+        "paraphrase": 65,
+        "formal": 40,
+        "structured": 9
+      },
+      "question": {
+        "declarative": 7,
+        "question": 281,
+        "paraphrase": 14,
+        "formal": 41,
+        "structured": 8
+      },
+      "paraphrase": {
+        "declarative": 21,
+        "question": 83,
+        "paraphrase": 197,
+        "formal": 41,
+        "structured": 9
+      },
+      "formal": {
+        "declarative": 0,
+        "question": 2,
+        "paraphrase": 0,
+        "formal": 214,
+        "structured": 18
+      },
+      "structured": {
+        "declarative": 0,
+        "question": 0,
+        "paraphrase": 0,
+        "formal": 0,
+        "structured": 117
+      }
+    }
+  },
+  "retrieval_held_out_S_to_train_S": {
+    "queries": 351,
+    "bank_rows": 1053,
+    "R@1": 0.8005698005698005,
+    "R@5": 0.8575498575498576,
+    "R@10": 0.9202279202279202,
+    "MRR": 0.8339261397977528,
+    "rank_summary": {
+      "median": 1.0,
+      "p95": 16.0,
+      "max": 152
+    }
+  },
+  "retrieval_train_S_to_held_out_S": {
+    "queries": 1053,
+    "bank_rows": 351,
+    "R@1": 0.9620132953466287,
+    "R@5": 1.0,
+    "R@10": 1.0,
+    "MRR": 0.9787432731877177,
+    "rank_summary": {
+      "median": 1.0,
+      "p95": 1.0,
+      "max": 5
+    }
+  },
+  "new_training": "none; diagnostic S-family probe only",
+  "sae_trained": false
+}

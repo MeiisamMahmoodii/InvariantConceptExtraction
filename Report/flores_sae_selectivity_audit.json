@@ -1,0 +1,28 @@
+{
+  "evaluation": "frozen SAE activations; 30 C-test sentences across all ten languages",
+  "SAE_trained": false,
+  "raw": {
+    "sentence_oriented_fraction": 0.012803819444444444,
+    "language_oriented_fraction": 0.001193576388888889,
+    "mixed_or_unselective_fraction": 0.9860026041666666,
+    "sentence_oriented_mean_cross_language_consistency": 0.5194895267486572,
+    "sentence_oriented_feature_count": 118,
+    "language_oriented_feature_count": 11
+  },
+  "z_C": {
+    "sentence_oriented_fraction": 0.71875,
+    "language_oriented_fraction": 0.0,
+    "mixed_or_unselective_fraction": 0.28125,
+    "sentence_oriented_mean_cross_language_consistency": 0.5798192620277405,
+    "sentence_oriented_feature_count": 368,
+    "language_oriented_feature_count": 0
+  },
+  "z_S": {
+    "sentence_oriented_fraction": 0.0,
+    "language_oriented_fraction": 0.59375,
+    "mixed_or_unselective_fraction": 0.40625,
+    "sentence_oriented_mean_cross_language_consistency": null,
+    "sentence_oriented_feature_count": 0,
+    "language_oriented_feature_count": 304
+  }
+}
