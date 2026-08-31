@@ -1,0 +1,238 @@
+{
+  "scope": {
+    "dataset": "OpenSafetyLab/Salad-Data attack_enhanced_set",
+    "eligible_qids": 140,
+    "training_methods": [
+      "gcg_llama",
+      "gptfuzz",
+      "jb"
+    ],
+    "heldout_method": "AutoDAN",
+    "training_rows": 471,
+    "heldout_rows": 140,
+    "Gemma_layer": 8,
+    "pooling": "masked mean",
+    "partition_retrained": true,
+    "SAE_trained": false,
+    "ConCA_trained": false
+  },
+  "training": {
+    "architecture": "2304 -> z_C(128) + z_S(128)",
+    "epochs": 30,
+    "optimizer": "AdamW(lr=0.001, weight_decay=0.0001)",
+    "history": [
+      {
+        "epoch": 1,
+        "C_triplet_loss": 1.1512290239334106,
+        "S_triplet_loss": 0.5496819019317627
+      },
+      {
+        "epoch": 2,
+        "C_triplet_loss": 0.7351722717285156,
+        "S_triplet_loss": 0.31259629130363464
+      },
+      {
+        "epoch": 3,
+        "C_triplet_loss": 0.7676953077316284,
+        "S_triplet_loss": 0.1118154376745224
+      },
+      {
+        "epoch": 4,
+        "C_triplet_loss": 0.770199716091156,
+        "S_triplet_loss": 0.033901721239089966
+      },
+      {
+        "epoch": 5,
+        "C_triplet_loss": 0.758338987827301,
+        "S_triplet_loss": 0.01602286286652088
+      },
+      {
+        "epoch": 6,
+        "C_triplet_loss": 0.7351691722869873,
+        "S_triplet_loss": 0.005637255497276783
+      },
+      {
+        "epoch": 7,
+        "C_triplet_loss": 0.7218288779258728,
+        "S_triplet_loss": 0.004983462393283844
+      },
+      {
+        "epoch": 8,
+        "C_triplet_loss": 0.7069149017333984,
+        "S_triplet_loss": 0.004965123254805803
+      },
+      {
+        "epoch": 9,
+        "C_triplet_loss": 0.707759439945221,
+        "S_triplet_loss": 0.0029532150365412235
+      },
+      {
+        "epoch": 10,
+        "C_triplet_loss": 0.6997901797294617,
+        "S_triplet_loss": 0.0022331206128001213
+      },
+      {
+        "epoch": 11,
+        "C_triplet_loss": 0.690861165523529,
+        "S_triplet_loss": 0.0017441321397200227
+      },
+      {
+        "epoch": 12,
+        "C_triplet_loss": 0.6887428164482117,
+        "S_triplet_loss": 0.002141327131539583
+      },
+      {
+        "epoch": 13,
+        "C_triplet_loss": 0.6875225901603699,
+        "S_triplet_loss": 0.001080515910871327
+      },
+      {
+        "epoch": 14,
+        "C_triplet_loss": 0.678629994392395,
+        "S_triplet_loss": 0.0008216655696742237
+      },
+      {
+        "epoch": 15,
+        "C_triplet_loss": 0.6827126741409302,
+        "S_triplet_loss": 0.0007539101061411202
+      },
+      {
+        "epoch": 16,
+        "C_triplet_loss": 0.6869451999664307,
+        "S_triplet_loss": 0.0005701116169802845
+      },
+      {
+        "epoch": 17,
+        "C_triplet_loss": 0.6763668060302734,
+        "S_triplet_loss": 0.0005122986040078104
+      },
+      {
+        "epoch": 18,
+        "C_triplet_loss": 0.6850993633270264,
+        "S_triplet_loss": 0.0005931499181315303
+      },
+      {
+        "epoch": 19,
+        "C_triplet_loss": 0.6747948527336121,
+        "S_triplet_loss": 0.00026226555928587914
+      },
+      {
+        "epoch": 20,
+        "C_triplet_loss": 0.671339213848114,
+        "S_triplet_loss": 0.00020518874225672334
+      },
+      {
+        "epoch": 21,
+        "C_triplet_loss": 0.6545113921165466,
+        "S_triplet_loss": 0.00030287314439192414
+      },
+      {
+        "epoch": 22,
+        "C_triplet_loss": 0.6709796786308289,
+        "S_triplet_loss": 0.00010919410124188289
+      },
+      {
+        "epoch": 23,
+        "C_triplet_loss": 0.6611147522926331,
+        "S_triplet_loss": 0.0003746058791875839
+      },
+      {
+        "epoch": 24,
+        "C_triplet_loss": 0.6644923090934753,
+        "S_triplet_loss": 0.00029225219623185694
+      },
+      {
+        "epoch": 25,
+        "C_triplet_loss": 0.6649730801582336,
+        "S_triplet_loss": 9.247315028915182e-05
+      },
+      {
+        "epoch": 26,
+        "C_triplet_loss": 0.6628825068473816,
+        "S_triplet_loss": 0.00013043115905020386
+      },
+      {
+        "epoch": 27,
+        "C_triplet_loss": 0.6552919745445251,
+        "S_triplet_loss": 0.00014146901958156377
+      },
+      {
+        "epoch": 28,
+        "C_triplet_loss": 0.6574404835700989,
+        "S_triplet_loss": 0.00036584536428563297
+      },
+      {
+        "epoch": 29,
+        "C_triplet_loss": 0.6561204195022583,
+        "S_triplet_loss": 0.00011416500638006255
+      },
+      {
+        "epoch": 30,
+        "C_triplet_loss": 0.6575602293014526,
+        "S_triplet_loss": 0.0001140618696808815
+      }
+    ]
+  },
+  "heldout_AutoDAN_goal_retrieval": {
+    "raw": {
+      "R@1": 0.007142857142857143,
+      "R@5": 0.03571428571428571,
+      "R@10": 0.06428571428571428,
+      "MRR": 0.03409910065649972
+    },
+    "z_C": {
+      "R@1": 0.014285714285714285,
+      "R@5": 0.06428571428571428,
+      "R@10": 0.1,
+      "MRR": 0.053468190726018494
+    },
+    "z_S": {
+      "R@1": 0.014285714285714285,
+      "R@5": 0.03571428571428571,
+      "R@10": 0.06428571428571428,
+      "MRR": 0.04320129330767471
+    }
+  },
+  "heldout_AutoDAN_goal_probe_accuracy": {
+    "raw": 0.05,
+    "z_C": 0.02142857142857143,
+    "z_S": 0.007142857142857143
+  },
+  "seen_method_behavior_disjoint_probe_accuracy": {
+    "raw": 0.991304347826087,
+    "z_C": 0.9826086956521739,
+    "z_S": 1.0
+  },
+  "seen_method_retrieval": {
+    "raw": {
+      "R@1": 0.15074309978768577,
+      "R@5": 0.15074309978768577,
+      "MRR": 0.1633290062333818
+    },
+    "z_C": {
+      "R@1": 0.9575371549893843,
+      "R@5": 0.9808917197452229,
+      "MRR": 0.9678889670131707
+    },
+    "z_S": {
+      "R@1": 1.0,
+      "R@5": 1.0,
+      "MRR": 1.0
+    }
+  },
+  "heldout_AutoDAN_effective_rank": {
+    "raw": {
+      "participation_ratio": 18.015745162963867,
+      "entropy_effective_rank": 40.16756057739258
+    },
+    "z_C": {
+      "participation_ratio": 6.228573322296143,
+      "entropy_effective_rank": 14.099299430847168
+    },
+    "z_S": {
+      "participation_ratio": 2.932072639465332,
+      "entropy_effective_rank": 8.017226219177246
+    }
+  },
+  "note": "AutoDAN is unseen. Method metrics use behavior-disjoint train rows; goal metrics test AutoDAN directly."
+}

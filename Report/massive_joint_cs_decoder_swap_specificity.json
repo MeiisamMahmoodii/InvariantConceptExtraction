@@ -1,0 +1,24 @@
+{
+  "scope": {
+    "decoder_partition_gemma_frozen": true,
+    "decoder_checkpoint": "checkpoint/massive_joint_cs_decoder.pt",
+    "pairs": 17808,
+    "real_code_donors_per_source": 3,
+    "donor_locale_opposite_source": true,
+    "random_controls": "same randomly mismatched real code; score against a label explicitly unrelated to that donor"
+  },
+  "specificity_matrix": {
+    "zC_swap": {
+      "intent_follows_donor": 0.6162398921832885,
+      "locale_follows_donor": 0.019878706199460916
+    },
+    "zS_swap": {
+      "intent_follows_donor": 0.025887241689128482,
+      "locale_follows_donor": 0.9782120395327942
+    }
+  },
+  "random_mismatched_controls": {
+    "zC_code_unrelated_intent_accuracy": 0.0066823899371069185,
+    "zS_code_unrelated_locale_accuracy": 0.021787960467205752
+  }
+}

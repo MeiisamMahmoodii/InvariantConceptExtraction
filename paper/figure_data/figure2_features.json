@@ -1,0 +1,47 @@
+{
+  "figure": "Figure 2 — What features look like in raw H, zC, and zS",
+  "source": "Report/massive_pooled_sae_threeway_audit.json and Report/massive_pooled_sae_top_examples.csv",
+  "aggregate_metrics": [
+    {"representation": "H", "active_features": 4337, "intent_selectivity_z": 0.7144, "locale_selectivity_z": 0.7398, "heldout_stability": 0.2697, "intent_oriented": 0.4554, "language_oriented": 0.4930, "mixed_other": 0.0516},
+    {"representation": "zC", "active_features": 147, "intent_selectivity_z": 2.1961, "locale_selectivity_z": 0.2222, "heldout_stability": 0.5409, "intent_oriented": 1.0, "language_oriented": 0.0, "mixed_other": 0.0},
+    {"representation": "zS", "active_features": 114, "intent_selectivity_z": 0.2697, "locale_selectivity_z": 3.4150, "heldout_stability": 0.0632, "intent_oriented": 0.0, "language_oriented": 1.0, "mixed_other": 0.0}
+  ],
+  "exemplar_features": [
+    {
+      "representation": "H", "feature_id": 7124, "label": "intent-like", "summary": "joke across Spanish, English, and Hindi", "passes_orientation_criterion": true,
+      "intent_selectivity_z": 8.1687, "locale_selectivity_z": 0.1552,
+      "top_examples": [
+        {"locale": "es-ES", "intent": 25, "activation": 35.2717, "utterance": "oye has escuchado alguna broma graciosa últimamente"},
+        {"locale": "en-US", "intent": 25, "activation": 30.9961, "utterance": "the joke of the day"},
+        {"locale": "hi-IN", "intent": 25, "activation": 28.6600, "utterance": "वेब पर चुटकुले खोजें"}
+      ]
+    },
+    {
+      "representation": "H", "feature_id": 8874, "label": "language-like", "summary": "Hebrew across intents", "passes_orientation_criterion": true,
+      "intent_selectivity_z": 0.1992, "locale_selectivity_z": 7.2306,
+      "top_examples": [
+        {"locale": "he-IL", "intent": 23, "activation": 23.8784, "utterance": "מתי אני קם מחר"},
+        {"locale": "he-IL", "intent": 26, "activation": 23.8538, "utterance": "במאי שמביים מחזה"},
+        {"locale": "he-IL", "intent": 32, "activation": 23.6659, "utterance": "מתי מתחילה ה פגישה"}
+      ]
+    },
+    {
+      "representation": "zC", "feature_id": 334, "label": "intent", "summary": "coffee across Thai, Portuguese, and Romanian", "passes_orientation_criterion": true,
+      "intent_selectivity_z": 5.2339, "locale_selectivity_z": 0.2503,
+      "top_examples": [
+        {"locale": "th-TH", "intent": 56, "activation": 5.1441, "utterance": "ขอกาแฟ รสเข้มเข้ม"},
+        {"locale": "pt-PT", "intent": 56, "activation": 5.1014, "utterance": "prepara algumas chávenas de café para nós"},
+        {"locale": "ro-RO", "intent": 56, "activation": 5.0956, "utterance": "incepe sa faci o cafea"}
+      ]
+    },
+    {
+      "representation": "zS", "feature_id": 491, "label": "language", "summary": "Amharic across calendar, email, and entertainment intents", "passes_orientation_criterion": true,
+      "intent_selectivity_z": 0.6000, "locale_selectivity_z": 6.9340,
+      "top_examples": [
+        {"locale": "am-ET", "intent": 21, "activation": 0.1441, "utterance": "ነገ አዲስ ዝርዝር ፍጠር"},
+        {"locale": "am-ET", "intent": 44, "activation": 0.1441, "utterance": "ኢሜል አረጋግጥ"},
+        {"locale": "am-ET", "intent": 6, "activation": 0.1441, "utterance": "እኔ አካባቢ ያሉ የመዝናኛ አማራጮች ዝርዝር አሳየኝ"}
+      ]
+    }
+  ]
+}

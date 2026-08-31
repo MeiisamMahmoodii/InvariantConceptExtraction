@@ -1,0 +1,20 @@
+{
+  "scope": {
+    "decoder_checkpoint": "checkpoint/massive_joint_cs_decoder.pt",
+    "gemma_and_partition_frozen": true,
+    "decoder_retrained": false,
+    "c_donor_locale": "opposite held-out locale",
+    "donors_per_source": 3,
+    "donor_semantic_item_differs_from_source": true,
+    "positional_alignment": false
+  },
+  "c_swaps": {
+    "pairs": 17808,
+    "target_intent_accuracy": 0.6162398921832885,
+    "preserved_locale_accuracy": 0.980121293800539,
+    "cosine_to_real_donor_semantic_item_in_source_locale_mean": 0.9124302864074707,
+    "cosine_to_original_source_mean": 0.8926692605018616,
+    "prediction_norm_mean": 93.11477661132812,
+    "prediction_norm_std": 23.604028701782227
+  }
+}

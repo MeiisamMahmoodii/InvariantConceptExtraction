@@ -1,0 +1,253 @@
+{
+  "scope": {
+    "statistical_reporting_only": true,
+    "model_training_or_inference_run": false,
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260828
+  },
+  "matched_vs_naive_infonce_stability": {
+    "matched_zC_stability": 0.5409128954800029,
+    "naive_infonce_zC_stability": 0.4053043796632458,
+    "difference": 0.1356085158167571,
+    "resampling_unit": "held-out MASSIVE semantic id",
+    "bootstrap_95_CI": null,
+    "status": "NOT COMPUTABLE from saved artifacts: SAE dictionaries are independently trained and unpaired; per-semantic-ID stability contributions were not persisted, so aggregate stability cannot be recomputed on bootstrap resamples without SAE inference."
+  },
+  "raw_vs_matched_zC_concept_auc": {
+    "raw_H_mean_auc": 0.8514185405580578,
+    "matched_zC_mean_auc": 0.9021241449899146,
+    "mean_difference_zC_minus_H": 0.05070560443185672,
+    "bootstrap_95_CI": [
+      0.03481041120314131,
+      0.06785563744552411
+    ],
+    "fraction_concepts_improved": 0.8103448275862069,
+    "n": 58,
+    "resampling_unit": "MASSIVE intent / shared concept identity",
+    "test": "paired nonparametric bootstrap percentile CI"
+  },
+  "C_swap_specificity": {
+    "swap_rate": 0.6162398921832885,
+    "unrelated_control_rate": 0.0066823899371069185,
+    "rate_difference": 0.6095575022461815,
+    "n_cases": 17808,
+    "resampling_unit": "matched intervention case",
+    "bootstrap_95_CI": null,
+    "mcnemar_test": null,
+    "status": "NOT COMPUTABLE from saved artifacts: aggregate rates were persisted but paired per-case outcomes/2x2 discordant counts were not."
+  },
+  "S_swap_specificity": {
+    "swap_rate": 0.9782120395327942,
+    "unrelated_control_rate": 0.021787960467205752,
+    "rate_difference": 0.9564240790655885,
+    "n_cases": 17808,
+    "resampling_unit": "matched intervention case",
+    "bootstrap_95_CI": null,
+    "mcnemar_test": null,
+    "status": "NOT COMPUTABLE from saved artifacts: aggregate rates were persisted but paired per-case outcomes/2x2 discordant counts were not."
+  },
+  "seed_robustness": {
+    "n_seeds": 3,
+    "significance_tests": "NOT RUN: n=3, per instruction",
+    "existing_mean_std": {
+      "zC_R1": {
+        "values": [
+          0.4123989218328841,
+          0.3945417789757412,
+          0.4026280323450135
+        ],
+        "mean": 0.4031895777178796,
+        "std": 0.008941805615167608
+      },
+      "zC_R5": {
+        "values": [
+          0.6610512129380054,
+          0.6549865229110512,
+          0.6667789757412399
+        ],
+        "mean": 0.6609389038634321,
+        "std": 0.0058970285682053486
+      },
+      "zC_MRR": {
+        "values": [
+          0.5275611075553795,
+          0.5138657223388002,
+          0.5227171242929626
+        ],
+        "mean": 0.5213813180623807,
+        "std": 0.006944723016209548
+      },
+      "zC_locale": {
+        "values": [
+          0.9022911051212938,
+          0.8935309973045822,
+          0.8881401617250674
+        ],
+        "mean": 0.8946540880503145,
+        "std": 0.007142009476902386
+      },
+      "zC_rank": {
+        "values": [
+          31.676895141601562,
+          31.162246704101562,
+          30.52643585205078
+        ],
+        "mean": 31.121859232584637,
+        "std": 0.5762920311092893
+      },
+      "zS_R1": {
+        "values": [
+          0.0006738544474393531,
+          0.00033692722371967657,
+          0.0013477088948787063
+        ],
+        "mean": 0.0007861635220125788,
+        "std": 0.0005146648354622462
+      },
+      "zS_R5": {
+        "values": [
+          0.003706199460916442,
+          0.0023584905660377358,
+          0.003706199460916442
+        ],
+        "mean": 0.00325696316262354,
+        "std": 0.0007781000932474742
+      },
+      "zS_MRR": {
+        "values": [
+          0.004570714400520678,
+          0.0038664939875917344,
+          0.005156530679554634
+        ],
+        "mean": 0.004531246355889015,
+        "std": 0.0006459233403144142
+      },
+      "zS_locale": {
+        "values": [
+          0.9986522911051213,
+          0.9976415094339622,
+          0.998989218328841
+        ],
+        "mean": 0.9984276729559749,
+        "std": 0.0007013699459118109
+      },
+      "zS_rank": {
+        "values": [
+          2.2974584102630615,
+          2.308061122894287,
+          2.2220542430877686
+        ],
+        "mean": 2.275857925415039,
+        "std": 0.04689596520773902
+      },
+      "zC_intent_fraction": {
+        "values": [
+          0.9933333333333333,
+          1.0,
+          1.0
+        ],
+        "mean": 0.9977777777777778,
+        "std": 0.0038490017945975296
+      },
+      "zC_language_fraction": {
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "zC_stability": {
+        "values": [
+          0.5329997219403639,
+          0.5457308254116451,
+          0.5395963624783398
+        ],
+        "mean": 0.5394423032767829,
+        "std": 0.006366949785988968
+      },
+      "zS_intent_fraction": {
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "zS_language_fraction": {
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "zS_stability": {
+        "values": [
+          0.060969360772882446,
+          0.06184161332156778,
+          0.07389923355716642
+        ],
+        "mean": 0.06557006921720555,
+        "std": 0.00722644034630667
+      },
+      "C_swap_donor_intent_success": {
+        "values": [
+          0.6127021563342318,
+          0.6134883198562444,
+          0.6207322551662174
+        ],
+        "mean": 0.6156409104522312,
+        "std": 0.004426720740944988
+      },
+      "C_swap_donor_locale_leakage": {
+        "values": [
+          0.006907008086253369,
+          0.020103324348607367,
+          0.01752021563342318
+        ],
+        "mean": 0.014843516022761306,
+        "std": 0.006993513518132728
+      },
+      "S_swap_donor_locale_success": {
+        "values": [
+          0.9925876010781671,
+          0.9795035938903863,
+          0.9817497753818508
+        ],
+        "mean": 0.9846136567834681,
+        "std": 0.006996368596234184
+      },
+      "S_swap_donor_intent_leakage": {
+        "values": [
+          0.026617250673854446,
+          0.025943396226415096,
+          0.026111859838274933
+        ],
+        "mean": 0.02622416891284816,
+        "std": 0.00035068497295588375
+      },
+      "C_unrelated_intent_control": {
+        "values": [
+          0.006345462713387241,
+          0.006794699011680143,
+          0.006457771787960467
+        ],
+        "mean": 0.006532644504342618,
+        "std": 0.0002337899819705899
+      },
+      "S_unrelated_locale_control": {
+        "values": [
+          0.007412398921832884,
+          0.020496406109613657,
+          0.018250224618149145
+        ],
+        "mean": 0.015386343216531895,
+        "std": 0.0069963685962341655
+      }
+    }
+  }
+}

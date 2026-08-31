@@ -1,0 +1,25 @@
+{
+  "dataset": "OpenSafetyLab/Salad-Data",
+  "subset": "attack_enhanced_set/train",
+  "scope": "All 210 TAP rows; baseq and augq only; no training.",
+  "review_protocol": "Fixed blinded text-only semantic classification using only baseq and augq, with the previously manually reviewed 20 TAP pairs preserved as row-level overrides. This is a model-assisted audit, not a substitute for an independent human adjudication.",
+  "label_counts": {
+    "SAME_INTENT": 176,
+    "CHANGED_INTENT": 1,
+    "AMBIGUOUS": 33
+  },
+  "clean_TAP_rows": 176,
+  "retained_TAP_qids": 130,
+  "retained_TAP_qids_with_at_least_two_training_methods": 37,
+  "training_methods": [
+    "autodan",
+    "gcg_llama",
+    "gptfuzz",
+    "jb"
+  ],
+  "eligible_training_rows": 126,
+  "training_positive_pair_count": 109,
+  "matched_negative_pair_count": 2959,
+  "labels_file": "data\\salad_tap_full_semantic_labels.csv",
+  "decision": "FAIL_FOR_CLEAN_HELDOUT_TAP: 83.8% SAME_INTENT is below 95%, and one CHANGED_INTENT violates the zero-change rule. Even after retaining only SAME_INTENT TAP rows, only 37 qids have at least two training methods, yielding 109 training positives. Do not use TAP as the proposed clean held-out S family without further human adjudication and broader qid overlap."
+}

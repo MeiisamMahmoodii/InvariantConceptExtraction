@@ -1,0 +1,32 @@
+{
+  "scope": {
+    "n": 20,
+    "model_frozen": "google/gemma-2-2b",
+    "partition_and_decoder_frozen": true,
+    "site": "model.layers[7] output; exact equality to eager generate hidden_states[8] validated",
+    "intervention": "prefill only; uniform Delta on non-BOS prompt residuals; no generated-token modification",
+    "zC_steering": false
+  },
+  "metrics": {
+    "baseline": {
+      "target_language_success": 0.0,
+      "semantic_preservation_source_intent": 0.4,
+      "donor_content_leakage_donor_intent": 0.1
+    },
+    "s_swap": {
+      "target_language_success": 0.75,
+      "semantic_preservation_source_intent": 0.25,
+      "donor_content_leakage_donor_intent": 0.15
+    },
+    "random_zs": {
+      "target_language_success": 0.0,
+      "semantic_preservation_source_intent": 0.45,
+      "donor_content_leakage_donor_intent": 0.15
+    }
+  },
+  "delta_over_H": {
+    "mean": 0.7561713606119156,
+    "std": 0.08910130924632867
+  },
+  "examples_csv": "Report\\massive_s_steering_generation_pilot.csv"
+}

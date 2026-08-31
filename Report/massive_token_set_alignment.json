@@ -1,0 +1,13 @@
+{
+  "metric": "mean over foreign tokens of max cosine to any English token",
+  "alignment": "token sets only; no token-position correspondence",
+  "pairs": 5568,
+  "same_utterance_mean": 0.5540059968780983,
+  "shuffled_utterance_mean": 0.44892857375490514,
+  "mean_delta": 0.1050774231231932,
+  "paired_delta_std": 0.07111000412377715,
+  "fraction_same_beats_shuffled": 0.9470186781609196,
+  "by_locale_csv": "Report/massive_token_set_alignment_by_locale.csv",
+  "decoder_trained": false,
+  "gemma_scope_loaded": false
+}

@@ -1,0 +1,210 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bhalla et~al.(2026)Bhalla, Oesterling, Mayrink~Verdun, Lakkaraju, and
+  Calmon}]{bhalla2026temporal}
+Usha Bhalla, Alex Oesterling, Claudio Mayrink~Verdun, Himabindu Lakkaraju, and
+  Flavio~P. Calmon. 2026.
+\newblock \href {https://openreview.net/forum?id=bojVI4l9Kn} {Temporal sparse
+  autoencoders: Leveraging the sequential nature of language for
+  interpretability}.
+\newblock In \emph{The Fourteenth International Conference on Learning
+  Representations}.
+
+\bibitem[{Bogdanov and Huang(2026)}]{bogdanov2026geometry}
+Igor Bogdanov and Changcheng Huang. 2026.
+\newblock \href {https://arxiv.org/abs/2608.23809} {Discovering cross-language
+  reasoning invariance in {LLM}s with geometry-invariant sparse autoencoders}.
+\newblock In \emph{ICML 2026 Workshop on Mechanistic Interpretability}.
+\newblock Poster.
+
+\bibitem[{Cai et~al.(2024)Cai, Liu, Zhang, and Shi}]{cai2023clap}
+Yichao Cai, Yuhang Liu, Zhen Zhang, and Javen~Qinfeng Shi. 2024.
+\newblock \href {https://doi.org/10.1007/978-3-031-72664-4_8} {{CLAP}:
+  Isolating content from style through contrastive learning with augmented
+  prompts}.
+\newblock In \emph{Computer Vision -- ECCV 2024}, pages 130--147.
+
+\bibitem[{Cuturi(2013)}]{cuturi2013sinkhorn}
+Marco Cuturi. 2013.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2013/hash/af21d0c97db2e27e13572cbf59eb343d-Abstract.html}
+  {Sinkhorn distances: Lightspeed computation of optimal transport}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~26.
+
+\bibitem[{Efron and Tibshirani(1993)}]{efron1993bootstrap}
+Bradley Efron and Robert~J. Tibshirani. 1993.
+\newblock \href {https://doi.org/10.1201/9780429246593} {\emph{An Introduction
+  to the Bootstrap}}, volume~57 of \emph{Monographs on Statistics and Applied
+  Probability}.
+\newblock Chapman \& Hall, New York.
+
+\bibitem[{Farzam et~al.(2026)Farzam, Behabahani, Malek, Nevmyvaka, and
+  Sapiro}]{farzam2026hiding}
+Amirhossein Farzam, Majid Behabahani, Mani Malek, Yuriy Nevmyvaka, and
+  Guillermo Sapiro. 2026.
+\newblock \href {https://arxiv.org/abs/2602.19396} {Hiding in plain text:
+  Detecting concealed jailbreaks via activation disentanglement}.
+\newblock \emph{arXiv preprint arXiv:2602.19396}.
+
+\bibitem[{FitzGerald et~al.(2023)FitzGerald, Hench, Peris, Mackie, Rottmann,
+  Sanchez, Nash, Urbach, Kakarala, Singh, Ranganath, Crist, Britan, Leeuwis,
+  Tur, and Natarajan}]{fitzgerald2023massive}
+Jack FitzGerald, Christopher Hench, Charith Peris, Scott Mackie, Kay Rottmann,
+  Ana Sanchez, Aaron Nash, Liam Urbach, Vishesh Kakarala, Richa Singh, Swetha
+  Ranganath, Laurie Crist, Misha Britan, Wouter Leeuwis, Gokhan Tur, and Prem
+  Natarajan. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.acl-long.235} {{MASSIVE}: A
+  1{M}-example multilingual natural language understanding dataset with 51
+  typologically-diverse languages}.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 4277--4302.
+  Association for Computational Linguistics.
+
+\bibitem[{Gao et~al.(2025)Gao, Dupr{\'e}~la Tour, Tillman, Goh, Troll, Radford,
+  Sutskever, Leike, and Wu}]{gao2024scaling}
+Leo Gao, Tom Dupr{\'e}~la Tour, Henk Tillman, Gabriel Goh, Rajan Troll, Alec
+  Radford, Ilya Sutskever, Jan Leike, and Jeffrey Wu. 2025.
+\newblock \href
+  {https://proceedings.iclr.cc/paper_files/paper/2025/hash/42ef3308c230942d223c411adf182c88-Abstract-Conference.html}
+  {Scaling and evaluating sparse autoencoders}.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations}.
+
+\bibitem[{{Gemma Team}(2024)}]{gemmateam2024gemma2}
+{Gemma Team}. 2024.
+\newblock \href {https://arxiv.org/abs/2408.00118} {Gemma 2: Improving open
+  language models at a practical size}.
+\newblock \emph{arXiv preprint arXiv:2408.00118}.
+
+\bibitem[{Goyal et~al.(2022)Goyal, Gao, Chaudhary, Chen, Wenzek, Ju, Krishnan,
+  Ranzato, Guzm{\'a}n, and Fan}]{goyal2022flores}
+Naman Goyal, Cynthia Gao, Vishrav Chaudhary, Peng-Jen Chen, Guillaume Wenzek,
+  Da~Ju, Sanjana Krishnan, Marc'Aurelio Ranzato, Francisco Guzm{\'a}n, and
+  Angela Fan. 2022.
+\newblock \href {https://doi.org/10.1162/tacl_a_00474} {The {F}lores-101
+  evaluation benchmark for low-resource and multilingual machine translation}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  10:522--538.
+
+\bibitem[{Huang et~al.(2024)Huang, Wu, Potts, Geva, and
+  Geiger}]{huang2024ravel}
+Jing Huang, Zhengxuan Wu, Christopher Potts, Mor Geva, and Atticus Geiger.
+  2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.acl-long.470} {{RAVEL}:
+  Evaluating interpretability methods on disentangling language model
+  representations}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 8669--8687.
+  Association for Computational Linguistics.
+
+\bibitem[{Huben et~al.(2024)Huben, Cunningham, Smith, Ewart, and
+  Sharkey}]{cunningham2023sparse}
+Robert Huben, Hoagy Cunningham, Logan~Riggs Smith, Aidan Ewart, and Lee
+  Sharkey. 2024.
+\newblock \href
+  {https://proceedings.iclr.cc/paper_files/paper/2024/hash/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Abstract-Conference.html}
+  {Sparse autoencoders find highly interpretable features in language models}.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}.
+
+\bibitem[{Karvonen et~al.(2025)Karvonen, Rager, Lin, Tigges, Bloom, Chanin,
+  Lau, Farrell, Mcdougall, Ayonrinde, Till, Wearden, Conmy, Marks, and
+  Nanda}]{karvonen2025saebench}
+Adam Karvonen, Can Rager, Johnny Lin, Curt Tigges, Joseph~Isaac Bloom, David
+  Chanin, Yeu-Tong Lau, Eoin Farrell, Callum~Stuart Mcdougall, Kola Ayonrinde,
+  Demian Till, Matthew Wearden, Arthur Conmy, Samuel Marks, and Neel Nanda.
+  2025.
+\newblock \href {https://proceedings.mlr.press/v267/karvonen25a.html}
+  {{SAEB}ench: A comprehensive benchmark for sparse autoencoders in language
+  model interpretability}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}, volume 267 of \emph{Proceedings of Machine Learning Research},
+  pages 29223--29264. PMLR.
+
+\bibitem[{Lieberum et~al.(2024)Lieberum, Rajamanoharan, Conmy, Smith, Sonnerat,
+  Varma, Kram{\'a}r, Dragan, Shah, and Nanda}]{lieberum2024gemmascope}
+Tom Lieberum, Senthooran Rajamanoharan, Arthur Conmy, Lewis Smith, Nicolas
+  Sonnerat, Vikrant Varma, J{\'a}nos Kram{\'a}r, Anca Dragan, Rohin Shah, and
+  Neel Nanda. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.blackboxnlp-1.19} {Gemma
+  scope: Open sparse autoencoders everywhere all at once on gemma 2}.
+\newblock In \emph{Proceedings of the 7th BlackboxNLP Workshop: Analyzing and
+  Interpreting Neural Networks for NLP}, pages 278--300. Association for
+  Computational Linguistics.
+
+\bibitem[{Liu et~al.(2026)Liu, Gao, Gong, van~den Hengel, and
+  Shi}]{liu2026conca}
+Yuhang Liu, Erdun Gao, Dong Gong, Anton van~den Hengel, and Javen~Qinfeng Shi.
+  2026.
+\newblock \href {https://arxiv.org/abs/2601.20420} {Concept component analysis:
+  A principled approach for concept extraction in {LLM}s}.
+\newblock \emph{arXiv preprint arXiv:2601.20420}.
+
+\bibitem[{Locatello et~al.(2019)Locatello, Bauer, Lucic, Raetsch, Gelly,
+  Sch{\"o}lkopf, and Bachem}]{locatello2019disentanglement}
+Francesco Locatello, Stefan Bauer, Mario Lucic, Gunnar Raetsch, Sylvain Gelly,
+  Bernhard Sch{\"o}lkopf, and Olivier Bachem. 2019.
+\newblock \href {https://proceedings.mlr.press/v97/locatello19a.html}
+  {Challenging common assumptions in the unsupervised learning of disentangled
+  representations}.
+\newblock In \emph{Proceedings of the 36th International Conference on Machine
+  Learning}, volume~97 of \emph{Proceedings of Machine Learning Research},
+  pages 4114--4124. PMLR.
+
+\bibitem[{Loshchilov and Hutter(2019)}]{loshchilov2019adamw}
+Ilya Loshchilov and Frank Hutter. 2019.
+\newblock \href {https://openreview.net/forum?id=Bkg6RiCqY7} {Decoupled weight
+  decay regularization}.
+\newblock In \emph{The Seventh International Conference on Learning
+  Representations}.
+
+\bibitem[{Saraswatula and Klindt(2026)}]{saraswatula2025whitening}
+Ashwin Saraswatula and David Klindt. 2026.
+\newblock \href {https://openreview.net/forum?id=IQEqJ0S7l7} {Data whitening
+  improves sparse autoencoder learning}.
+\newblock In \emph{XAI4Science Workshop at AAAI 2026}.
+
+\bibitem[{van~den Oord et~al.(2018)van~den Oord, Li, and Vinyals}]{oord2018cpc}
+Aaron van~den Oord, Yazhe Li, and Oriol Vinyals. 2018.
+\newblock \href {https://arxiv.org/abs/1807.03748} {Representation learning
+  with contrastive predictive coding}.
+\newblock \emph{arXiv preprint arXiv:1807.03748}.
+
+\bibitem[{von K{\"u}gelgen et~al.(2021)von K{\"u}gelgen, Sharma, Gresele,
+  Brendel, Sch{\"o}lkopf, Besserve, and
+  Locatello}]{vonkugelgen2021selfsupervised}
+Julius von K{\"u}gelgen, Yash Sharma, Luigi Gresele, Wieland Brendel, Bernhard
+  Sch{\"o}lkopf, Michel Besserve, and Francesco Locatello. 2021.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2021/hash/8929c70f8d710e412d38da624b21c3c8-Abstract.html}
+  {Self-supervised learning with data augmentations provably isolates content
+  from style}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~34, pages 16451--16467.
+
+\bibitem[{Vrande{\v{c}}i{\'c} and Kr{\"o}tzsch(2014)}]{vrandecic2014wikidata}
+Denny Vrande{\v{c}}i{\'c} and Markus Kr{\"o}tzsch. 2014.
+\newblock \href {https://doi.org/10.1145/2629489} {Wikidata: A free
+  collaborative knowledgebase}.
+\newblock \emph{Communications of the ACM}, 57(10):78--85.
+
+\bibitem[{Wilson(1927)}]{wilson1927inference}
+Edwin~B. Wilson. 1927.
+\newblock \href {https://doi.org/10.1080/01621459.1927.10502953} {Probable
+  inference, the law of succession, and statistical inference}.
+\newblock \emph{Journal of the American Statistical Association},
+  22(158):209--212.
+
+\bibitem[{Zimmermann et~al.(2021)Zimmermann, Sharma, Schneider, Bethge, and
+  Brendel}]{zimmermann2021contrastive}
+Roland~S. Zimmermann, Yash Sharma, Steffen Schneider, Matthias Bethge, and
+  Wieland Brendel. 2021.
+\newblock \href {https://proceedings.mlr.press/v139/zimmermann21a.html}
+  {Contrastive learning inverts the data generating process}.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning}, volume 139 of \emph{Proceedings of Machine Learning Research},
+  pages 12979--12990. PMLR.
+
+\end{thebibliography}

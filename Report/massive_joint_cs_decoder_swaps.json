@@ -1,0 +1,39 @@
+{
+  "scope": {
+    "frozen_gemma": true,
+    "frozen_partition": "checkpoint/massive_partition_layer8.pt",
+    "decoder": "Linear(256,2304)",
+    "input": "[z_C,z_S]",
+    "loss": "MSE",
+    "uniform_target_scale": 3.7508119867431082,
+    "epochs": 4,
+    "heldout_locales": [
+      "ar-SA",
+      "zh-CN"
+    ],
+    "donors_per_target_locale": 3,
+    "positional_alignment": false
+  },
+  "training_scaled_mse": [
+    0.83539048094355,
+    0.6387152243131299,
+    0.4913996696518001,
+    0.3765975311362517
+  ],
+  "ordinary_unswapped_reconstruction": {
+    "mse": 11.150691032409668,
+    "cosine_mean": 0.936884880065918,
+    "prediction_norm_mean": 92.34859466552734
+  },
+  "surface_swaps": {
+    "pairs": 17808,
+    "cosine_to_real_target_locale_mean": 0.9122573733329773,
+    "cosine_to_original_source_mean": 0.8995453715324402,
+    "target_locale_probe_accuracy": 0.9997753818508536,
+    "semantic_intent_probe_accuracy": 0.6248876909254267,
+    "prediction_norm_mean": 93.26119232177734,
+    "target_norm_mean": 223.6049041748047,
+    "source_norm_mean": 223.6049041748047,
+    "donor_is_different_semantic_item": true
+  }
+}

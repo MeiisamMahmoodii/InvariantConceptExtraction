@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\train_massive_zc_to_english_decoder.py", line 48, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\train_massive_zc_to_english_decoder.py", line 32, in main
+    en_train=tr[tr.locale.eq('en-US')].set_index('id');assert en_train.index.is_unique and len(en_train)==tr.id.nunique();target_rows=tr.id.map(en_train.activation_row).to_numpy();train_mask=tr.locale.ne('en-US').to_numpy();assert train_mask.sum()==len(tr)-len(en_train)
+                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\.venv\Lib\site-packages\pandas\core\generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'activation_row'

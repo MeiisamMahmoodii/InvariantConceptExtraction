@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\run_massive_matched_saes.py", line 76, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\run_massive_matched_saes.py", line 74, in main
+    report={'scope':{'dataset':'AmazonScience/massive','frozen_partition':'checkpoint/massive_partition_layer8.pt','train_languages':49,'heldout_languages':['ar-SA','zh-CN'],'Gemma_layer':8,'pooling':'masked mean','representations':['raw','z_C'],'TopK':K,'expansion':EXPANSION,'epochs':EPOCHS,'SAE_trained':True,'ConCA_trained':False},'selection':'One feature per intent is selected exclusively from seen-language training rows by class-versus-rest mean activation margin. Held-out Arabic/Chinese affect neither feature selection nor thresholds.','raw':audit('raw',raw,tr.intent.to_numpy(),te.intent.to_numpy(),te.id.to_numpy(),te.locale.to_numpy()),'z_C':audit('z_C',zc,tr.intent.to_numpy(),te.intent.to_numpy(),te.id.to_numpy(),te.locale.to_numpy()),'notes':'ConCA was not run: it is optional and would introduce a separate objective; this stage isolates the matched Top-k SAE test.'}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\run_massive_matched_saes.py", line 56, in audit
+    for c in np.unique(train_intent[ids]):sums[c]+=z[train_intent[ids]==c].sum(0)
+                                          ~~~~^^^
+IndexError: index 59 is out of bounds for axis 0 with size 58

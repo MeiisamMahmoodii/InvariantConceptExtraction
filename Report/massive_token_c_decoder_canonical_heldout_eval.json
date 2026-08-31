@@ -1,0 +1,95 @@
+{
+  "id_verification": {
+    "arabic_ids": 2968,
+    "chinese_ids": 2968,
+    "matching_english_ids": 2968,
+    "missing_ids": {
+      "ar-SA": [],
+      "zh-CN": []
+    },
+    "duplicate_ids": {
+      "ar-SA": 0,
+      "zh-CN": 0,
+      "en-US": 0
+    },
+    "heldout_subset_of_english": true
+  },
+  "combined": {
+    "raw_foreign_to_english": 0.6175173234616248,
+    "decoded_to_english": 0.528735272159594,
+    "improvement": -0.08878205130203072,
+    "fraction_delta_positive": 0.18783692722371967,
+    "reverse_coverage": 0.4331062393704796,
+    "activation_norms": {
+      "h": {
+        "mean": 114.03045654296875,
+        "std": 17.64859390258789
+      },
+      "h_en": {
+        "mean": 119.88175201416016,
+        "std": 17.28705596923828
+      },
+      "h_C": {
+        "mean": 35.60808181762695,
+        "std": 2.8768162727355957
+      }
+    }
+  },
+  "Arabic": {
+    "raw_foreign_to_english": 0.5613553075978377,
+    "decoded_to_english": 0.5257168631709489,
+    "improvement": -0.035638444426888724,
+    "fraction_delta_positive": 0.35377358490566035,
+    "reverse_coverage": 0.43174096594521943,
+    "activation_norms": {
+      "h": {
+        "mean": 111.6279525756836,
+        "std": 17.980697631835938
+      },
+      "h_en": {
+        "mean": 119.88175201416016,
+        "std": 17.28705596923828
+      },
+      "h_C": {
+        "mean": 35.25056076049805,
+        "std": 2.8581366539001465
+      }
+    }
+  },
+  "Chinese": {
+    "raw_foreign_to_english": 0.6736793393254119,
+    "decoded_to_english": 0.5317536811482392,
+    "improvement": -0.14192565817717273,
+    "fraction_delta_positive": 0.021900269541778976,
+    "reverse_coverage": 0.43447151279573976,
+    "activation_norms": {
+      "h": {
+        "mean": 117.40278625488281,
+        "std": 16.594852447509766
+      },
+      "h_en": {
+        "mean": 119.88175201416016,
+        "std": 17.28705596923828
+      },
+      "h_C": {
+        "mean": 36.10991668701172,
+        "std": 2.8275763988494873
+      }
+    }
+  },
+  "sinkhorn_training_loss": [
+    14517.092504040947,
+    13813.542112854706,
+    13371.494236036278,
+    13039.328520676185,
+    12767.422517623025
+  ],
+  "collapse_diagnostics": {
+    "decoded_coordinate_std_mean": 0.2048061490058899,
+    "decoded_mean_random_pair_cosine": 0.9315022230148315
+  },
+  "token_position_alignment": false,
+  "partition_retrained": false,
+  "decoder_retrained": false,
+  "gemma_scope_loaded": false
+}

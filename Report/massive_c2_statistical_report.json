@@ -1,0 +1,47 @@
+{
+  "scope": {
+    "C2_stability_only": true,
+    "frozen_SAE_inference_only": true,
+    "no_training": true,
+    "no_probe_fitting": true,
+    "inference_device": "cpu",
+    "n_bootstrap": 10000,
+    "bootstrap_seed": 20260828
+  },
+  "matched_vs_naive_infonce_zC_stability": {
+    "n_semantic_ids": 2968,
+    "active_features_matched": 147,
+    "active_features_infonce": 249,
+    "aggregate_matched": 0.5409128953744421,
+    "aggregate_infonce": 0.3987934654277393,
+    "mean_difference": 0.1421194299467027,
+    "bootstrap_95_CI": [
+      0.13049135519688732,
+      0.15267817511134937
+    ],
+    "fraction_ids_delta_gt_0": 0.8712938005390836,
+    "resampling_unit": "held-out MASSIVE semantic id",
+    "per_id_csv": "Report\\massive_c2_stability_per_id.csv"
+  },
+  "matched_vs_uncontrolled_negative_zC_stability": {
+    "n_semantic_ids": 2968,
+    "active_features_matched": 147,
+    "active_features_uncontrolled": 157,
+    "aggregate_matched": 0.5409128953744421,
+    "aggregate_uncontrolled": 0.5205515480897036,
+    "mean_difference": 0.02036134728473845,
+    "bootstrap_95_CI": [
+      0.01621332956763119,
+      0.024452193989515182
+    ],
+    "fraction_ids_delta_gt_0": 0.5832210242587601,
+    "resampling_unit": "held-out MASSIVE semantic id",
+    "per_id_csv": "Report\\massive_c2_stability_per_id.csv"
+  },
+  "C_swap_specificity": {
+    "status": "BLOCKED: exact frozen intent probe checkpoint/per-case outcomes were not persisted; no probe was retrained."
+  },
+  "S_swap_specificity": {
+    "status": "BLOCKED: exact frozen locale probe checkpoint/per-case outcomes were not persisted; no probe was retrained."
+  }
+}

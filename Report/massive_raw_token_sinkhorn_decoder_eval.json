@@ -1,0 +1,11 @@
+{
+  "raw_foreign_to_english_similarity": 0.6175173234616248,
+  "D_H_to_english_similarity": 0.7677862345369035,
+  "reverse_coverage": 0.7410195902080308,
+  "prediction_norm": {
+    "mean": 91.72930145263672,
+    "std": 14.585996627807617
+  },
+  "coordinate_std": 0.8507975935935974,
+  "random_pair_cosine": 0.7932114005088806
+}

@@ -1,0 +1,327 @@
+{
+  "scope": {
+    "frozen_Gemma_layer": 8,
+    "pooling": "masked mean",
+    "frozen_partition_used_only_for_existing_D_C": true,
+    "baseline_decoder": "Linear(2304,2304)",
+    "decoder_only_training": true,
+    "SAE_trained": false,
+    "ConCA_trained": false,
+    "GemmaScope_trained": false
+  },
+  "split": {
+    "train": "same 49-language published train rows excluding English",
+    "heldout": "same Arabic/Chinese published test rows",
+    "train_rows": 551616,
+    "heldout_rows": 5936
+  },
+  "training": {
+    "epochs": 100,
+    "optimizer": "Adam(lr=0.001)",
+    "loss": "MSE(D_H(H(id,other seen language)), H(id,en-US))",
+    "final_train_MSE": 1.2086638781685684
+  },
+  "heldout_metrics": {
+    "raw_linear_D_H": {
+      "MSE": {
+        "mean": 2.338495969772339,
+        "std": 6.24696159362793
+      },
+      "cosine": {
+        "mean": 0.9864678978919983,
+        "std": 0.009536461904644966
+      },
+      "raw_to_English_cosine": {
+        "mean": 0.9650301337242126,
+        "std": 0.01755456253886223
+      },
+      "cosine_improvement": {
+        "mean": 0.0214377548545599,
+        "std": 0.013804640620946884,
+        "fraction_positive": 0.9819743935309974
+      },
+      "activation_norms": {
+        "raw_H": {
+          "mean": 223.60487365722656,
+          "std": 88.51093292236328
+        },
+        "English_canonical_H_C": {
+          "mean": 231.53457641601562,
+          "std": 83.09513092041016
+        },
+        "prediction": {
+          "mean": 241.89852905273438,
+          "std": 84.44155883789062
+        }
+      }
+    },
+    "mean_English_constant": {
+      "MSE": {
+        "mean": 3.9062869548797607,
+        "std": 9.045350074768066
+      },
+      "cosine": {
+        "mean": 0.977859616279602,
+        "std": 0.013366756960749626
+      },
+      "raw_to_English_cosine": {
+        "mean": 0.9650301337242126,
+        "std": 0.01755456253886223
+      },
+      "cosine_improvement": {
+        "mean": 0.012829449027776718,
+        "std": 0.014179601334035397,
+        "fraction_positive": 0.8616913746630728
+      },
+      "activation_norms": {
+        "raw_H": {
+          "mean": 223.60487365722656,
+          "std": 88.51093292236328
+        },
+        "English_canonical_H_C": {
+          "mean": 231.53457641601562,
+          "std": 83.09513092041016
+        },
+        "prediction": {
+          "mean": 224.14151000976562,
+          "std": 1.52587890625e-05
+        }
+      }
+    },
+    "existing_D_C_z_C": {
+      "MSE": {
+        "mean": 2.5543837547302246,
+        "std": 4.435912609100342
+      },
+      "cosine": {
+        "mean": 0.9825361967086792,
+        "std": 0.01673746667802334
+      },
+      "raw_to_English_cosine": {
+        "mean": 0.9650301337242126,
+        "std": 0.01755456253886223
+      },
+      "cosine_improvement": {
+        "mean": 0.017506057396531105,
+        "std": 0.017704958096146584,
+        "fraction_positive": 0.9494609164420486
+      },
+      "activation_norms": {
+        "raw_H": {
+          "mean": 223.60487365722656,
+          "std": 88.51093292236328
+        },
+        "English_canonical_H_C": {
+          "mean": 231.53457641601562,
+          "std": 83.09513092041016
+        },
+        "prediction": {
+          "mean": 229.3801727294922,
+          "std": 78.21451568603516
+        }
+      }
+    },
+    "ar-SA": {
+      "raw_linear_D_H": {
+        "MSE": {
+          "mean": 3.3191800117492676,
+          "std": 8.353757858276367
+        },
+        "cosine": {
+          "mean": 0.985231876373291,
+          "std": 0.010784562677145004
+        },
+        "raw_to_English_cosine": {
+          "mean": 0.9572916626930237,
+          "std": 0.018370280042290688
+        },
+        "cosine_improvement": {
+          "mean": 0.027940107509493828,
+          "std": 0.015112233348190784,
+          "fraction_positive": 0.980121293800539
+        },
+        "activation_norms": {
+          "raw_H": {
+            "mean": 202.6171417236328,
+            "std": 85.45680236816406
+          },
+          "English_canonical_H_C": {
+            "mean": 231.53457641601562,
+            "std": 83.09513092041016
+          },
+          "prediction": {
+            "mean": 262.02154541015625,
+            "std": 89.900390625
+          }
+        }
+      },
+      "mean_English_constant": {
+        "MSE": {
+          "mean": 3.9062869548797607,
+          "std": 9.045350074768066
+        },
+        "cosine": {
+          "mean": 0.977859616279602,
+          "std": 0.013366755098104477
+        },
+        "raw_to_English_cosine": {
+          "mean": 0.9572916626930237,
+          "std": 0.018370280042290688
+        },
+        "cosine_improvement": {
+          "mean": 0.02056789956986904,
+          "std": 0.01393075566738844,
+          "fraction_positive": 0.9380053908355795
+        },
+        "activation_norms": {
+          "raw_H": {
+            "mean": 202.6171417236328,
+            "std": 85.45680236816406
+          },
+          "English_canonical_H_C": {
+            "mean": 231.53457641601562,
+            "std": 83.09513092041016
+          },
+          "prediction": {
+            "mean": 224.14151000976562,
+            "std": 0.0
+          }
+        }
+      },
+      "existing_D_C_z_C": {
+        "MSE": {
+          "mean": 3.0248372554779053,
+          "std": 5.282161712646484
+        },
+        "cosine": {
+          "mean": 0.9822075963020325,
+          "std": 0.01410018652677536
+        },
+        "raw_to_English_cosine": {
+          "mean": 0.9572916626930237,
+          "std": 0.018370280042290688
+        },
+        "cosine_improvement": {
+          "mean": 0.024915844202041626,
+          "std": 0.015795137733221054,
+          "fraction_positive": 0.9737196765498652
+        },
+        "activation_norms": {
+          "raw_H": {
+            "mean": 202.6171417236328,
+            "std": 85.45680236816406
+          },
+          "English_canonical_H_C": {
+            "mean": 231.53457641601562,
+            "std": 83.09513092041016
+          },
+          "prediction": {
+            "mean": 250.75538635253906,
+            "std": 77.16754913330078
+          }
+        }
+      }
+    },
+    "zh-CN": {
+      "raw_linear_D_H": {
+        "MSE": {
+          "mean": 1.3578115701675415,
+          "std": 2.517997980117798
+        },
+        "cosine": {
+          "mean": 0.9877039790153503,
+          "std": 0.007907324470579624
+        },
+        "raw_to_English_cosine": {
+          "mean": 0.9727686047554016,
+          "std": 0.012613185681402683
+        },
+        "cosine_improvement": {
+          "mean": 0.014935401268303394,
+          "std": 0.008258050307631493,
+          "fraction_positive": 0.9838274932614556
+        },
+        "activation_norms": {
+          "raw_H": {
+            "mean": 244.5926513671875,
+            "std": 86.51319885253906
+          },
+          "English_canonical_H_C": {
+            "mean": 231.53457641601562,
+            "std": 83.09513092041016
+          },
+          "prediction": {
+            "mean": 221.77549743652344,
+            "std": 73.27212524414062
+          }
+        }
+      },
+      "mean_English_constant": {
+        "MSE": {
+          "mean": 3.9062869548797607,
+          "std": 9.045350074768066
+        },
+        "cosine": {
+          "mean": 0.977859616279602,
+          "std": 0.013366755098104477
+        },
+        "raw_to_English_cosine": {
+          "mean": 0.9727686047554016,
+          "std": 0.012613185681402683
+        },
+        "cosine_improvement": {
+          "mean": 0.005091093480587006,
+          "std": 0.009396299719810486,
+          "fraction_positive": 0.785377358490566
+        },
+        "activation_norms": {
+          "raw_H": {
+            "mean": 244.5926513671875,
+            "std": 86.51319885253906
+          },
+          "English_canonical_H_C": {
+            "mean": 231.53457641601562,
+            "std": 83.09513092041016
+          },
+          "prediction": {
+            "mean": 224.14151000976562,
+            "std": 0.0
+          }
+        }
+      },
+      "existing_D_C_z_C": {
+        "MSE": {
+          "mean": 2.083930015563965,
+          "std": 3.3182451725006104
+        },
+        "cosine": {
+          "mean": 0.9828647375106812,
+          "std": 0.019006691873073578
+        },
+        "raw_to_English_cosine": {
+          "mean": 0.9727686047554016,
+          "std": 0.012613185681402683
+        },
+        "cosine_improvement": {
+          "mean": 0.010096268728375435,
+          "std": 0.01635955087840557,
+          "fraction_positive": 0.9252021563342318
+        },
+        "activation_norms": {
+          "raw_H": {
+            "mean": 244.5926513671875,
+            "std": 86.51319885253906
+          },
+          "English_canonical_H_C": {
+            "mean": 231.53457641601562,
+            "std": 83.09513092041016
+          },
+          "prediction": {
+            "mean": 208.00497436523438,
+            "std": 73.25566864013672
+          }
+        }
+      }
+    }
+  }
+}

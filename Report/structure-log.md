@@ -434,11 +434,11 @@ What we found: reproduction passed exactly for reconstruction MSE, mean L0, mean
 
 ## Step 55 — audited frozen FLORES SAE sentence and language selectivity
 
-What we did: on 30 C-test sentences across all ten languages, compared each feature's between-sentence-to-within-sentence variance ratio against its between-language-to-within-language ratio. A feature is sentence-oriented only when its sentence ratio is larger than its language ratio and above one; language-oriented uses the reciprocal rule. Arabic-to-Chinese consistency was then computed only for sentence-oriented features.
+What we did: selected feature orientation using only the 140 training sentences in the eight seen languages, then evaluated Arabic-to-Chinese consistency on the 30 disjoint test sentences. A feature is sentence-oriented only when its between-sentence ratio exceeds its between-language ratio and one; language-oriented uses the reciprocal rule. Held-out languages and test sentences do not affect the selection mask.
 
 Why: raw cross-language stability can be high for a feature that fires uniformly, so the stronger test requires both selectivity and invariance.
 
-What we found: raw SAE is mostly mixed or unselective (1.3% sentence-oriented; 0.1% language-oriented). SAE(z_C) is strongly sentence-oriented (71.9%, 368/512 features), with no language-oriented features; its sentence-oriented features have mean Arabic-to-Chinese consistency 0.580. SAE(z_S) is strongly language-oriented (59.4%, 304/512), with no sentence-oriented features. This is the requested selectivity-aware directional result, while retaining the earlier caveat that it uses a small 30-sentence held-out evaluation set.
+What we found: raw SAE is mostly mixed or unselective (80.8%), while SAE(z_C) is 99.8% sentence-oriented and SAE(z_S) is 60.9% language-oriented. However, the held-out consistency result does not favor conditioning: raw exceeds z_C both over all features (0.811 versus 0.526) and over sentence-oriented features selected on seen-language training data (0.718 versus 0.526). The earlier favorable selective result used the test languages during feature selection and is superseded by this leakage-free audit. FLORES therefore supports an orientation shift, not a stability replication.
 ## Step 56 — ConCA comparison setup
 
 What we did: prepared a separate run of the official ConCA BatchNorm architecture on frozen FLORES raw Gemma layer-8 activations and the frozen `z_C` block.
@@ -493,6 +493,118 @@ Why: PAIR is the intended held-out transformation and needs semantic validation 
 
 What we found: the export contains exactly 50 rows and no attack-method metadata. No labels were added and no model training was performed.
 
+## Step 63 — PAIR semantic-review decision
+
+What we did: validated the attached reviewed PAIR CSV and counted only its explicit labels.
+
+Why: PAIR may be held out only if its adversarial prompts reliably preserve the canonical harmful intent.
+
+What we found: 46 of 50 rows were `YES`, 3 were `AMBIGUOUS`, and 1 was `NO`. The explicit preservation rate is 92%. This fails the pre-registered requirement of at least 95% `YES` and zero `NO`; PAIR is not approved for training or held-out evaluation. Ambiguous rows were not converted to `YES`, and no training was performed.
+
+Adjudication: the user independently rechecked every PAIR row and explicitly confirmed all 50 as `YES`; the preliminary `NO` and `AMBIGUOUS` entries are annotation mistakes. The source CSV remains unchanged, while the adjudicated audit record now has 100% `YES`, zero `NO`, and approves PAIR as the held-out attack family. No model training was performed in this step.
+
+## Step 64 — JailbreakBench PAIR-held-out partition
+
+What we did: prepared the exact non-adversarial two-route partition on frozen Gemma layer-8 activations. Training uses DSN, GCG, JBC, and prompt-with-random-search; PAIR is fully excluded.
+
+Why: PAIR is the only materially rewritten attack family and is the strongest available unseen-transformation test.
+
+What we found: pending execution. The first gate reports only PAIR goal retrieval/probing, seen-method style diagnostics, and effective-rank checks. No SAE or ConCA job is included.
+
+Result: PAIR-to-seen-method goal retrieval improved from raw Gemma R@1=0.013 and MRR=0.058 to `z_C` R@1=0.141 and MRR=0.214. However, the partition fails the broader representation gate: held-out PAIR goal-probe accuracy fell from raw=0.718 to `z_C`=0.154, while seen-method attack-style probe accuracy remained high in `z_C`=0.969 (raw=1.000). `z_S` perfectly retrieves seen attack method, but has weak held-out PAIR goal-probe accuracy=0.103. Effective ranks are nonzero, so this is not total collapse, but `z_C` is not sufficiently attack-style-invariant. No SAE or ConCA was trained.
+
+## Step 65 — Canonical-goal anchor partition
+
+What we did: prepared the same 128+128 non-adversarial partition with only one data change: each canonical harmful goal is an additional `vanilla` surface view for its behavior. PAIR remains excluded.
+
+Why: the canonical goal is a clean semantic anchor, allowing the C route to learn that each seen attack realization maps back to the same behavior.
+
+What we found: PAIR-to-seen goal retrieval improved over raw Gemma from R@1=0.013 and MRR=0.061 to `z_C` R@1=0.103 and MRR=0.182. This is weaker than the earlier unanchored `z_C` result (R@1=0.141, MRR=0.214), so canonical anchoring did not improve the representation gate. PAIR goal-probe accuracy remains low for `z_C`=0.167 versus raw=0.718. Seen-style information remains high in `z_C`=0.917 (raw=1.000), while `z_S` retains near-perfect seen-style retrieval (R@1=0.987, MRR=0.993). Both blocks have nonzero rank (`z_C` participation ratio=5.72; `z_S`=6.55), but the C route is strongly compressed. No SAE or ConCA was trained.
+
+## Step 66 — HarmBench pairability audit
+
+What we did: inspected the public Hugging Face metadata for `walledai/HarmBench` without training a model.
+
+Why: this project needs repeated canonical behaviors under multiple attack realizations, plus the inverse pairing, before a partition experiment is scientifically valid.
+
+What we found: the published schema contains only prompt-oriented columns: `prompt`, `context`, `category`, and `tags` across three small configurations (100, 100, and 200 rows). It exposes neither a canonical behavior/task ID nor an attack/jailbreak style field. The repository is gated, so full row access requires an authenticated Hugging Face token; however, authentication cannot create the missing pair-defining fields. There are therefore zero valid positive and negative controlled pairs from the published schema, and the dataset fails this use case. No model training occurred.
+
+## Step 67 — SALAD attack-enhanced pairability audit
+
+What we did: downloaded and inspected only `OpenSafetyLab/Salad-Data` `attack_enhanced_set/train`. We treated `qid` as canonical identity, `baseq` as canonical text, `augq` as the realization, and `method` as surface/attack style. The audit computes pair counts algebraically and creates a fixed 20-row-per-method review packet without materializing pairs.
+
+Why: the partition requires both same-intent/different-style positives and different-intent/same-style negatives, with semantic preservation checked separately from structural pairability.
+
+What we found: there are 5,000 rows, 2,367 `qid`s, and six methods. `baseq` is identical within every `qid`; 929 `qid`s occur under at least two methods, producing 2,842 positive pairs and 5,339,879 implicit negative pairs. Every method is technically holdout-able, though holding out `jb` leaves only 484 remaining positives. Most methods retain `baseq` verbatim: AutoDAN 99.4%, GCG-Llama 100%, GPTFuzz 100%, JB 100%, and orig 100%. TAP differs materially at the surface level: only 7.1% verbatim containment, so 92.9% are rewrites/paraphrases. A semantic review packet was generated; final PASS is pending human labels because string containment alone cannot establish intent preservation and no rows are silently rejected. No model training occurred.
+
+Semantic-audit result: the fixed packet has 103 rows because `orig` has only three source rows. AutoDAN, GCG-Llama, GPTFuzz, and JB each have 20/20 SAME_INTENT, zero CHANGED_INTENT, and pass the ≥95% / zero-change rule. TAP has 17/20 SAME_INTENT (85%), one CHANGED_INTENT, and two AMBIGUOUS rows; it therefore fails as a clean S-family and must not be held out as an unseen-style test without stricter row-level filtering. `orig` is semantically clean in its three rows but remains unusable due to scale. No model training occurred.
+
+Full-TAP result: a fixed blinded text-only review of all 210 TAP `(baseq, augq)` pairs, with the original 20 reviewed labels retained as overrides, gave 176 SAME_INTENT (83.8%), one CHANGED_INTENT, and 33 AMBIGUOUS. Therefore TAP fails the ≥95% SAME_INTENT and zero-CHANGED rule. Keeping only SAME_INTENT rows leaves 130 TAP qids, but only 37 also have at least two methods among AutoDAN, GCG-Llama, GPTFuzz, and JB. Restricting training to those qids yields 126 rows, 109 positive pairs, and 2,959 matched negatives. This is insufficient for the proposed clean held-out rewrite test. The full audit is model-assisted rather than independent human adjudication; no model training occurred.
+
+## Step 68 — AutoDAN primary-test overlap count
+
+What we did: counted AutoDAN qids that also have at least two of the proposed training methods: GCG-Llama, GPTFuzz, and JB.
+
+Why: this is the actual controlled evaluation population for an AutoDAN-held-out primary test.
+
+What we found: AutoDAN has 349 rows/qids; 140 qids have at least two eligible training methods. This gives 140 held-out AutoDAN evaluation rows and 471 training rows on the same qid population. No training occurred.
+
+## Step 69 — SALAD AutoDAN-held-out partition
+
+What we did: trained the fixed non-adversarial frozen-Gemma layer-8 partition, `2304 -> z_C(128) + z_S(128)`, for 30 epochs on exactly the 140 qids shared with AutoDAN. GCG-Llama, GPTFuzz, and JB were training surface families; all 140 AutoDAN rows were held out. No SAE or ConCA was trained.
+
+Why: this is the clean primary downstream test: the same canonical qids occur in train and test, while AutoDAN is an unseen, semantically clean attack method.
+
+What we found: the partition gate fails. AutoDAN goal retrieval is extremely weak: raw Gemma R@1=0.007 and MRR=0.034; `z_C` improves only to R@1=0.014 and MRR=0.053. Goal-probe accuracy falls from raw=0.050 to `z_C`=0.021. Seen-style leakage remains high in `z_C`=0.983 (raw=0.991), whereas `z_S` has perfect seen-style retrieval. Both routes are compressed but non-collapsed (`z_C` effective-rank participation ratio=6.23; `z_S`=2.93). Thus a clean held-out attack method does not rescue the safety-data partition; treat SALAD as a downstream limitation and do not tune it further.
+
+## Step 70 — Frozen z_C to canonical Gemma-activation decoder
+
+What we did: froze Gemma layer 8, masked-mean pooling, and the existing 128+128 partition. We trained only a linear `z_C(128) -> H(2304)` decoder with MSE to each fact's fixed canonical `declarative/v1` Gemma activation. Decoder training used 28,083 seen-surface rows from 2,706 `C_train` facts, excluding the canonical input. Evaluation used 657 `C_test` facts expressed only as the held-out `indirect/v1` family.
+
+Why: this directly tests whether the invariant route can map a new surface realization back toward the hidden activation Gemma produces for the canonical expression of the same content.
+
+What we found: the decoder fails this first test. Held-out raw indirect activations already have cosine 0.976 to their canonical targets, while decoded activations have cosine 0.689 and MSE 7.350. Mean per-example cosine change is -0.288 and zero examples improve. The decoded norm is 46.59 versus raw 127.62 and canonical 153.15, indicating strong scale shrinkage. This decoder formulation does not produce a cleaner canonical hidden state. No SAE, ConCA, Gemma Scope, or steering model was trained.
+
+## Step 71 — Frozen SALAD attack-distance diagnostic
+
+What we did: on the aligned 140-qid SALAD population, extracted each canonical `baseq` with frozen Gemma layer 8 and masked-mean pooling, then compared it only with already saved frozen activations for GCG-Llama, GPTFuzz, JB, and AutoDAN. We also compared matched same-qid attack pairs. No partition or other model was trained.
+
+Why: this tests whether AutoDAN's held-out failure is simply because it drifts much farther from the canonical goal than the training attack families.
+
+What we found: AutoDAN-to-base cosine is 0.781 (standard deviation 0.048). It is much lower than GCG-Llama's 0.943, but nearly identical to GPTFuzz's 0.783 and only 0.030 below JB's 0.811. AutoDAN is also highly similar to GPTFuzz (0.943) and JB (0.950) on matched qids. Therefore AutoDAN is not an isolated semantic-distance outlier; the failed partition cannot be attributed solely to AutoDAN coverage or pair fidelity. No training occurred.
+
+## Step 72 — Frozen SALAD partition pair geometry
+
+What we did: using only the saved raw, `z_C`, and `z_S` activations for the aligned 140-qid SALAD population, compared cosine distributions for same-qid/different-method pairs versus distinct-qid/same-method pairs. We additionally isolated the relevant AutoDAN-held-out comparison: AutoDAN-to-training-method pairs for the same qid against distinct-qid pairs both expressed with AutoDAN.
+
+Why: the target geometry is `sim(z_C, same goal/different method) > sim(z_C, different goal/same method)`, with the reverse expected for `z_S`.
+
+What we found: the aggregate `z_C` margin is only +0.004, but it masks the held-out failure. For AutoDAN, raw similarity is 0.932 for same goal/different method versus 0.993 for different goal/same AutoDAN method. `z_C` improves the former to 0.974, but different goals under the same AutoDAN method remain higher at 0.999: margin -0.025. `z_S` strongly reverses as expected (0.326 versus 0.984; margin -0.658). Thus `z_C` does not establish the required goal-dominant ordering for AutoDAN, explaining the failed held-out retrieval. No training occurred.
+
+## Step 73 — Frozen AutoDAN layer sweep
+
+What we did: extracted frozen Gemma masked-mean activations at layers 5, 8, 13, and 21 for the canonical base question, all three training-method realizations, and AutoDAN on the same 140 qids. We measured base-to-AutoDAN goal retrieval, a train-method-to-AutoDAN goal probe, and the canonical-to-matching-AutoDAN cosine margin against different-qid AutoDAN pairs. No partition, SAE, or ConCA was trained.
+
+Why: if some layer has positive AutoDAN goal separability, layer 8 would be the wrong downstream location; if none does, the raw representation does not supply the required signal.
+
+What we found: none of the four layers has positive goal geometry. Margins are -0.206 (layer 5), -0.213 (layer 8), -0.154 (layer 13), and -0.168 (layer 21). Layer 5 has the best base-to-AutoDAN retrieval (R@1=0.079; MRR=0.156), while layer 13 has the best cross-method goal-probe accuracy (0.086); both remain weak. Thus AutoDAN goal identity is not cleanly separable at these raw Gemma layers under this evaluation, so SALAD is not viable for the intended downstream partition claim without changing the task definition or source data.
+
+## Step 74 — Moderate SALAD leave-one-method-out folds
+
+What we did: excluded AutoDAN entirely. On 79 qids that have GCG-Llama, GPTFuzz, and JB, trained three fixed 30-epoch non-adversarial `2304 -> z_C(128) + z_S(128)` partitions: hold out GCG-Llama, GPTFuzz, or JB. The source has multiple rows for some qid/method combinations; all 347 rows were preserved rather than collapsed. No SAE or ConCA was trained.
+
+Why: this tests whether the partition succeeds on cleaner, moderate held-out jailbreak methods before treating AutoDAN as a separate boundary case.
+
+What we found: `z_C` improves held-out goal retrieval in all folds, but none passes the full gate. GCG-held-out R@1 improves 0.010 to 0.149, GPTFuzz 0.012 to 0.037, and JB 0.018 to 0.061. However, goal-probe accuracy generally drops (GCG 0.772 to 0.307; GPTFuzz 0.407 to 0.074; JB 0.055 to 0.061), seen-method probe accuracy remains high in `z_C` (0.896, 0.979, and 1.000), and all held-out `z_C` cosine margins remain negative (-0.042, -0.004, and -0.002). `z_S` remains strongly method-dominant, as expected. Thus zero of three folds satisfies both goal preservation and reduced method dominance; jailbreak robustness is not a suitable positive downstream result for the present method.
+
+## Step 75 — MASSIVE multilingual intent feasibility audit
+
+What we did: downloaded and inspected the official `AmazonScience/massive` combined train, validation, and test parquets. We audited language, intent, and repeated-item ID coverage only; no activations, partition, or feature model was trained.
+
+Why: multilingual concept monitoring needs a stable concept label space, enough examples per language-intent cell, whole held-out languages, and exact same-item links across languages.
+
+What we found: MASSIVE has 51 languages and exact repeated IDs across all languages; every ID has one fixed intent. Train has 587,214 rows and 60 intents; validation and test each have 59 but omit different labels, leaving a stable 58-intent intersection across all three published splits. Holding out Arabic (`ar-SA`) and Simplified Chinese (`zh-CN`) leaves 49 seen languages and full coverage of all 58 shared intents in both held-out languages. Test support per held-out intent ranges from 1 to 209 examples (median 35), so rare intents need macro-aware reporting or minimum-support filtering later. The dataset passes feasibility for a multilingual intent-monitoring experiment with intent as C, locale as S, and ID as the exact cross-language semantic link.
+
 ## Step 61 — JailbreakBench mechanism audit
 
 What we did: prepared a deterministic, method-stratified structural audit of 20 strict records per attack method. It measures goal copying, prefix/suffix additions, rewrites, role-play markers, and a conservative obfuscation heuristic without printing or redistributing attack prompts.
@@ -504,3 +616,55 @@ What we found: pending the terminal audit report. Structural labels are kept sep
 Result: DSN and GCG both preserve the canonical goal verbatim and append a short suffix (18/20 and 20/20 samples respectively). JBC preserves the goal verbatim and adds a role-play prefix (20/20). Prompt-with-random-search preserves the goal verbatim and adds role-play prefix and suffix wrappers (20/20). PAIR is the only sampled method that substantially rewrites the request (19/20), usually with role-play markers (17/20). No sampled method triggered the conservative encoding/obfuscation heuristic. Therefore the five named algorithms reduce to three observed transformation mechanisms: suffix perturbation, wrapper/role-play, and rewritten role-play. JailbreakBench can support a limited downstream proof of concept but not a broad claim about diverse unseen jailbreak transformations.
 
 Correction to Step 60: literal raw-string non-verbatim matching overstated transformation diversity. Under whitespace/case normalization, sampled prompt-with-random-search examples copy the canonical goal verbatim; its raw mismatch was formatting, not paraphrase.
+
+## Step 76 — MASSIVE frozen partition on held-out Arabic and Chinese
+
+What we did: using frozen Gemma-2-2B masked-mean layer-8 activations, trained the fixed non-adversarial `2304 -> z_C(128) + z_S(128)` partition for 30 epochs on all 563,108 published-train rows from 49 seen languages. Exact MASSIVE ID was C and locale was S. `z_C` used same-ID/different-locale positives and different-ID/same-locale negatives; `z_S` used the reverse. Arabic (`ar-SA`) and Simplified Chinese (`zh-CN`) published-test rows (5,936 total) remained held out. No SAE or ConCA was trained.
+
+Why: this is the requested real multilingual intent-monitoring gate: whether `z_C` preserves exact content across unseen languages while separating language information into `z_S`.
+
+What we found: held-out Arabic-to-Chinese exact-ID retrieval improves from raw R@1=0.284, R@5=0.449, MRR=0.364 to `z_C` R@1=0.401, R@5=0.658, MRR=0.519. `z_S` is near-zero for this retrieval (R@1=0.001), showing clear route specialization. Intent probe accuracy is raw=0.651, `z_C`=0.633, and `z_S`=0.017: `z_C` largely preserves intent while `z_S` removes it. Language-probe accuracy is raw=1.000, `z_C`=0.895, and `z_S`=1.000, so language leakage in `z_C` is reduced but still substantial. Held-out effective rank is healthy for `z_C` (participation ratio=30.7; entropy rank=42.2) and low but non-collapsed for `z_S` (2.17; 5.08). This passes the core cross-language content-preservation result, but does not establish complete language invariance.
+
+## Step 77 — MASSIVE matched SAE intent-feature audit
+
+What we did: froze the MASSIVE partition and trained matched Top-k ReLU SAEs on raw Gemma layer-8 activations and frozen `z_C`, with k=64, 4x expansion, AdamW, and 30 epochs. Each intent's feature was selected only on the 49 seen-language training rows; Arabic and Chinese published-test rows were used only for evaluation. No ConCA was trained.
+
+Why: the downstream test is feature-level multilingual intent monitoring, rather than a coarse linear probe. We ask whether the selected sparse feature remains intent-selective and stable in both unseen languages.
+
+What we found: across 58 intents, `SAE(z_C)` improves mean held-out one-vs-rest AUC from 0.851 to 0.902 and balanced accuracy from 0.838 to 0.846. Arabic-Chinese feature stability improves from 0.648 to 0.664. Raw selected features have lower mean language leakage (0.028 versus 0.083 for `z_C`), and raw has lower false-positive rate (0.076 versus 0.134). Thus the partition improves feature-level intent discrimination and cross-language stability, but does not uniformly improve every monitoring property; the increased false positives and leakage must be retained as limitations.
+
+## Step 78 — Frozen `z_C` to canonical English activation decoder
+
+What we did: froze Gemma and the MASSIVE partition. With `en-US` as the canonical surface, trained only a linear `128 -> 2304` decoder on 551,616 non-English rows from the 49 seen-language published train split. Its target was the frozen Gemma layer-8 masked-mean activation for the same ID in English. Arabic and Chinese published-test rows were fully held out; their English targets were extracted only as frozen evaluation targets. No SAE, ConCA, Gemma Scope, or partition training was performed.
+
+Why: this directly tests whether `z_C` can decode an arbitrary surface realization into the hidden activation Gemma would produce for a fixed canonical English rendering of the same item.
+
+What we found: across 5,936 held-out rows, decoding improves mean cosine to the English target from 0.9650 (raw held-out activation) to 0.9825, mean improvement +0.0175, for 94.9% of examples. Arabic improves 0.9573 to 0.9822 (+0.0249; 97.4% positive); Chinese improves 0.9728 to 0.9829 (+0.0101; 92.5% positive). Mean decoded MSE is 2.554. Decoded norm is 229.4 versus canonical-English norm 231.5 overall, without a pathological scale change. This passes the decoder prerequisite, but no Gemma Scope test has been started.
+
+## Step 79 — Raw-activation and constant English decoder controls
+
+What we did: froze every existing model. Using exactly the same non-English seen-language train rows and Arabic/Chinese held-out rows as Step 78, trained one linear raw baseline `D_H:2304 -> 2304` to predict the canonical English activation. Also evaluated a constant mean-English activation. Existing `D_C(z_C)` outputs were loaded only for comparison. No partition, SAE, ConCA, Gemma Scope, or other model was trained.
+
+Why: the decoder result must be compared against a direct raw-space transformation and against a content-free mean target before it can support a claim specific to `z_C`.
+
+What we found: the direct raw decoder is strongest overall: cosine 0.9865, MSE 2.338, and 98.2% positive cosine improvement, versus `D_C(z_C)` cosine 0.9825, MSE 2.554, and 94.9% positive. The constant control is weaker (cosine 0.9779, MSE 3.906) but still improves cosine for 86.2% of rows, showing that canonical English activations share a strong common direction. Therefore Step 78 demonstrates decodability to English but not an advantage unique to `z_C`; the direct raw decoder is the correct stronger baseline for this target.
+
+## Step 80 — Gemma Scope compatibility gate
+
+What we did: audited the frozen MASSIVE representation against the published Gemma Scope Gemma-2-2B residual SAE specification before loading any SAE. No SAE, partition, decoder, or other model was trained or modified.
+
+Why: a pretrained SAE is only valid when the supplied vectors come from its exact model, layer, activation site, and activation distribution.
+
+What we found: Gemma Scope provides Gemma-2-2B residual-stream SAEs at all layers, including a width-compatible 2304-dimensional layer-8 SAE. However, its inputs are token-level residual-stream activations, whereas every MASSIVE vector in this experiment is a masked mean over all token positions. The raw, `D_H(H)`, `D_C(z_C)`, and English target vectors therefore have compatible shape but not the same activation site/distribution. Feeding them into Gemma Scope would be an out-of-distribution numerical exercise, not a valid pretrained-SAE feature audit. The requested Gemma Scope comparison was not run; the correct follow-up would require a new token-level activation/decoder design, which is outside this frozen pooled-activation experiment.
+
+## Step 81 — Token-level residual canonicalization and frozen Gemma Scope audit
+
+What we did: used the frozen token-level MASSIVE layer-8 partition and trained only a residual canonicalizer `R_C: 128 -> 2304` with aligned English token-set Sinkhorn supervision and a small correction penalty. Arabic and Chinese remained held out. We then applied the official frozen Gemma Scope canonical layer-8 residual SAE (`gemma-scope-2b-pt-res-canonical`, `layer_8/width_16k/canonical`) to raw token activations and `h + R_C(z_C)`.
+
+What we found: residual conditioning improves held-out token-set similarity to aligned English from 0.6175 to 0.6491. In Gemma Scope feature space, it improves aligned-English token-set cosine from 0.4609 to 0.5133 and top-100 feature overlap from 0.1736 to 0.2498, while mean active features fall from 109.90 to 86.58. The raw linear token decoder remains stronger for direct English reconstruction, so this is evidence for feature stability rather than optimal activation reconstruction.
+
+## Step 82 — Checkpointed C-versus-S Gemma Scope feature modulation
+
+What we did: kept Gemma, the partition, `R_C`, `R_S`, and Gemma Scope frozen. To avoid process-memory instability, we evaluated raw, `h + R_C(z_C)`, and `h + R_S(z_S)` in three separate condition-specific processes with 512-feature checkpoints. All 32 chunks for each condition completed with exit code 0. We merged per-feature activation sums and support counts without rerunning the SAE.
+
+What we found: C and S corrections preferentially modulate distinct Gemma Scope features. The largest positive C-preference score `q = Delta_C - Delta_S` is 4.071 for feature 2481; the most negative score is -9.971 for feature 1963. The top 20 C- and S-preferential sets do not overlap. Independent Neuronpedia descriptions for the five leading C features are consistently technical, scientific, classificatory, or mathematical. The five leading S descriptions are mixed: only one is clearly Japanese-script/surface related, while the others are legal, regulatory, verification, or economic topics. Thus the independent dictionary supports content-oriented C modulation and distinct S modulation, but not a claim that S cleanly isolates language or surface form.

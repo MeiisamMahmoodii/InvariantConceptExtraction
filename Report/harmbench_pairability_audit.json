@@ -1,0 +1,40 @@
+{
+  "dataset": "walledai/HarmBench",
+  "status": "FAIL",
+  "scope": "Dataset-only pairability audit; no model training.",
+  "access": {
+    "dataset_viewer": "gated_or_authentication_required",
+    "local_hf_token": false,
+    "full_row_inspection_completed": false,
+    "reason": "The public Hugging Face API exposes repository metadata but the Dataset Viewer rejects unauthenticated row access."
+  },
+  "public_schema_from_dataset_card": {
+    "contextual/train": {
+      "rows": 100,
+      "columns": ["prompt", "context", "category"]
+    },
+    "copyright/train": {
+      "rows": 100,
+      "columns": ["prompt", "tags"]
+    },
+    "standard/train": {
+      "rows": 200,
+      "columns": ["prompt", "category"]
+    }
+  },
+  "required_field_assessment": {
+    "canonical_behavior_or_source_task_id": "not present in the published schema",
+    "attack_or_jailbreak_method_or_style": "not present in the published schema",
+    "harmful_vs_benign_label": "not an explicit column; category/tags are not a binary benign-control label",
+    "context_or_source_identifier": "context exists only in contextual/train; it is not a row-level source or behavior identifier"
+  },
+  "pairability": {
+    "candidate_canonical_id_fields": [],
+    "candidate_attack_style_fields": [],
+    "same_canonical_different_style_positive_pairs": 0,
+    "different_canonical_same_style_negative_pairs": 0,
+    "positive_semantic_spot_check": "not applicable: no candidate groups",
+    "negative_semantic_spot_check": "not applicable: no candidate pairs"
+  },
+  "decision": "FAIL: the published HarmBench prompt dataset does not expose the repeated behavior-plus-attack-realization structure required for this partition experiment. Authenticated row access would permit verification of the card metadata, but cannot create missing canonical-ID or attack-style fields."
+}

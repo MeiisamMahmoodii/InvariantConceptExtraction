@@ -1,0 +1,151 @@
+{
+  "scope": {
+    "B1_only": true,
+    "fixed_data_split": true,
+    "frozen_Gemma_activations": true,
+    "SAE_trained": false,
+    "decoder_trained": false,
+    "GemmaScope_loaded": false,
+    "interventions_run": false
+  },
+  "raw_H": {
+    "semantic_retrieval": {
+      "R@1": 0.284366576819407,
+      "R@5": 0.4494609164420485,
+      "MRR": 0.3638836848938279
+    },
+    "locale_probe": 0.9996630727762803,
+    "effective_rank": {
+      "participation_ratio": 1.3698697090148926,
+      "entropy_effective_rank": 3.3672006130218506
+    }
+  },
+  "random_gaussian_128": {
+    "seeds": [
+      {
+        "semantic_retrieval": {
+          "R@1": 0.09535040431266846,
+          "R@5": 0.19912398921832883,
+          "MRR": 0.15279637478564992
+        },
+        "locale_probe": 0.9996630727762803,
+        "effective_rank": {
+          "participation_ratio": 1.488249659538269,
+          "entropy_effective_rank": 3.4542222023010254
+        }
+      },
+      {
+        "semantic_retrieval": {
+          "R@1": 0.10512129380053908,
+          "R@5": 0.2169811320754717,
+          "MRR": 0.16746919641687652
+        },
+        "locale_probe": 0.9983153638814016,
+        "effective_rank": {
+          "participation_ratio": 1.4433307647705078,
+          "entropy_effective_rank": 3.173663854598999
+        }
+      },
+      {
+        "semantic_retrieval": {
+          "R@1": 0.11084905660377359,
+          "R@5": 0.23214285714285715,
+          "MRR": 0.17316622919256058
+        },
+        "locale_probe": 0.9979784366576819,
+        "effective_rank": {
+          "participation_ratio": 1.4359124898910522,
+          "entropy_effective_rank": 3.177656650543213
+        }
+      },
+      {
+        "semantic_retrieval": {
+          "R@1": 0.12735849056603774,
+          "R@5": 0.2587601078167116,
+          "MRR": 0.19396529793850337
+        },
+        "locale_probe": 0.9976415094339622,
+        "effective_rank": {
+          "participation_ratio": 1.3247731924057007,
+          "entropy_effective_rank": 2.6018168926239014
+        }
+      },
+      {
+        "semantic_retrieval": {
+          "R@1": 0.12061994609164421,
+          "R@5": 0.2415768194070081,
+          "MRR": 0.18451261805557553
+        },
+        "locale_probe": 0.9986522911051213,
+        "effective_rank": {
+          "participation_ratio": 1.3809245824813843,
+          "entropy_effective_rank": 2.854499101638794
+        }
+      }
+    ]
+  },
+  "PCA_128": {
+    "semantic_retrieval": {
+      "R@1": 0.1078167115902965,
+      "R@5": 0.20047169811320756,
+      "MRR": 0.1544494488596261
+    },
+    "locale_probe": 0.9996630727762803,
+    "effective_rank": {
+      "participation_ratio": 1.1956392526626587,
+      "entropy_effective_rank": 1.8478108644485474
+    }
+  },
+  "naive_inbatch_InfoNCE": {
+    "zC": {
+      "semantic_retrieval": {
+        "R@1": 0.4882075471698113,
+        "R@5": 0.7324797843665768,
+        "MRR": 0.6007511894153003
+      },
+      "locale_probe": 0.9235175202156334,
+      "effective_rank": {
+        "participation_ratio": 54.81575012207031,
+        "entropy_effective_rank": 76.18047332763672
+      }
+    },
+    "zS": {
+      "semantic_retrieval": {
+        "R@1": 0.0006738544474393531,
+        "R@5": 0.003032345013477089,
+        "MRR": 0.004549984723914484
+      },
+      "locale_probe": 0.9996630727762803,
+      "effective_rank": {
+        "participation_ratio": 2.0207600593566895,
+        "entropy_effective_rank": 5.161334037780762
+      }
+    }
+  },
+  "matched_CS_partition": {
+    "zC": {
+      "semantic_retrieval": {
+        "R@1": 0.4006064690026954,
+        "R@5": 0.6576819407008087,
+        "MRR": 0.5190699531193169
+      },
+      "locale_probe": 0.894878706199461,
+      "effective_rank": {
+        "participation_ratio": 30.73089027404785,
+        "entropy_effective_rank": 42.16964340209961
+      }
+    },
+    "zS": {
+      "semantic_retrieval": {
+        "R@1": 0.0006738544474393531,
+        "R@5": 0.0033692722371967657,
+        "MRR": 0.004737837677323331
+      },
+      "locale_probe": 0.9996630727762803,
+      "effective_rank": {
+        "participation_ratio": 2.1719303131103516,
+        "entropy_effective_rank": 5.0813188552856445
+      }
+    }
+  }
+}

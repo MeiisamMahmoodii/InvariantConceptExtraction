@@ -1,0 +1,182 @@
+{
+  "scope": {
+    "B2_only": true,
+    "frozen_Gemma_activations": true,
+    "fixed_split": true,
+    "heldout_locales": [
+      "ar-SA",
+      "zh-CN"
+    ],
+    "no_ConCA": true,
+    "no_GemmaScope": true,
+    "no_interventions": true
+  },
+  "infonce_reproduction": {
+    "tolerance": 0.001,
+    "max_absolute_difference": 0.0,
+    "matches": true,
+    "expected": {
+      "zC": {
+        "R@1": 0.4882075471698113,
+        "R@5": 0.7324797843665768,
+        "MRR": 0.6007511894153003,
+        "locale_probe": 0.9235175202156334
+      },
+      "zS": {
+        "R@1": 0.0006738544474393531,
+        "locale_probe": 0.9996630727762803
+      }
+    },
+    "observed": {
+      "zC": {
+        "R@1": 0.4882075471698113,
+        "R@5": 0.7324797843665768,
+        "MRR": 0.6007511894153003,
+        "locale_probe": 0.9235175202156334,
+        "effective_rank": {
+          "participation_ratio": 54.81575012207031,
+          "entropy_effective_rank": 76.18047332763672
+        }
+      },
+      "zS": {
+        "R@1": 0.0006738544474393531,
+        "R@5": 0.003032345013477089,
+        "MRR": 0.004549984723914484,
+        "locale_probe": 0.9996630727762803,
+        "effective_rank": {
+          "participation_ratio": 2.0207600593566895,
+          "entropy_effective_rank": 5.161334037780762
+        }
+      }
+    }
+  },
+  "sae_config": {
+    "input_width": 128,
+    "dictionary_width": 512,
+    "expansion": 4,
+    "top_k": 64,
+    "epochs": 30,
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "standardized_inputs": true
+  },
+  "branches": {
+    "InfoNCE_zC": {
+      "mean_intent_selectivity_z": 1.8111552000045776,
+      "mean_locale_selectivity_z": 0.2321617603302002,
+      "heldout_arabic_chinese_stability": 0.4053043796632458,
+      "active_feature_count": 249,
+      "intent_oriented_fraction": 0.9678714859437751,
+      "language_oriented_fraction": 0.024096385542168676,
+      "mixed_other_fraction": 0.008032128514056224,
+      "heldout_reconstruction_mse": 0.02284970389543518
+    },
+    "InfoNCE_zS": {
+      "mean_intent_selectivity_z": 0.3501020073890686,
+      "mean_locale_selectivity_z": 3.2270047664642334,
+      "heldout_arabic_chinese_stability": 0.09436529417753754,
+      "active_feature_count": 136,
+      "intent_oriented_fraction": 0.014705882352941176,
+      "language_oriented_fraction": 0.9632352941176471,
+      "mixed_other_fraction": 0.022058823529411766,
+      "heldout_reconstruction_mse": 0.0002287481710656152
+    },
+    "Matched_zC": {
+      "mean_intent_selectivity_z": 2.1961326599121094,
+      "mean_locale_selectivity_z": 0.2222369760274887,
+      "heldout_arabic_chinese_stability": 0.5409128954800029,
+      "active_feature_count": 147,
+      "intent_oriented_fraction": 1.0,
+      "language_oriented_fraction": 0.0,
+      "mixed_other_fraction": 0.0,
+      "heldout_reconstruction_mse": 0.0016919702914043899
+    },
+    "Matched_zS": {
+      "mean_intent_selectivity_z": 0.2696765065193176,
+      "mean_locale_selectivity_z": 3.4150006771087646,
+      "heldout_arabic_chinese_stability": 0.06323238557875865,
+      "active_feature_count": 114,
+      "intent_oriented_fraction": 0.0,
+      "language_oriented_fraction": 1.0,
+      "mixed_other_fraction": 0.0,
+      "heldout_reconstruction_mse": 9.90350709379603e-05
+    },
+    "Raw_H": {
+      "mean_intent_selectivity_z": 0.71441251039505,
+      "mean_locale_selectivity_z": 0.7398110628128052,
+      "heldout_arabic_chinese_stability": 0.2697388141657916,
+      "active_features": 4337,
+      "intent_oriented_fraction": 0.4553839059257551,
+      "language_oriented_fraction": 0.49296748904772886,
+      "mixed_other_fraction": 0.051648605026516026,
+      "heldout_reconstruction_mse": 0.42737182452672257
+    }
+  },
+  "training_loss": {
+    "InfoNCE_zC": [
+      0.11638901623414018,
+      0.032089263338827716,
+      0.02605471363703654,
+      0.02432401114655468,
+      0.023379080631126866,
+      0.022730748007762643,
+      0.02228121223244113,
+      0.02195901419457494,
+      0.021719282419302616,
+      0.021532936301209428,
+      0.021371120922419905,
+      0.02123124986080594,
+      0.021112850687215415,
+      0.021022288039794234,
+      0.020954235927415684,
+      0.020885784854911684,
+      0.020831027338827617,
+      0.02077618475771319,
+      0.020730548032160075,
+      0.020693045298400766,
+      0.02066474147022394,
+      0.020636854268925576,
+      0.020619819221129574,
+      0.02060172637300282,
+      0.020590455022696855,
+      0.020576596453196355,
+      0.020567208363345506,
+      0.020558174350563643,
+      0.02054944820278555,
+      0.020541612957589408
+    ],
+    "InfoNCE_zS": [
+      0.025923199868850368,
+      0.001080212086575083,
+      0.0003901564754569406,
+      0.0002830623090516,
+      0.00024050686470644355,
+      0.00022106122227190608,
+      0.0002104569666541642,
+      0.00020431618187753353,
+      0.00019699095200117052,
+      0.00019389624239966017,
+      0.00019068967603086043,
+      0.0001879672161140405,
+      0.0001853778865609234,
+      0.00018376669975093144,
+      0.00018159547199461467,
+      0.00017683121104739106,
+      0.00017498107393435912,
+      0.000173668158862398,
+      0.0001709028664716846,
+      0.00016929402300312296,
+      0.0001687521445477045,
+      0.00016632570501094198,
+      0.0001657229816958138,
+      0.000164908961362075,
+      0.00016475421904842274,
+      0.00016217904836323752,
+      0.00016160274012271136,
+      0.00016095437895737017,
+      0.00016038400474832008,
+      0.0001597755561049002
+    ]
+  }
+}

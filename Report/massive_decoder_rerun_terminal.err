@@ -1,0 +1,12 @@
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights:   9%|9         | 27/288 [00:00<00:01, 215.53it/s]Loading weights:  20%|##        | 59/288 [00:00<00:00, 236.37it/s]Loading weights:  29%|##8       | 83/288 [00:00<00:00, 231.34it/s]Loading weights:  40%|###9      | 114/288 [00:00<00:00, 258.92it/s]Loading weights:  49%|####8     | 141/288 [00:00<00:00, 237.41it/s]Loading weights:  61%|######1   | 177/288 [00:00<00:00, 274.56it/s]Loading weights:  72%|#######1  | 206/288 [00:00<00:00, 233.06it/s]Loading weights:  82%|########1 | 235/288 [00:00<00:00, 243.92it/s]Loading weights:  91%|######### | 261/288 [00:04<00:01, 22.54it/s] Loading weights:  97%|#########6| 279/288 [00:11<00:01,  8.99it/s]Loading weights: 100%|##########| 288/288 [00:12<00:00, 22.32it/s]
+Traceback (most recent call last):
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\train_massive_zc_to_english_decoder.py", line 48, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\train_massive_zc_to_english_decoder.py", line 33, in main
+    full=pd.read_parquet(TEST);eng=full[(full.locale=='en-US')&full.intent.isin(STABLE)].sort_values('id').reset_index(drop=True);assert len(eng)==te.id.nunique();english=english_activations(eng.utt.tolist());eng_pos=pd.Series(np.arange(len(eng)),index=eng.id);target_hold=np.asarray(english[te.id.map(eng_pos).to_numpy()])
+                                                                                                                                                                                                                                                                                            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\.venv\Lib\site-packages\numpy\_core\memmap.py", line 359, in __getitem__
+    res = super().__getitem__(index)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: arrays used as indices must be of integer (or boolean) type

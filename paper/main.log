@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.5)  26 AUG 2026 12:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.5)  31 AUG 2026 09:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -392,50 +392,111 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip61
 \dth@everypar=\toks34
 )
-\c@proposition=\count325
-\c@theorem=\count326
-\c@corollary=\count327
-\c@assumption=\count328
+(C:\Program Files\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen186
+\lightrulewidth=\dimen187
+\cmidrulewidth=\dimen188
+\belowrulesep=\dimen189
+\belowbottomsep=\dimen190
+\aboverulesep=\dimen191
+\abovetopsep=\dimen192
+\cmidrulesep=\dimen193
+\cmidrulekern=\dimen194
+\defaultaddspace=\dimen195
+\@cmidla=\count325
+\@cmidlb=\count326
+\@aboverulesep=\dimen196
+\@belowrulesep=\dimen197
+\@thisruleclass=\count327
+\@lastruleclass=\count328
+\@thisrulewidth=\dimen198
+)
+(C:\Program Files\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Program Files\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Program Files\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Program Files\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+)
+\Gin@req@height=\dimen199
+\Gin@req@width=\dimen256
+)
+(C:\Program Files\MiKTeX\tex/latex/sttools\stfloats.sty
+Package: stfloats 2025/06/18 v3.4 Improve float mechanism and baselineskip sett
+ings
+\@dblbotnum=\count329
+\c@dblbotnumber=\count330
+)
+(C:\Program Files\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count331
+\float@exts=\toks35
+\float@box=\box57
+\@float@everytoks=\toks36
+\@floatcapt=\box58
+)
+(C:\Program Files\MiKTeX\tex/latex/placeins\placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+\c@proposition=\count332
+\c@theorem=\count333
+\c@corollary=\count334
+\c@assumption=\count335
 
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count329
+\l__color_backend_stack_int=\count336
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count330
-\scratchdimen=\dimen186
-\scratchbox=\box57
-\nofMPsegments=\count331
-\nofMParguments=\count332
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count333
-\MPscratchDim=\dimen187
-\MPnumerator=\count334
-\makeMPintoPDFobject=\count335
-\everyMPtoPDFconversion=\toks36
-)
+\scratchcounter=\count337
+\scratchdimen=\dimen257
+\scratchbox=\box59
+\nofMPsegments=\count338
+\nofMParguments=\count339
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count340
+\MPscratchDim=\dimen258
+\MPnumerator=\count341
+\makeMPintoPDFobject=\count342
+\everyMPtoPDFconversion=\toks38
+) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -471,20 +532,21 @@ LaTeX Font Info:    ... okay on input line 24.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 24.
+Package hyperref Info: Link coloring ON on input line 30.
 (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 24.
-Package microtype Info: Applying patch `item' on input line 24.
-Package microtype Info: Applying patch `toc' on input line 24.
-Package microtype Info: Applying patch `eqnum' on input line 24.
-Package microtype Info: Applying patch `footnote' on input line 24.
-Package microtype Info: Applying patch `verbatim' on input line 24.
-LaTeX Info: Redefining \microtypesetup on input line 24.
+LaTeX Info: Redefining \microtypecontext on input line 30.
+Package microtype Info: Applying patch `item' on input line 30.
+Package microtype Info: Applying patch `toc' on input line 30.
+Package microtype Info: Applying patch `eqnum' on input line 30.
+Package microtype Info: Applying patch `footnote' on input line 30.
+Package microtype Info: Applying patch `verbatim' on input line 30.
+LaTeX Info: Redefining \microtypesetup on input line 30.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -502,13 +564,13 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 25
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 32
 .
 
 (C:\Program Files\MiKTeX\tex/latex/base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
 
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -517,7 +579,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Program Files\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
 
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -525,70 +587,148 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (C:\Program Files\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-Underfull \hbox (badness 1668) in paragraph at lines 38--39
-\T1/ptm/b/n/10.95 (+20) Placeholder. \T1/ptm/m/n/10.95 (+20) The im-ple-men-ta-
-tion and data-
- []
-
-[1{C:/Users/MPC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Fi
-les/MiKTeX/fonts/enc/dvips/base/8r.enc}
+) [1{C:/Users/MPC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program 
+Files/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
+[]\T1/ptm/m/n/10.95 (+20) Experiments on mul-ti-lin-gual MAS-SIVE
+ []
+
+
+Underfull \hbox (badness 1132) in paragraph at lines 47--48
+\T1/ptm/m/n/10.95 (+20) ([][]FitzGer-ald et al.[][], [][]2023[][]) show that ma
+tch-ing
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
+1.
+(C:\Program Files\MiKTeX\tex/latex/psnfss\ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+Underfull \hbox (badness 5460) in paragraph at lines 55--56
+[]\T1/ptm/m/n/10.95 (+20) Theory char-ac-ter-izes short-cut ex-clu-sion,
+ []
+
+
+Underfull \hbox (badness 4013) in paragraph at lines 63--64
+ []\T1/ptm/b/n/10.95 (+20) Dictionary-based fea-ture de-com-po-si-tion of
+ []
+
+[2]
+<Figures/Figure1.png, id=234, 1342.2647pt x 648.92438pt>
+File: Figures/Figure1.png Graphic file (type png)
+<use Figures/Figure1.png>
+Package pdftex.def Info: Figures/Figure1.png  used on input line 94.
+(pdftex.def)             Requested size: 355.08984pt x 171.66708pt.
+ [3] [4 <./Figures/Figure1.png>]
+Underfull \hbox (badness 1297) in paragraph at lines 168--169
+ []\T1/ptm/b/n/10.95 (+20) Connection to sparse fea-tures.[] \T1/ptm/m/n/10.95 
+(+20) On re-gions
+ []
+
+<Figures/figure2_hybrid_candidate.png, id=274, 459.96844pt x 623.32875pt>
+File: Figures/figure2_hybrid_candidate.png Graphic file (type png)
+<use Figures/figure2_hybrid_candidate.png>
+Package pdftex.def Info: Figures/figure2_hybrid_candidate.png  used on input li
+ne 200.
+(pdftex.def)             Requested size: 219.08614pt x 296.90219pt.
+[5 <./Figures/figure2_hybrid_candidate.png>]
+<Figures/figure3_quantitative.pdf, id=297, 976.84903pt x 340.87146pt>
+File: Figures/figure3_quantitative.pdf Graphic file (type pdf)
+<use Figures/figure3_quantitative.pdf>
+Package pdftex.def Info: Figures/figure3_quantitative.pdf  used on input line 2
+42.
+(pdftex.def)             Requested size: 455.24411pt x 158.85727pt.
+ [6]
+<Figures/figure4.png, id=316, 429.85594pt x 357.58594pt>
+File: Figures/figure4.png Graphic file (type png)
+<use Figures/figure4.png>
+Package pdftex.def Info: Figures/figure4.png  used on input line 294.
+(pdftex.def)             Requested size: 164.31459pt x 136.69159pt.
+ [7 <./Figures/figure3_quantitative.pdf>] (main.bbl
+Underfull \hbox (badness 1067) in paragraph at lines 54--64
+\T1/ptm/m/n/10 (+20) Swetha Ran-ganath, Lau-rie Crist, Misha Bri-tan,
+ []
+
+[8 <./Figures/figure4.png>]
+Underfull \hbox (badness 1478) in paragraph at lines 139--144
+\T1/ptm/m/n/10 (+20) Hen-gel, and Javen Qin-feng Shi. 2026.  [][]Con-
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 178--186
+\T1/ptm/m/n/10 (+20) Wieland Bren-del, Bern-hard Schölkopf, Michel
+ []
+
+) [9]
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
 [][]\T1/ptm/b/n/10.95 (+20) Assumption 1 \T1/ptm/m/n/10.95 (+20) (Ob-served ali
-gn-ment and
+gn-ment and sep-a-ra-tion)\T1/ptm/b/n/10.95 (+20) . []\T1/ptm/m/it/10.95 (+20) 
+Ob-served pos-i-tives obey
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
-\T1/ptm/m/n/10.95 (+20) sep-a-ra-tion)\T1/ptm/b/n/10.95 (+20) . []\T1/ptm/m/it/
-10.95 (+20) For ob-served pos-i-tive pairs,
- []
+[10
 
 
-Underfull \hbox (badness 2970) in paragraph at lines 131--132
-[][]\T1/ptm/b/n/10.95 (+20) Corollary 1 \T1/ptm/m/n/10.95 (+20) (Suf-fi-cient o
-p-er-at-ing con-di-tion)\T1/ptm/b/n/10.95 (+20) .
- []
+]
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 43
+4.
+ (C:\Program Files\MiKTeX\tex/latex/psnfss\t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pcr' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [11] [12] [13]
+<Figures/figure4_generation_appendix.pdf, id=611, 512.8761pt x 350.26859pt>
+File: Figures/figure4_generation_appendix.pdf Graphic file (type pdf)
+<use Figures/figure4_generation_appendix.pdf>
+Package pdftex.def Info: Figures/figure4_generation_appendix.pdf  used on input
+ line 540.
+(pdftex.def)             Requested size: 373.3035pt x 265.34105pt.
 
-
-Underfull \hbox (badness 2680) in paragraph at lines 146--147
-[]\T1/ptm/m/n/10.95 (+20) The chain rule gives $\OML/cmm/m/it/10.95 I\OT1/cmr/m
-/n/10.95 (\OML/cmm/m/it/10.95 C; Z[]\OT1/cmr/m/n/10.95 ; \OML/cmm/m/it/10.95 S\
-OT1/cmr/m/n/10.95 ) =
- []
-
-[2] (main.aux)
+[14] [15 <./Figures/figure4_generation_appendix.pdf>] [16] [17] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3679703B9B629C1666C7E2AA3A204335;1755.
+(rerunfilecheck)             Checksum: 0137B2E01D7D273920E40A045A87DC9B;6998.
  ) 
 Here is how much of TeX's memory you used:
- 14911 strings out of 467691
- 233642 string characters out of 5425061
- 717048 words of memory out of 5000000
- 43603 multiletter control sequences out of 15000+600000
- 665739 words of font info for 182 fonts, out of 8000000 for 9000
+ 16172 strings out of 467691
+ 253904 string characters out of 5425061
+ 730123 words of memory out of 5000000
+ 44460 multiletter control sequences out of 15000+600000
+ 692790 words of font info for 365 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,93p,1003b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,93p,1407b,620s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Prog
-ram Files/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX/f
-onts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/times/
-utmr8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (2 pages, 159718 bytes).
+eX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Prog
+ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Progr
+am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
+onts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/courier/ucrr8a
+.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program F
+iles/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX/fonts/typ
+e1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/times/utmri8a.
+pfb>
+Output written on main.pdf (17 pages, 951773 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 34905 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 813 PDF objects out of 1000 (max. 8388607)
+ 147 named destinations out of 1000 (max. 500000)
+ 56104 words of extra memory for PDF output out of 61914 (max. 10000000)
 

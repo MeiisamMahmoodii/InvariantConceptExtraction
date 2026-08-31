@@ -1,0 +1,34 @@
+{
+  "scope": {
+    "reused_existing_20_pilot_pairs": true,
+    "alphas": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "frozen_model_partition_decoder": true,
+    "intervention": "prefill uniform pooled delta, zC donor + zS source",
+    "zS_steering": false
+  },
+  "metrics": {
+    "0.5": {
+      "target_donor_intent_success": 0.1,
+      "source_locale_preserved": 0.95,
+      "source_intent_persistence": 0.5,
+      "donor_locale_leakage": 0.0
+    },
+    "0.75": {
+      "target_donor_intent_success": 0.1,
+      "source_locale_preserved": 0.9,
+      "source_intent_persistence": 0.4,
+      "donor_locale_leakage": 0.0
+    },
+    "1.0": {
+      "target_donor_intent_success": 0.1,
+      "source_locale_preserved": 0.7,
+      "source_intent_persistence": 0.35,
+      "donor_locale_leakage": 0.0
+    }
+  },
+  "examples_csv": "Report\\massive_c_steering_generation_pilot.csv"
+}

@@ -1,0 +1,363 @@
+{
+  "seeds": [
+    20260828,
+    20260829,
+    20260830
+  ],
+  "per_seed": [
+    {
+      "seed": 20260828,
+      "partition": {
+        "zC": {
+          "semantic_retrieval": {
+            "R@1": 0.4123989218328841,
+            "R@5": 0.6610512129380054,
+            "MRR": 0.5275611075553795
+          },
+          "locale_probe": 0.9022911051212938,
+          "effective_rank": {
+            "participation_ratio": 31.676895141601562,
+            "entropy_effective_rank": 42.66963577270508
+          }
+        },
+        "zS": {
+          "semantic_retrieval": {
+            "R@1": 0.0006738544474393531,
+            "R@5": 0.003706199460916442,
+            "MRR": 0.004570714400520678
+          },
+          "locale_probe": 0.9986522911051213,
+          "effective_rank": {
+            "participation_ratio": 2.2974584102630615,
+            "entropy_effective_rank": 5.4468889236450195
+          }
+        }
+      },
+      "sae": {
+        "zC": {
+          "intent_oriented_fraction": 0.9933333333333333,
+          "language_oriented_fraction": 0.0,
+          "heldout_arabic_chinese_stability": 0.5329997219403639,
+          "active_features": 150
+        },
+        "zS": {
+          "intent_oriented_fraction": 0.0,
+          "language_oriented_fraction": 1.0,
+          "heldout_arabic_chinese_stability": 0.060969360772882446,
+          "active_features": 116
+        }
+      },
+      "representation_intervention": {
+        "C_swap_donor_intent_success": 0.6127021563342318,
+        "C_swap_donor_locale_leakage": 0.006907008086253369,
+        "S_swap_donor_locale_success": 0.9925876010781671,
+        "S_swap_donor_intent_leakage": 0.026617250673854446,
+        "C_unrelated_intent_control": 0.006345462713387241,
+        "S_unrelated_locale_control": 0.007412398921832884
+      }
+    },
+    {
+      "seed": 20260829,
+      "partition": {
+        "zC": {
+          "semantic_retrieval": {
+            "R@1": 0.3945417789757412,
+            "R@5": 0.6549865229110512,
+            "MRR": 0.5138657223388002
+          },
+          "locale_probe": 0.8935309973045822,
+          "effective_rank": {
+            "participation_ratio": 31.162246704101562,
+            "entropy_effective_rank": 42.381309509277344
+          }
+        },
+        "zS": {
+          "semantic_retrieval": {
+            "R@1": 0.00033692722371967657,
+            "R@5": 0.0023584905660377358,
+            "MRR": 0.0038664939875917344
+          },
+          "locale_probe": 0.9976415094339622,
+          "effective_rank": {
+            "participation_ratio": 2.308061122894287,
+            "entropy_effective_rank": 5.47443962097168
+          }
+        }
+      },
+      "sae": {
+        "zC": {
+          "intent_oriented_fraction": 1.0,
+          "language_oriented_fraction": 0.0,
+          "heldout_arabic_chinese_stability": 0.5457308254116451,
+          "active_features": 146
+        },
+        "zS": {
+          "intent_oriented_fraction": 0.0,
+          "language_oriented_fraction": 1.0,
+          "heldout_arabic_chinese_stability": 0.06184161332156778,
+          "active_features": 111
+        }
+      },
+      "representation_intervention": {
+        "C_swap_donor_intent_success": 0.6134883198562444,
+        "C_swap_donor_locale_leakage": 0.020103324348607367,
+        "S_swap_donor_locale_success": 0.9795035938903863,
+        "S_swap_donor_intent_leakage": 0.025943396226415096,
+        "C_unrelated_intent_control": 0.006794699011680143,
+        "S_unrelated_locale_control": 0.020496406109613657
+      }
+    },
+    {
+      "seed": 20260830,
+      "partition": {
+        "zC": {
+          "semantic_retrieval": {
+            "R@1": 0.4026280323450135,
+            "R@5": 0.6667789757412399,
+            "MRR": 0.5227171242929626
+          },
+          "locale_probe": 0.8881401617250674,
+          "effective_rank": {
+            "participation_ratio": 30.52643585205078,
+            "entropy_effective_rank": 41.93369674682617
+          }
+        },
+        "zS": {
+          "semantic_retrieval": {
+            "R@1": 0.0013477088948787063,
+            "R@5": 0.003706199460916442,
+            "MRR": 0.005156530679554634
+          },
+          "locale_probe": 0.998989218328841,
+          "effective_rank": {
+            "participation_ratio": 2.2220542430877686,
+            "entropy_effective_rank": 5.217696666717529
+          }
+        }
+      },
+      "sae": {
+        "zC": {
+          "intent_oriented_fraction": 1.0,
+          "language_oriented_fraction": 0.0,
+          "heldout_arabic_chinese_stability": 0.5395963624783398,
+          "active_features": 151
+        },
+        "zS": {
+          "intent_oriented_fraction": 0.0,
+          "language_oriented_fraction": 1.0,
+          "heldout_arabic_chinese_stability": 0.07389923355716642,
+          "active_features": 108
+        }
+      },
+      "representation_intervention": {
+        "C_swap_donor_intent_success": 0.6207322551662174,
+        "C_swap_donor_locale_leakage": 0.01752021563342318,
+        "S_swap_donor_locale_success": 0.9817497753818508,
+        "S_swap_donor_intent_leakage": 0.026111859838274933,
+        "C_unrelated_intent_control": 0.006457771787960467,
+        "S_unrelated_locale_control": 0.018250224618149145
+      }
+    }
+  ],
+  "mean_std": {
+    "zC_R1": {
+      "values": [
+        0.4123989218328841,
+        0.3945417789757412,
+        0.4026280323450135
+      ],
+      "mean": 0.4031895777178796,
+      "std": 0.008941805615167608
+    },
+    "zC_R5": {
+      "values": [
+        0.6610512129380054,
+        0.6549865229110512,
+        0.6667789757412399
+      ],
+      "mean": 0.6609389038634321,
+      "std": 0.0058970285682053486
+    },
+    "zC_MRR": {
+      "values": [
+        0.5275611075553795,
+        0.5138657223388002,
+        0.5227171242929626
+      ],
+      "mean": 0.5213813180623807,
+      "std": 0.006944723016209548
+    },
+    "zC_locale": {
+      "values": [
+        0.9022911051212938,
+        0.8935309973045822,
+        0.8881401617250674
+      ],
+      "mean": 0.8946540880503145,
+      "std": 0.007142009476902386
+    },
+    "zC_rank": {
+      "values": [
+        31.676895141601562,
+        31.162246704101562,
+        30.52643585205078
+      ],
+      "mean": 31.121859232584637,
+      "std": 0.5762920311092893
+    },
+    "zS_R1": {
+      "values": [
+        0.0006738544474393531,
+        0.00033692722371967657,
+        0.0013477088948787063
+      ],
+      "mean": 0.0007861635220125788,
+      "std": 0.0005146648354622462
+    },
+    "zS_R5": {
+      "values": [
+        0.003706199460916442,
+        0.0023584905660377358,
+        0.003706199460916442
+      ],
+      "mean": 0.00325696316262354,
+      "std": 0.0007781000932474742
+    },
+    "zS_MRR": {
+      "values": [
+        0.004570714400520678,
+        0.0038664939875917344,
+        0.005156530679554634
+      ],
+      "mean": 0.004531246355889015,
+      "std": 0.0006459233403144142
+    },
+    "zS_locale": {
+      "values": [
+        0.9986522911051213,
+        0.9976415094339622,
+        0.998989218328841
+      ],
+      "mean": 0.9984276729559749,
+      "std": 0.0007013699459118109
+    },
+    "zS_rank": {
+      "values": [
+        2.2974584102630615,
+        2.308061122894287,
+        2.2220542430877686
+      ],
+      "mean": 2.275857925415039,
+      "std": 0.04689596520773902
+    },
+    "zC_intent_fraction": {
+      "values": [
+        0.9933333333333333,
+        1.0,
+        1.0
+      ],
+      "mean": 0.9977777777777778,
+      "std": 0.0038490017945975296
+    },
+    "zC_language_fraction": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "zC_stability": {
+      "values": [
+        0.5329997219403639,
+        0.5457308254116451,
+        0.5395963624783398
+      ],
+      "mean": 0.5394423032767829,
+      "std": 0.006366949785988968
+    },
+    "zS_intent_fraction": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "zS_language_fraction": {
+      "values": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "zS_stability": {
+      "values": [
+        0.060969360772882446,
+        0.06184161332156778,
+        0.07389923355716642
+      ],
+      "mean": 0.06557006921720555,
+      "std": 0.00722644034630667
+    },
+    "C_swap_donor_intent_success": {
+      "values": [
+        0.6127021563342318,
+        0.6134883198562444,
+        0.6207322551662174
+      ],
+      "mean": 0.6156409104522312,
+      "std": 0.004426720740944988
+    },
+    "C_swap_donor_locale_leakage": {
+      "values": [
+        0.006907008086253369,
+        0.020103324348607367,
+        0.01752021563342318
+      ],
+      "mean": 0.014843516022761306,
+      "std": 0.006993513518132728
+    },
+    "S_swap_donor_locale_success": {
+      "values": [
+        0.9925876010781671,
+        0.9795035938903863,
+        0.9817497753818508
+      ],
+      "mean": 0.9846136567834681,
+      "std": 0.006996368596234184
+    },
+    "S_swap_donor_intent_leakage": {
+      "values": [
+        0.026617250673854446,
+        0.025943396226415096,
+        0.026111859838274933
+      ],
+      "mean": 0.02622416891284816,
+      "std": 0.00035068497295588375
+    },
+    "C_unrelated_intent_control": {
+      "values": [
+        0.006345462713387241,
+        0.006794699011680143,
+        0.006457771787960467
+      ],
+      "mean": 0.006532644504342618,
+      "std": 0.0002337899819705899
+    },
+    "S_unrelated_locale_control": {
+      "values": [
+        0.007412398921832884,
+        0.020496406109613657,
+        0.018250224618149145
+      ],
+      "mean": 0.015386343216531895,
+      "std": 0.0069963685962341655
+    }
+  },
+  "gemma_scope_seed_robustness": "NOT RUN \u2014 exact historical R_C/R_S artifacts unavailable; original frozen-SAE downstream result retained as single-run external validation."
+}

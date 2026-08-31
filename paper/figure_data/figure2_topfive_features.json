@@ -1,0 +1,113 @@
+{
+  "H": [
+    {
+      "feature_id": 7124,
+      "orientation": "intent",
+      "label": "intent #25",
+      "evidence": "same intent across 15 locales",
+      "selectivity_z": 8.169
+    },
+    {
+      "feature_id": 5898,
+      "orientation": "intent",
+      "label": "intent #54",
+      "evidence": "same intent across 14 locales",
+      "selectivity_z": 7.848
+    },
+    {
+      "feature_id": 7567,
+      "orientation": "intent",
+      "label": "intent #7",
+      "evidence": "same intent across 18 locales",
+      "selectivity_z": 7.802
+    },
+    {
+      "feature_id": 8874,
+      "orientation": "language",
+      "label": "he-IL",
+      "evidence": "same locale across 14 intents",
+      "selectivity_z": 7.231
+    },
+    {
+      "feature_id": 6821,
+      "orientation": "language",
+      "label": "ko-KR",
+      "evidence": "same locale across 14 intents",
+      "selectivity_z": 7.11
+    }
+  ],
+  "zC": [
+    {
+      "feature_id": 334,
+      "orientation": "intent",
+      "label": "intent #56",
+      "evidence": "same intent across 13 locales",
+      "selectivity_z": 5.234
+    },
+    {
+      "feature_id": 33,
+      "orientation": "intent",
+      "label": "intent #4",
+      "evidence": "same intent across 17 locales",
+      "selectivity_z": 5.147
+    },
+    {
+      "feature_id": 474,
+      "orientation": "intent",
+      "label": "intent #34",
+      "evidence": "same intent across 17 locales",
+      "selectivity_z": 4.755
+    },
+    {
+      "feature_id": 20,
+      "orientation": "intent",
+      "label": "intent #5",
+      "evidence": "same intent across 18 locales",
+      "selectivity_z": 4.51
+    },
+    {
+      "feature_id": 479,
+      "orientation": "intent",
+      "label": "intent #10",
+      "evidence": "same intent across 14 locales",
+      "selectivity_z": 4.192
+    }
+  ],
+  "zS": [
+    {
+      "feature_id": 491,
+      "orientation": "language",
+      "label": "am-ET",
+      "evidence": "same locale across 14 intents",
+      "selectivity_z": 6.934
+    },
+    {
+      "feature_id": 125,
+      "orientation": "language",
+      "label": "bn-BD",
+      "evidence": "same locale across 13 intents",
+      "selectivity_z": 6.814
+    },
+    {
+      "feature_id": 435,
+      "orientation": "language",
+      "label": "mn-MN",
+      "evidence": "same locale across 16 intents",
+      "selectivity_z": 6.689
+    },
+    {
+      "feature_id": 287,
+      "orientation": "language",
+      "label": "am-ET",
+      "evidence": "same locale across 17 intents",
+      "selectivity_z": 5.577
+    },
+    {
+      "feature_id": 187,
+      "orientation": "language",
+      "label": "my-MM",
+      "evidence": "same locale across 13 intents",
+      "selectivity_z": 5.418
+    }
+  ]
+}

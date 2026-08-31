@@ -6,7 +6,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,amsthm}
-
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{stfloats}
+\usepackage{float}
+\usepackage{placeins}
+% Keep review line numbers inside the column gutter rather than over the facing column.
+\setlength{\linenumbersep}{0.5cm}
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
@@ -19,161 +25,611 @@
 \newcommand{\simf}{\operatorname{sim}}
 \newcommand{\loss}{\mathcal{L}}
 
-\title{Invariant Concept Extraction from Controlled Contrasts}
+\title{Upstream Representation Conditioning: Shaping Geometry for Relative Specialization in Feature Decomposition}
 \author{}
 \begin{document}
+\raggedbottom
 \maketitle
 
 \begin{abstract}
-\textbf{Placeholder.} We study controlled contrastive learning for separating invariant and varying information in frozen representations. The abstract will be completed once the empirical setting and results are finalized.
+Dictionary-based feature decomposition inherits the geometry of its input representation. When hidden activations mix information to preserve with variation to ignore, the resulting features can follow either factor. We ask whether matched relations can reorganize this geometry before decomposition. Our method learns complementary projections of frozen LLM activations: a preserved-dominant block $z_C$ and a varying-dominant block $z_S$. Positives preserve one factor while varying the other, and matched negatives exchange these relations. This pair construction induces specialization without reconstruction, orthogonality, independence, or adversarial objectives, while downstream methods retain their original objectives. On multilingual MASSIVE, matched $z_C$ yields more stable cross-language SAE features than raw activations and naive in-batch InfoNCE, improving held-out stability over InfoNCE by $0.142$ (95\% bootstrap CI $[0.131,0.153]$) despite lower instance retrieval. The frozen partition also supports reuse across several downstream analyses and factor-specific representation swaps. Small FLORES and RAVEL studies show that transfer depends on the decomposition method, evaluation metric, and structural coverage. Matched conditioning therefore produces coverage-dependent relative specialization, not perfect disentanglement.
 \end{abstract}
 
 \section{Introduction}
-\textbf{Placeholder.} Motivation, contributions, and empirical context will be added here.
+Dictionary learning offers a practical way to translate dense language-model activations into features that can be inspected, evaluated, and manipulated. Sparse autoencoders (SAEs), in particular, recover sparse directions that often admit more coherent descriptions than individual neurons \citep{cunningham2023sparse,gao2024scaling}, and pretrained dictionaries such as Gemma Scope make these analyses available across many layers and sublayers \citep{lieberum2024gemmascope}. Yet a dictionary can only decompose the activation geometry it receives. If that geometry jointly encodes semantic identity, language, phrasing, and other realization-specific variation, there is no reason for the resulting features to align with the factor an analyst intends to study.
+
+This inherited-geometry problem is distinct from the familiar question of how to train a better dictionary. SAE quality is not determined by reconstruction and sparsity alone \citep{karvonen2025saebench}, and recent methods add structural supervision to dictionary learning to favor temporally stable or cross-lingually aligned features \citep{bhalla2026temporal,bogdanov2026geometry}. Such methods are useful when the desired inductive bias can be built into a particular decomposition method. They do not answer a more general question: can the activation space be reorganized first, so that several existing feature-decomposition methods encounter a representation whose dominant structure better matches the analysis task?
+
+Our starting point is that invariance is specified by relations between observations, not by an intrinsic label attached to a coordinate. Contrastive learning makes this principle operational by defining which views should agree \citep{oord2018cpc}, and multi-view theory shows that controlled transformations can identify invariant content under suitable assumptions even when latent factors are dependent \citep{vonkugelgen2021selfsupervised}. A positive relation alone, however, leaves the competing relation implicit. In multilingual intent data, for example, ``same intent in another language'' identifies what should be preserved, whereas ``different intent in the same language'' provides the controlled alternative. Arbitrary in-batch negatives need not preserve this distinction and may instead reward instance retrieval.
+
+We therefore introduce \textbf{upstream representation conditioning} with matched contrasts (Figure~\ref{fig:method-overview}). From a frozen activation $H$, two projection heads learn a preserved-dominant block $z_C$ and a varying-dominant block $z_S$. For $z_C$, examples with the same preserved factor and different varying factors are pulled together and contrasted with examples that reverse this relation; $z_S$ exchanges the roles. After training, the partition is frozen and the downstream method is left unchanged. The objective contains no reconstruction term, orthogonality constraint, independence penalty, or adversary. It targets \emph{relative specialization}: each route should favor one controlled relation over the other, while residual dependence may remain.
+
+Experiments on multilingual MASSIVE \citep{fitzgerald2023massive} show that matching changes the features recovered downstream: an ordinary Top-$k$ SAE applied to matched $z_C$ gains $0.142$ in held-out cross-language stability over naive InfoNCE (95\% bootstrap CI $[0.131,0.153]$), even though InfoNCE achieves stronger instance retrieval. The frozen partition can also be analyzed with an unchanged ConCA objective and a pretrained Gemma Scope dictionary. Representation swaps preferentially transfer donor intent through $z_C$ and donor locale through $z_S$. Small FLORES \citep{goyal2022flores} and RAVEL \citep{huang2024ravel} studies delimit this result: transfer depends on the evaluation metric and structural coverage of the matched relations.
+
+\paragraph{Contributions.}
+\begin{itemize}
+\item Matched opposing relations induce preserved-dominant and varying-dominant routes.
+\item Matching improves preserved-factor feature stability over raw and InfoNCE representations.
+\item We evaluate the frozen partition using unchanged Top-$k$ SAE and ConCA pipelines and a pretrained dictionary.
+\item The routes support factor-specific representation swaps and exhibit coverage-dependent failure modes.
+\item Theory characterizes shortcut exclusion, coverage-conditioned stability, and unavoidable leakage.
+\end{itemize}
 
 \section{Related Work}
-\textbf{Placeholder.} Relevant work will be added here.
+\paragraph{Contrastive learning and invariant representations.}
+Contrastive objectives use relations between views to determine which information a representation should retain. InfoNCE arose in Contrastive Predictive Coding \citep{oord2018cpc}, and later analyses established identifiability results for contrastive learning under assumptions on the data-generating process \citep{zimmermann2021contrastive}. Most directly relevant, \citet{vonkugelgen2021selfsupervised} formalize augmentations through invariant content and varying style, allowing statistical and causal dependence between the two blocks. More broadly, unsupervised disentanglement is not identifiable without inductive biases on the model and data \citep{locatello2019disentanglement}. CLAP uses augmented prompts to reduce style sensitivity in pretrained vision--language representations \citep{cai2023clap}. We share the view that controlled transformations provide weak supervision, but pursue a different empirical target: matched opposing relations learn complementary routes in frozen LLM activations, which are then evaluated by the features recovered from them. We do not claim block identifiability or invariance outside the covered relation.
+
+\paragraph{Dictionary-based feature decomposition of LLM activations.}
+SAEs approximate dense activations with sparse combinations of learned dictionary elements. Initial work demonstrated interpretable features beyond the neuron basis \citep{cunningham2023sparse}; Top-$k$ training and large-scale dictionaries subsequently improved sparsity control and scale \citep{gao2024scaling}. Gemma Scope releases pretrained JumpReLU dictionaries across Gemma~2 \citep{lieberum2024gemmascope}. These developments have also exposed an evaluation problem: reconstruction and sparsity do not reliably predict feature quality across downstream interpretability tasks \citep{karvonen2025saebench}. ConCA departs from sparse reconstruction and instead estimates coherent concepts through linear unmixing of latent log-posteriors \citep{liu2026conca}. Rather than introducing another decomposition method, we ask whether changing the input representation improves the concepts recovered by these different procedures.
+
+\paragraph{Structured supervision for dictionary learning.}
+Recent work injects assumptions about language directly into the dictionary objective. Temporal SAEs distinguish slowly varying semantic information from local syntactic information and encourage temporal consistency through a contrastive term \citep{bhalla2026temporal}. Geometry-Invariant SAEs align features for the same reasoning problem across languages and test their interchangeability through swaps \citep{bogdanov2026geometry}. Both approaches show that feature discovery changes when dictionary learning is given relational structure. Our method places that structure upstream: the partition is trained once, frozen, and evaluated with multiple downstream objectives. This separation makes the conditioned representation, rather than a specialized SAE loss, the object of study.
+
+\paragraph{Activation decomposition and upstream conditioning.}
+Activation-level methods provide the closest comparison because they transform hidden states before interpretation. ReDAct separates goal and framing information in frozen LLM activations using controlled InfoNCE together with reconstruction, orthogonality, and gradient-reversal losses \citep{farzam2026hiding}. PCA whitening is a more generic intervention: it changes activation geometry before SAE training and can improve several interpretability metrics at some reconstruction cost \citep{saraswatula2025whitening}. Our partition is likewise upstream, but its geometry is defined by matched preserved/varying relations rather than covariance normalization or explicit separation penalties. It uses neither reconstruction nor an independence objective and therefore supports the weaker, empirically testable claim of relative specialization with possible residual dependence.
 
 \section{Method}
-\textbf{Placeholder.} The implementation and data-construction details will be added here.
+\label{sec:method}
 
-\section{Theoretical Analysis}
+Upstream conditioning proceeds in three stages. We define two opposing matched relations, learn one projection for each relation while the language model remains frozen, and then freeze both projections before downstream feature decomposition. Figure~\ref{fig:method-overview} summarizes this pipeline.
+
+\subsection{Matched relations}
+\label{sec:matched-relations}
+The central design choice is to make both the desired relation and its controlled alternative explicit. The preserved-dominant route should align observations that share the preserved factor while varying in the other factor; the varying-dominant route should favor the reverse relation. We encode these preferences using two views of the same matched triplet.
+
+Let $X=g(C,S)$ denote an observation with preserved factor $C$ and varying factor $S$. A frozen encoder maps it to
+\begin{equation}
+H=F(X).
+\end{equation}
+In MASSIVE, $C$ is intent and $S$ is locale. For an anchor $x_a=g(c_a,s_a)$, we construct
+\begin{align}
+x_C^+&=g(c_a,s_p), & s_p&\ne s_a, \\
+x_C^-&=g(c_n,s_a), & c_n&\ne c_a.
+\label{eq:matched-pairs}
+\end{align}
+The anchor--positive pair preserves $C$ while changing $S$; the anchor--negative pair preserves $S$ while changing $C$. The preserved-dominant route therefore uses $x_C^+$ as its positive and $x_C^-$ as its matched negative. The varying-dominant route reverses the assignment: $x_S^+=x_C^-$ and $x_S^-=x_C^+$. Each negative thus represents the competing controlled relation rather than an unrelated batch item.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.78\textwidth]{Figures/Figure1.png}
+\caption{Method overview. Matched controlled contrasts partition a frozen pooled representation $H$ into preserved-dominant $z_C$ and varying-dominant $z_S$ blocks before downstream feature-decomposition methods are applied. The objective seeks relative specialization and does not require reconstruction, orthogonality, or statistical independence.}
+\label{fig:method-overview}
+\end{figure*}
+
+\subsection{Partition objective}
+The projection heads turn these relational preferences into representation geometry. We represent each input by the masked mean of its frozen Gemma 2 2B layer-8 residual activations \citep{gemmateam2024gemma2}, giving $H\in\mathbb{R}^{2304}$. Two learned heads
+\begin{equation}
+f_C,f_S:\mathbb{R}^{2304}\rightarrow\mathbb{R}^{128}
+\end{equation}
+produce unit-normalized embeddings
+\begin{equation}
+z_C(x)=\frac{f_C(H_x)}{\lVert f_C(H_x)\rVert_2},
+\qquad
+z_S(x)=\frac{f_S(H_x)}{\lVert f_S(H_x)\rVert_2}.
+\end{equation}
+For $r\in\{C,S\}$, define the matched positive and negative similarities
+\begin{equation}
+\begin{aligned}
+u_r^+&=z_r(x_a)^\top z_r(x_r^+),\\
+u_r^-&=z_r(x_a)^\top z_r(x_r^-).
+\end{aligned}
+\end{equation}
+With temperature $\tau>0$, the branch loss is the binary contrastive objective
+\begin{equation}
+\mathcal{L}_r
+=-\mathbb{E}\log
+\frac{\exp(u_r^+/\tau)}
+{\exp(u_r^+/\tau)+\exp(u_r^-/\tau)}.
+\label{eq:branch-loss}
+\end{equation}
+We train both routes jointly with
+\begin{equation}
+\mathcal{L}_{\mathrm{part}}=\mathcal{L}_C+\mathcal{L}_S.
+\end{equation}
+The contrastive form is conventional; specialization comes from the matched assignment of positives and negatives. We keep $F$ frozen and add no reconstruction, orthogonality, independence, or adversarial term. Each route therefore ranks its designated relation above the competing relation without requiring the blocks to be independent.
+
+\subsection{Frozen downstream interface}
+The learned partition serves as an interface rather than a replacement for downstream methods. After training, we freeze $f_C$ and $f_S$ and fit Top-$k$ SAEs and ConCA separately to $H$, $z_C$, and $z_S$, leaving their objectives unchanged. Gemma Scope instead expects token-level residuals at the model's original width, so the pooled 128-dimensional blocks cannot be supplied to its pretrained dictionary directly. We therefore evaluate the frozen dictionary on route-conditioned token residuals. Appendix~\ref{app:scope-controls} gives this protocol and its controls.
+
+\section{Why Matching Helps and When It Generalizes}
 \label{sec:theory}
-\subsection{Generative setting and controlled pairs}
+The analysis makes three complementary claims. Matching excludes a competing-factor shortcut on observed triplets; extending that ordering to unseen conditions requires coverage and smoothness; and statistical dependence between the factors places a lower bound on residual leakage.
 
-Assume that an observation is generated by two latent blocks,
-\begin{equation}
-X=g(C,S), \qquad H=F(X),
-\end{equation}
-where $C$ denotes information intended to remain invariant under a chosen transformation relation, $S$ denotes information allowed to vary, and $F$ is a frozen representation model. We learn two maps,
-\begin{equation}
-Z_C=f_C(H), \qquad Z_S=f_S(H).
-\end{equation}
-We do not assume $C\perp S$. The objective is relative specialization: $Z_C$ should respond more strongly to changes in $C$ than to changes in $S$, and conversely for $Z_S$.
+\subsection{Matched negatives exclude the competing-factor shortcut}
+The matched negative matters because it holds the competing factor fixed. For the preserved-dominant route, the anchor and negative share $S$. If $z_C$ encoded only $S$, they would have identical codes, so the model could not rank the positive above the negative.
 
-For an anchor $x_a=g(c_a,s_a)$, construct a $C$-positive $x_p=g(c_p,s_p)$ and a $C$-negative $x_n=g(c_n,s_n)$. Rather than assuming perfect interventions, we assume bounded fidelity:
-\begin{align}
-\dC(c_a,c_p)&\leq\eta_C, & \dS(s_a,s_p)&\geq\kappa_S,\\
-\dS(s_a,s_n)&\leq\eta_S, & \dC(c_a,c_n)&\geq\kappa_C.
-\end{align}
-The ideal controlled setting has $\eta_C=\eta_S=0$.
-
-\subsection{Matched contrastive objective}
-For the invariant branch, let
-\begin{align}
-u^+&=\simf(f_C(h_a),f_C(h_p)),\\
-u^-&=\simf(f_C(h_a),f_C(h_n)).
-\end{align}
-With temperature $\tau>0$, the matched objective is
-\begin{align}
-\loss_C&=-\log\frac{\exp(u^+/\tau)}{\exp(u^+/\tau)+\exp(u^-/\tau)}\\
-&=\log\left(1+\exp\left(\frac{u^- - u^+}{\tau}\right)\right).
-\label{eq:matched-loss}
-\end{align}
-For $Z_S$, we exchange the controlled contrasts: approximately equal $S$ and different $C$ is positive, while approximately equal $C$ and different $S$ is negative. The partition objective is $\loss_{\mathrm{part}}=\loss_C+\loss_S$. It requires neither reconstruction nor exact statistical independence.
-
-Unrestricted in-batch InfoNCE is unsuitable for this purpose: it pushes down the similarity of every non-positive example, even though $c_i\ne c_j$ does not imply that two observations share no invariant information. They may share an entity, relation, topic, or another component of $C$. A matched negative instead controls $S$, so the contrast cannot be solved merely through a difference in $S$.
-
-\begin{proposition}[Relative margin]\label{prop:margin}
-If $\loss_C\leq\epsilon$ for a training triplet, then
-\begin{equation}
-u^+-u^-\geq\tau\log\frac{1}{\exp(\epsilon)-1}.
-\end{equation}
-In particular, when $\epsilon<\log 2$, $\simf(Z_C^a,Z_C^p)>\simf(Z_C^a,Z_C^n)$.
+\begin{proposition}[Finite-sample exclusion of an $S$-only shortcut]\label{prop:shortcut}
+Assume every empirical training triplet is exactly matched and the codes are unit normalized. If $z_C(g(c,s))=q(s)$, then every triplet satisfies $u_C^-=1$, $u_C^+\leq1$, and $u_C^+-u_C^-\leq0$. Consequently, the empirical loss obeys $\widehat{\mathcal{L}}_C\geq\log 2$; any finite-sample solution with $\widehat{\mathcal{L}}_C<\log 2$ cannot be $S$-only on the training support.
 \end{proposition}
-\begin{proof}
-Equation~\eqref{eq:matched-loss} gives $\exp((u^--u^+)/\tau)\leq\exp(\epsilon)-1$. Taking logarithms and rearranging proves the claim.
-\end{proof}
+Proposition~\ref{prop:shortcut} is a finite-sample certificate: for any learned parameters, training loss below $\log 2$ rules out an $S$-only code on the observed support, without assuming convergence or a global optimum. Exact matching is essential to this statement. If the negative changes both $C$ and $S$, an $S$-only code can separate it from the anchor; approximate matching likewise requires an additional regularity bound. The proposition excludes this one shortcut, not mixed codes, residual $S$ information, or failure on unseen triplets. Section~\ref{sec:experiments} and Appendix~\ref{app:negative-ablation} compare the negative constructions under the same loss; Appendix~\ref{app:proofs} proves the proposition and its symmetric $z_S$ form.
 
-\subsection{Regularity assumptions}
-Write $\zC(c,s)$ for the invariant-branch representation. In addition to bounded fidelity, assume the following.
-\begin{assumption}[Observed alignment and separation]\label{ass:observed}
-For observed positive pairs, $\dZ(\zC(c_a,s_a),\zC(c_p,s_p))\leq\delta_{\mathrm{obs}}$. For observed matched negatives, $\dZ(\zC(c_a,s_a),\zC(c_n,s_n))\geq\gamma_{\mathrm{obs}}$.
-\end{assumption}
-\begin{assumption}[Local regularity]\label{ass:lipschitz}
-The representation is locally Lipschitz in each block:
-\begin{align}
-\dZ(\zC(c,s),\zC(c',s))&\leq L_C\dC(c,c'),\\
-\dZ(\zC(c,s),\zC(c,s'))&\leq L_S\dS(s,s').
-\end{align}
-\end{assumption}
-\begin{assumption}[Nuisance coverage]\label{ass:coverage}
-For every unseen nuisance realization $s^\star$, there is a covered training realization $\tilde{s}$ with $\dS(s^\star,\tilde{s})\leq\varepsilon$. The observed alignment and separation conditions hold for the corresponding covered controlled pairs.
-\end{assumption}
+\subsection{Coverage-conditioned extension}
+Matching directly constrains only the relations observed during training. To expect the same ordering for unseen values of $S$, those values must lie near covered training conditions and the learned representation must vary smoothly between them. Coverage therefore means proximity in the varying-factor metric, not simply the number of observed values.
 
-Pair imperfection yields the effective bounds
+Appendix~\ref{app:proofs} states the assumptions formally. Pair infidelities $\eta_C$ and $\eta_S$ measure how closely the sampled pairs realize their intended relations, while $\varepsilon$ measures the distance from an unseen realization to covered support. The local sensitivities $K_C$ and $K_S$ describe how rapidly the representation changes with each factor. Finally, $\delta_{\mathrm{obs}}$ bounds the distance between observed positives, and $\gamma_{\mathrm{obs}}$ lower-bounds the separation of observed matched negatives. Under these assumptions, two unseen realizations with the same $C$ satisfy
 \begin{equation}
-\delta=\delta_{\mathrm{obs}}+L_C\eta_C,\qquad \gamma=\gamma_{\mathrm{obs}}-L_S\eta_S.
-\label{eq:effective-bounds}
+\dZ(\zC(c,s^\star),\zC(c,s^{\star\star}))
+\leq\delta_{\mathrm{obs}}+K_C\eta_C+2K_S\varepsilon.
 \end{equation}
-
-\begin{theorem}[Unseen-$S$ stability]\label{thm:stability}
-Let $s^\star$ and $s^{\star\star}$ be unseen nuisance realizations with covered training realizations within $\varepsilon$. For fixed $c$,
-\begin{equation}
-\dZ(\zC(c,s^\star),\zC(c,s^{\star\star}))\leq\delta_{\mathrm{obs}}+L_C\eta_C+2L_S\varepsilon.
-\end{equation}
-\end{theorem}
-\begin{proof}
-Apply the triangle inequality through the two covered nuisance realizations, then Assumption~\ref{ass:lipschitz} to each unseen-to-covered segment and Equation~\eqref{eq:effective-bounds} to the middle segment.
-\end{proof}
-
-\begin{theorem}[Unseen-$C$ separation]\label{thm:separation}
-For $c_i\ne c_j$ under an unseen nuisance $s^\star$,
-\begin{equation}
-\dZ(\zC(c_i,s^\star),\zC(c_j,s^\star))\geq\gamma_{\mathrm{obs}}-L_S\eta_S-2L_S\varepsilon.
-\end{equation}
-\end{theorem}
-\begin{proof}
-Use the reverse triangle inequality through a covered nuisance realization, then Assumption~\ref{ass:lipschitz} and Equation~\eqref{eq:effective-bounds}.
-\end{proof}
-
-\begin{corollary}[Sufficient operating condition]\label{cor:condition}
-Same-$C$ observations remain closer than different-$C$ observations whenever
-\begin{equation}
-\gamma_{\mathrm{obs}}>\delta_{\mathrm{obs}}+L_C\eta_C+L_S\eta_S+4L_S\varepsilon.
-\end{equation}
-\end{corollary}
-This condition is sufficient, not necessary.
+The three terms have distinct meanings: $\delta_{\mathrm{obs}}$ is the observed training-alignment error, $K_C\eta_C$ is the penalty for imperfect pairs, and $2K_S\varepsilon$ is the penalty for incomplete coverage. The corresponding different-$C$ bound subtracts pair and coverage errors from the observed separation $\gamma_{\mathrm{obs}}$; the desired ordering persists only if that remaining separation exceeds the three-term upper bound above. This is a sufficient condition, not a claim that pairability alone ensures generalization. The locale-coverage sweep and failure regimes in Section~\ref{sec:experiments} test this dependence empirically.
 
 \subsection{Dependence imposes unavoidable leakage}
+Perfect removal of the varying factor is generally incompatible with faithfully preserving a statistically coupled factor. The following bound makes this limitation explicit.
 \begin{theorem}[Leakage lower bound]\label{thm:leakage}
 For discrete $C$ and any learned representation $Z_C$,
 \begin{equation}
 I(Z_C;S)\geq I(C;S)-H(C\mid Z_C).
 \end{equation}
 \end{theorem}
-\begin{proof}
-The chain rule gives $I(C,Z_C;S)=I(C;S)+I(Z_C;S\mid C)=I(Z_C;S)+I(C;S\mid Z_C)$. Non-negativity of $I(Z_C;S\mid C)$ and $I(C;S\mid Z_C)\leq H(C\mid Z_C)$ establish the result.
-\end{proof}
 
-If $C$ is decoded from $Z_C$ with error probability $p_e$, Fano's inequality yields
-\begin{equation}
-I(Z_C;S)\geq I(C;S)-h(p_e)-p_e\log(|\mathcal{C}|-1).
-\end{equation}
-Thus, when $C$ and $S$ are dependent, faithful preservation of $C$ entails a nonzero leakage floor. The appropriate goal is to remove $S$ information beyond that intrinsically coupled to $C$, rather than to require $I(Z_C;S)=0$.
+When $C$ and $S$ are dependent and $Z_C$ preserves $C$ well, $H(C\mid Z_C)$ is small, so the bound forces $Z_C$ to retain some information about $S$. Requiring $I(Z_C;S)=0$ can therefore conflict with faithful preservation of $C$. The appropriate target is relative specialization: remove information about $S$ beyond what is intrinsically coupled to $C$.
 
-\subsection{Propagation to sparse autoencoders}
-Let $A=\phi(Z_C)$ be an SAE encoding. For a Top-$k$ SAE, suppose locally that $\|\phi(z)-\phi(z')\|\leq L_{\mathrm{SAE}}\|z-z'\|$ while its selected support is fixed. Theorem~\ref{thm:stability} then gives
-\begin{equation}
-\begin{aligned}
-&\|\phi(\zC(c,s^\star))\\
-&\quad{}-\phi(\zC(c,s^{\star\star}))\|\\
-&\leq L_{\mathrm{SAE}}\bigl(\delta_{\mathrm{obs}}+L_C\eta_C+2L_S\varepsilon\bigr).
-\end{aligned}
-\end{equation}
-Moreover, if ordered SAE preactivations have Top-$k$ support margin $\rho=q_{(k)}-q_{(k+1)}$, the support is unchanged whenever $\|W\Delta\zC\|_\infty<\rho/2$. A sufficient condition is
-\begin{equation}
-\begin{aligned}
-\|W\|_{\infty\leftarrow 2}(\delta_{\mathrm{obs}}+L_C\eta_C
-&+2L_S\varepsilon)<\rho/2.
-\end{aligned}
-\end{equation}
+\paragraph{Connection to sparse features.}
+On regions where a Top-$k$ SAE keeps the same support and its encoder is locally Lipschitz, the representation bound transfers directly to a bound on sparse-code drift. This motivates the held-out feature-stability test but does not guarantee that individual dictionary elements are human-interpretable.
 
-\paragraph{Scope.} The analysis establishes controlled relative preference, bounded nuisance drift under the stated assumptions, and downstream feature stability under a support-margin condition. It does not prove $Z_C=C$, $Z_S=S$, $Z_C\perp S$, globally identifiable factors, human-interpretable concepts, or generalization to arbitrarily distant nuisance variation.
+\paragraph{What the analysis does not establish.} It does not prove $Z_C=C$, $Z_S=S$, $C\perp S$, global identifiability, perfect disentanglement, arbitrary out-of-distribution generalization, or human-interpretable concepts.
+
+Together, these results characterize what matching contributes: it excludes a competing-factor shortcut on observed pairs, extends to unseen conditions only under coverage and smoothness, and permits the residual dependence that is unavoidable when the factors themselves are coupled.
+
+% Queue the full-width table before Section 5 so it can occupy the top of the
+% same page as the subsection that discusses it.
+\begin{table*}[!t]
+\centering\small
+\caption{Representation specialization relative to baselines on held-out MASSIVE. Effective rank is the participation ratio. Higher retrieval is better; locale-probe accuracy is diagnostic rather than an objective. ``Uncontrolled negative'' uses the same binary loss as matching but changes both intent and locale in the negative. Random projection reports mean $\pm$ standard deviation over five projections.}
+\label{tab:partition}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccc@{}}
+\toprule
+Representation & Semantic R@1 & R@5 & MRR & Locale probe & Effective rank \\
+\midrule
+Raw $H$ & .284 & .449 & .364 & 1.000 & 1.37 \\
+Random projection (128-D) & $.112\pm.013$ & $.230\pm.023$ & $.174\pm.016$ & $.998\pm.001$ & $1.41\pm.06$ \\
+PCA-128 & .108 & .200 & .154 & 1.000 & 1.20 \\
+Naive InfoNCE $z_C$ & \textbf{.488} & \textbf{.732} & \textbf{.601} & .924 & 54.82 \\
+Uncontrolled-negative $z_C$ & .418 & .669 & .535 & .956 & 36.44 \\
+Matched $z_C$ & .401 & .658 & .519 & \textbf{.895} & 30.73 \\
+Naive InfoNCE $z_S$ & .001 & .003 & .005 & 1.000 & 2.02 \\
+Matched $z_S$ & .001 & .003 & .005 & 1.000 & 2.17 \\
+\bottomrule
+\end{tabular*}
+\end{table*}
+
+% Queue the one-column semantic summary early enough to share the Section 5
+% opening page instead of being stranded below the next full-width table.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{Figures/figure2_hybrid_candidate.png}
+\caption{Feature types that emerge after matched conditioning. Stacked bars summarize the orientation of each complete active SAE dictionary, while independently selected exemplars show the semantic character of each representation. Cross-language stability is the mean correlation across the complete training-active dictionary on aligned held-out Arabic--Chinese semantic items.}
+\label{fig:feature-orientation}
+\end{figure}
 
 \section{Experiments}
-\textbf{Placeholder.} Experimental design and results will be added here.
+\label{sec:experiments}
+We evaluate the method primarily on MASSIVE, a parallel multilingual intent-classification and slot-filling dataset \citep{fitzgerald2023massive}, with intent as the preserved factor and locale as the varying factor. The experiments ask four questions: whether matching produces relative specialization, whether the resulting geometry changes the features recovered downstream, whether the effect transfers across decomposition methods, and whether the learned routes support factor-specific interventions. We then examine structural coverage and metric sensitivity as boundary conditions. Comparisons include raw activations, random and PCA projections, and naive in-batch InfoNCE; external studies and implementation controls appear in Appendix~\ref{app:supporting-evidence}.
+
+\subsection{Does matched conditioning produce relative specialization?}
+Matching trades some instance-retrieval performance for stronger relative specialization (Table~\ref{tab:partition}). Naive InfoNCE $z_C$ yields the strongest instance retrieval, whereas matched $z_C$ retains less locale information. The same distinction appears in the controlled-negative ablation: changing both factors in the negative raises R@1 from $.401$ to $.418$ but also raises locale-probe accuracy from $.895$ to $.956$. Both $z_S$ variants have negligible semantic retrieval while retaining locale information. Together, these comparisons isolate pair construction from the binary loss and show that retrieval quality and the targeted specialization are different objectives. The specialization pattern is stable across independent training seeds (Appendix~\ref{app:seed-robustness}).
+
+The benefit also depends on coverage of the varying factor, consistent with the analysis in Section~\ref{sec:theory}. Across three independently sampled nested subsets, increasing MASSIVE training coverage from 4 to 49 locales raises held-out $z_C$ semantic R@1 from $.301\pm.034$ to $.403\pm.009$ and lowers locale-probe accuracy from $.989\pm.003$ to $.895\pm.007$. Because the sweep also increases the number of training realizations, it diagnoses sensitivity to sparse support and data jointly rather than estimating the coverage term in isolation (Appendix~\ref{app:coverage-sweep}).
+
+% Encounter Table 2 before the subsection starts so it can sit at the top of
+% the next page instead of joining the end-of-section float block.
+\begin{table*}[!t]
+\centering\scriptsize
+\caption{Exact feature-decomposition metrics and the matched-versus-InfoNCE comparison. Selectivity values are standardized feature-level scores. Active features are identified on seen-language training rows; active-feature stability is their mean activation correlation over aligned held-out Arabic--Chinese IDs. The InfoNCE $z_C$ value is the frozen-checkpoint recomputation used for the paired bootstrap.}
+\label{tab:concept-quality}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
+\toprule
+Representation & Intent sel. & Locale sel. & Active stability & Intent-oriented & Language-oriented & Mixed \\
+\midrule
+Raw $H$ & .714 & .740 & .270 & 45.5\% & 49.3\% & 5.2\% \\
+InfoNCE $z_C$ & 1.811 & .232 & .399 & 96.8\% & 2.4\% & .8\% \\
+Matched $z_C$ & \textbf{2.196} & .222 & \textbf{.541} & \textbf{100.0\%} & 0.0\% & 0.0\% \\
+InfoNCE $z_S$ & .350 & 3.227 & .094 & 1.5\% & 96.3\% & 2.2\% \\
+Matched $z_S$ & .270 & \textbf{3.415} & .063 & 0.0\% & \textbf{100.0\%} & 0.0\% \\
+\bottomrule
+\end{tabular*}
+\end{table*}
+
+\subsection{Does specialization improve preserved-factor feature decomposition?}
+Representation specialization changes what the SAE discovers (Figure~\ref{fig:feature-orientation}; Table~\ref{tab:concept-quality}). Raw $H$ yields a mixed dictionary, with comparable proportions of intent- and language-oriented features. Matched $z_C$ reorients every criterion-passing feature toward intent, whereas matched $z_S$ reorients every feature toward language. Active features and their orientation are determined exclusively from seen-language training rows; Arabic and Chinese are used only for cross-language evaluation.
+
+For $z_C$, this reorientation is accompanied by stronger held-out stability. Mean intent selectivity rises from $.714$ to $2.196$, and Arabic--Chinese active-feature stability rises from $.270$ to $.541$. Relative to naive-InfoNCE $z_C$, the stability gain is $0.142$ (95\% paired-bootstrap CI $[0.131,0.153]$) and is positive for $87.1\%$ of 2,968 semantic IDs. A separate paired intent-level concept-AUC analysis covers 58 intents (Figure~\ref{fig:quantitative-evidence}).
+
+We use active-dictionary stability as the primary statistic because it evaluates the complete training-active dictionary without selecting features by orientation or held-out behavior. Selective consistency is reported only as a secondary diagnostic. Under the same binary loss, matching still improves active-dictionary stability over a negative that changes both factors by $.020$ (95\% paired-bootstrap CI $[.016,.024]$; $.541$ versus $.521$). Appendix~\ref{app:negative-ablation} reports the selection-dependent result and complete protocol.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{Figures/figure3_quantitative.pdf}
+\caption{Breadth and statistical consistency of preserved-factor feature quality. Active features and intent-specific features are selected on seen languages only. (A) Aggregate held-out Arabic--Chinese active-feature stability. Higher stability is desired for the preserved-dominant $z_C$ route, whereas low stability is expected for $z_S$ because locale is its varying factor. (B) Per-semantic-ID matched-minus-InfoNCE $z_C$ stability differences. (C) Paired held-out concept AUC for raw $H$ and matched $z_C$ across 58 intents.}
+\label{fig:quantitative-evidence}
+\end{figure*}
+
+\subsection{Does conditioning transfer across decomposition methods?}
+The effect is not specific to the Top-$k$ SAE objective, although its manifestation depends on the downstream method and metric (Table~\ref{tab:extractors}). In a small FLORES replication \citep{goyal2022flores} with 30 held-out sentence identities, applying ConCA to matched $z_C$ raises held-out concept AUC from $.965$ to $.982$ and component stability from $.918$ to $.954$. In a separate token-level audit, route conditioning raises frozen Gemma Scope feature-set cosine from $.4609$ to $.5133$ and top-100 overlap from $.1736$ to $.2498$. This audit conditions unpooled residuals rather than evaluating pooled $z_C$ directly; full protocols and controls appear in Appendix~\ref{app:supporting-evidence}.
+\begin{table}[!t]
+\centering\small
+\caption{Evidence across feature-decomposition methods. Each block reports method-specific metrics and should be interpreted within that block. Gemma Scope uses a frozen pretrained dictionary on separate token-level residual conditioning.}
+\label{tab:extractors}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrr@{}}
+\toprule
+\multicolumn{3}{@{}l}{\textbf{Top-$k$ SAE (MASSIVE)}} \\
+Condition & \shortstack{Mean intent\\selectivity} & \shortstack{Cross-language\\stability} \\
+\midrule
+Raw $H$ & .714 & .270 \\
+Matched $z_C$ & 2.196 & .541 \\
+\bottomrule
+\end{tabular*}
+
+\vspace{.25em}
+
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrr@{}}
+\toprule
+\multicolumn{3}{@{}l}{\textbf{ConCA (FLORES)}} \\
+Condition & \shortstack{Held-out\\concept AUC} & \shortstack{Component\\stability} \\
+\midrule
+Raw $H$ & .965 & .918 \\
+Matched $z_C$ & .982 & .954 \\
+\bottomrule
+\end{tabular*}
+
+\vspace{.25em}
+
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrr@{}}
+\toprule
+\multicolumn{4}{@{}l}{\textbf{Frozen Gemma Scope (token-level)}} \\
+Condition & \shortstack{Feature-set\\cosine} & \shortstack{Top-100\\overlap} & \shortstack{Active\\features} \\
+\midrule
+Raw $h$ & .4609 & .1736 & 109.90 \\
+$h+R_C(z_C)$ & .5133 & .2498 & 86.58 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Are the learned factors actionable?}
+Beyond diagnostic separation, the learned routes support selective changes in reconstructed activations. Across 17,808 held-out cases, replacing $z_C$ transfers donor intent in $61.6\%$ of cases with $2.0\%$ donor-locale leakage, whereas replacing $z_S$ transfers donor locale in $97.8\%$ of cases with $2.6\%$ donor-intent leakage (Figure~\ref{fig:intervention-specificity}). Unrelated-label controls remain below $2.2\%$, and the pattern is stable across training seeds (Appendix~\ref{app:seed-robustness}). The gap between intended transfer and cross-factor or control rates is consistent with route-selective intervention rather than indiscriminate donor copying.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=.75\columnwidth]{Figures/figure4.png}
+\caption{Actionability of the learned factors. $z_C$ swaps transfer donor intent; $z_S$ swaps transfer donor locale. Cross-factor and control rates remain low.}
+\label{fig:intervention-specificity}
+\end{figure}
+
+\subsection{Boundary conditions: structural coverage and metric choice}
+\paragraph{Coverage limitation.} RAVEL shows that many observed templates do not imply structural coverage of unseen templates. Its $z_S$ route retrieves template identity at R@1 $=.996$, but $z_C$ retrieves the same fact across held-out templates at only R@1 $=.268$ while template-probe accuracy remains $.926$. MASSIVE realizes every semantic ID in every training locale; by contrast, RAVEL's 718 training templates provide no metric guarantee of proximity to its 230 disjoint test templates. The result is consistent with a structural support gap, but we do not measure template distance and therefore do not establish that diagnosis. Controlled synthetic ablations likewise show that adding observed surface families need not suppress a qualitatively unseen family.
+
+\paragraph{Metric limitation.} FLORES shows that feature reorientation does not guarantee improvement under every stability statistic. Conditioning strongly changes feature orientation, but leakage-free evaluation favors raw $H$ under both all-feature consistency ($.811$ versus $.526$ for $z_C$) and consistency restricted to sentence-oriented features selected exclusively on the eight training languages ($.718$ versus $.526$). We therefore use complete active-dictionary stability as the primary MASSIVE statistic and treat selective consistency as a secondary diagnostic rather than choosing whichever summary favors conditioning. Appendix~\ref{app:supporting-evidence} gives the complete protocols.
+
+\FloatBarrier
 
 \section{Conclusion}
-\textbf{Placeholder.} The conclusion will be added here.
+Feature decomposition inherits the organization of its input activations. Its quality therefore depends on both the decomposition objective and whether the upstream geometry expresses the distinctions an analysis seeks to recover. This shifts attention from asking only how to build a better dictionary to asking what representation the dictionary is being asked to explain.
+
+We showed that controlled opposing relations can reshape frozen LLM activations into preserved-dominant and varying-dominant routes before decomposition. On multilingual MASSIVE, this conditioning changes dictionary orientation and improves preserved-factor stability over raw activations and naive InfoNCE, while the frozen routes can be examined through multiple downstream procedures and support factor-specific representation swaps. The conditioned representation is therefore the central object of study; no specialized downstream loss is required.
+
+The result is relative specialization, not universal disentanglement. Matching constrains observed relations and excludes a competing-factor shortcut, but behavior on unseen conditions depends on relation quality, smoothness, and structural coverage. When the factors are statistically coupled, faithfully preserving one may necessarily retain information about the other. The practical lesson is to shape representation geometry around the distinctions of interest before asking a downstream decomposition to explain it, while treating those distinctions and their coverage as part of the method's specification.
+
+\bibliography{references}
+
+\clearpage
+\onecolumn
+\appendix
+\section{Proofs for Theoretical Analysis}
+\label{app:proofs}
+
+\subsection{Matched-shortcut result}
+\begin{proof}[Proof of Proposition~\ref{prop:shortcut}]
+For any empirical exact matched $z_C$ triplet, the anchor and negative have the same varying factor $s_a$. If $z_C(g(c,s))=q(s)$ and the code is unit normalized, then
+$u_C^-=q(s_a)^\top q(s_a)=1$. The positive has varying factor $s_p$, so $u_C^+=q(s_a)^\top q(s_p)\leq1$. Substitution into Equation~\eqref{eq:branch-loss} gives
+\begin{equation}
+\ell_C=\log\!\left(1+\exp((u_C^- -u_C^+)/\tau)\right)\geq\log 2.
+\end{equation}
+Averaging this pointwise inequality over any finite empirical sample gives $\widehat{\mathcal L}_C\geq\log 2$. The $z_S$ statement follows symmetrically: because its matched negative shares $C$ with the anchor, a unit-normalized $C$-only code cannot achieve empirical loss below $\log 2$.
+\end{proof}
+
+\subsection{Formal coverage assumptions and generic bounds}
+Write $\zC(c,s)$ for the preserved-route representation and let $\dC$, $\dS$, and $\dZ$ be metrics on the preserved factor, varying factor, and learned representation. Approximate matched pairs satisfy
+\begin{align}
+\dC(c_a,c_p)&\leq\eta_C, & \dS(s_a,s_p)&\geq\kappa_S,\\
+\dS(s_a,s_n)&\leq\eta_S, & \dC(c_a,c_n)&\geq\kappa_C.
+\end{align}
+The exact setting has $\eta_C=\eta_S=0$.
+
+\begin{assumption}[Observed alignment and separation]\label{ass:observed}
+Observed positives obey $\dZ(\zC(c_a,s_a),\zC(c_p,s_p))\leq\delta_{\mathrm{obs}}$, while observed matched negatives obey $\dZ(\zC(c_a,s_a),\zC(c_n,s_n))\geq\gamma_{\mathrm{obs}}$.
+\end{assumption}
+
+\begin{assumption}[Local regularity]\label{ass:lipschitz}
+The representation is locally Lipschitz in each factor:
+\begin{align}
+\dZ(\zC(c,s),\zC(c',s))&\leq K_C\dC(c,c'),\\
+\dZ(\zC(c,s),\zC(c,s'))&\leq K_S\dS(s,s').
+\end{align}
+\end{assumption}
+
+\begin{assumption}[Varying-factor coverage]\label{ass:coverage}
+For every evaluation-time realization $s^\star$, there is a covered training realization $\tilde s$ with $\dS(s^\star,\tilde s)\leq\varepsilon$. Assumption~\ref{ass:observed} holds for the corresponding covered controlled pairs.
+\end{assumption}
+
+\begin{theorem}[Coverage-conditioned stability]\label{thm:stability}
+Let $s^\star$ and $s^{\star\star}$ have covered realizations within $\varepsilon$. For fixed $c$,
+\begin{equation}
+\dZ(\zC(c,s^\star),\zC(c,s^{\star\star}))
+\leq\delta_{\mathrm{obs}}+K_C\eta_C+2K_S\varepsilon.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[Coverage-conditioned separation]\label{thm:separation}
+For $c_i\ne c_j$ under an evaluation-time realization $s^\star$,
+\begin{equation}
+\dZ(\zC(c_i,s^\star),\zC(c_j,s^\star))
+\geq\gamma_{\mathrm{obs}}-K_S\eta_S-2K_S\varepsilon.
+\end{equation}
+\end{theorem}
+
+\begin{corollary}[Sufficient operating condition]\label{cor:condition}
+Same-$C$ observations are closer than the corresponding different-$C$ observations whenever
+\begin{equation}
+\gamma_{\mathrm{obs}}>
+\delta_{\mathrm{obs}}+K_C\eta_C+K_S\eta_S+4K_S\varepsilon.
+\end{equation}
+\end{corollary}
+These conditions are sufficient, not necessary, and do not follow from the contrastive objective alone.
+
+\begin{proof}[Proof of Theorem~\ref{thm:stability}]
+Let $\tilde{s}$ and $\tilde{s}'$ be covered realizations within $\varepsilon$ of $s^\star$ and $s^{\star\star}$, respectively. By Assumption~\ref{ass:coverage}, the covered support contains a positive pair $(c,\tilde{s})$ and $(c',\tilde{s}')$ with $\dC(c,c')\leq\eta_C$. Insert these covered representations between the two unseen representations. The triangle inequality gives
+\begin{align}
+\dZ(\zC(c,s^\star),\zC(c,s^{\star\star}))
+&\leq \dZ(\zC(c,s^\star),\zC(c,\tilde{s}))\\
+&\quad{}+\dZ(\zC(c,\tilde{s}),\zC(c',\tilde{s}'))\\
+&\quad{}+\dZ(\zC(c',\tilde{s}'),\zC(c,\tilde{s}'))\\
+&\quad{}+\dZ(\zC(c,\tilde{s}'),\zC(c,s^{\star\star})).
+\end{align}
+The first and last terms are at most $K_S\varepsilon$ by Assumption~\ref{ass:lipschitz}; the observed positive term is at most $\delta_{\mathrm{obs}}$; and pair infidelity contributes at most $K_C\eta_C$. Summing the four terms yields the stated bound.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:separation}]
+Choose a covered matched negative $(c_i,\tilde{s})$, $(c_j,\tilde{s}')$ with $\dS(\tilde{s},\tilde{s}')\leq\eta_S$ and $\dS(s^\star,\tilde{s})\leq\varepsilon$. The triangle inequality also gives $\dS(s^\star,\tilde{s}')\leq\varepsilon+\eta_S$. Applying the reverse triangle inequality around the observed negative pair gives
+\begin{align}
+\dZ(\zC(c_i,s^\star),\zC(c_j,s^\star))
+&\geq \dZ(\zC(c_i,\tilde{s}),\zC(c_j,\tilde{s}'))\\
+&\quad{}-\dZ(\zC(c_i,s^\star),\zC(c_i,\tilde{s}))\\
+&\quad{}-\dZ(\zC(c_j,s^\star),\zC(c_j,\tilde{s}'))\\
+&\geq \gamma_{\mathrm{obs}}-K_S\eta_S-2K_S\varepsilon.
+\end{align}
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:condition}]
+Theorem~\ref{thm:stability} upper-bounds every same-$C$ distance under its coverage conditions by $U=\delta_{\mathrm{obs}}+K_C\eta_C+2K_S\varepsilon$, while Theorem~\ref{thm:separation} lower-bounds the corresponding different-$C$ distance by $L=\gamma_{\mathrm{obs}}-K_S\eta_S-2K_S\varepsilon$. The stated condition is exactly $U<L$.
+\end{proof}
+
+\subsection{Sparse-code implication}
+Let $A=\phi(Z_C)$ be a Top-$k$ SAE code. On a region where the selected support is fixed and $\phi$ is $K_{\mathrm{SAE}}$-Lipschitz, Theorem~\ref{thm:stability} implies
+\begin{equation}
+\lVert\phi(\zC(c,s^\star))-\phi(\zC(c,s^{\star\star}))\rVert
+\leq K_{\mathrm{SAE}}(\delta_{\mathrm{obs}}+K_C\eta_C+2K_S\varepsilon).
+\end{equation}
+If the Top-$k$ preactivation margin is $\rho=q_{(k)}-q_{(k+1)}$, a sufficient condition for unchanged support is
+\begin{equation}
+\lVert W\rVert_{\infty\leftarrow2}
+(\delta_{\mathrm{obs}}+K_C\eta_C+2K_S\varepsilon)<\rho/2.
+\end{equation}
+This local implication motivates the empirical stability metric; it is not a claim of global support stability or interpretability.
+
+\begin{proof}[Proof of Theorem~\ref{thm:leakage}]
+The chain rule gives
+\begin{align}
+I(C,Z_C;S)&=I(C;S)+I(Z_C;S\mid C)\\
+&=I(Z_C;S)+I(C;S\mid Z_C).
+\end{align}
+Since $I(Z_C;S\mid C)\geq0$ and $I(C;S\mid Z_C)\leq H(C\mid Z_C)$, rearrangement gives the result.
+\end{proof}
+
+\section{Supporting Experimental Evidence}
+\label{app:supporting-evidence}
+Appendix~B collects supporting experiments and boundary cases for the main MASSIVE result. Appendix~C separately documents primary-dataset reproducibility and robustness.
+
+\subsection{ConCA details}
+This experiment tests whether the conditioning effect transfers to a decomposition method with a different objective from Top-$k$ SAE. We used the official ConCA BatchNorm autoencoder \citep{liu2026conca} with \texttt{PAnnealSoftPlusTrainer} and fit it separately to raw layer-8 Gemma activations and the frozen FLORES $z_C$ block. The partition was not retrained or optimized jointly with ConCA. Both runs used the same 1,120 rows from 140 training sentences in eight training languages, fourfold dictionary expansion, 24,000 optimization steps, batch size 256, learning rate $10^{-4}$, 200 learning-rate warmup steps, and 400 sparsity-warmup steps. The official objective combines reconstruction with $\alpha L_p$ regularization on softplus-transformed features; we used $p=1$ and $\alpha=10^{-3}$.
+
+Evaluation used 30 unseen sentence identities expressed only in held-out Arabic and Chinese. Table~\ref{tab:app-conca} reports the resulting concept and orientation metrics. Conditioning raises mean held-out concept AUC from $.965$ to $.982$ and component stability from $.918$ to $.954$. It also changes the component orientation: the raw dictionary is mixed, whereas all criterion-passing $z_C$ components are sentence-oriented and none is language-oriented. The language-probe reduction from $99.3\%$ to $28.0\%$ is substantial but does not establish language invariance. Moreover, the effective rank falls from $9.86$ to $4.63$, so the improved concept metrics accompany stronger compression and should not be interpreted as uniformly better geometry.
+
+\begin{table}[H]
+\centering\scriptsize
+\caption{Frozen-input ConCA results on held-out FLORES Arabic and Chinese. Orientation percentages use the fixed sentence-versus-language criterion.}
+\label{tab:app-conca}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrrrrr@{}}
+\toprule
+Input & AUC & Stability & Sent. & Lang. & Mixed & Eff. rank & Lang. probe \\
+\midrule
+Raw $H$ & .965 & .918 & 41.0\% & 48.9\% & 10.1\% & 9.86 & 99.3\% \\
+Matched $z_C$ & .982 & .954 & 100.0\% & 0.0\% & 0.0\% & 4.63 & 28.0\% \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{FLORES replication}
+To test transfer to a separate multilingual dataset, we use FLORES-101 with aligned sentence identity as $C$ and language as $S$ \citep{goyal2022flores}. We fixed eight training languages (English, French, Spanish, German, Russian, Hindi, Swahili, and Turkish), held out Arabic and Simplified Chinese entirely, and divided the 200 aligned sentence identities into 140 train, 30 validation, and 30 test concepts. The unchanged two-head partition was trained for 30 epochs on frozen layer-8 Gemma activations. For $z_C$, positives share sentence identity across training languages and matched negatives share language but differ in sentence identity; $z_S$ reverses these relations.
+
+The frozen $z_C$ representation retrieves Arabic-to-Chinese sentence identity at R@1 $=.967$, R@5 $=1.000$, and MRR $=.983$. The $z_S$ route instead attains held-out language-probe accuracy of $1.000$ and has much weaker sentence retrieval (R@1 $=.100$). This is relative specialization, not complete separation: held-out language-probe accuracy remains $.867$ for $z_C$, while the entropy effective rank of $z_S$ is only $3.82$.
+
+We then trained matched fourfold Top-$k$ SAEs ($k=64$, 30 epochs) on the same 1,120 training rows. Feature orientation is selected exclusively from the 140 training sentences in the eight seen languages; held-out Arabic, Chinese, and test sentences do not affect the orientation mask. Under this leakage-free protocol, $99.8\%$ of $z_C$ features are sentence-oriented and none is language-oriented, while $60.9\%$ of $z_S$ features are language-oriented and none is sentence-oriented. Raw features are $80.8\%$ mixed or unselective. Conditioning therefore produces the expected orientation shift.
+
+The cross-language consistency result is less favorable. On 30 disjoint test sentences expressed in Arabic and Chinese, the all-feature mean favors raw $H$ ($.811$) over $z_C$ ($.526$). Restricting evaluation to sentence-oriented features selected on the seen-language training split does not reverse the ordering: raw $H$ attains $.718$ and $z_C$ $.526$. Thus FLORES supports feature-orientation reorganization but does not replicate the MASSIVE stability improvement. With only 30 held-out sentence identities, it remains a small external check rather than evidence of broad cross-dataset generalization.
+
+\begin{table}[H]
+\centering\scriptsize
+\caption{FLORES SAE orientation is selected on 140 training sentences in eight seen languages. Consistency is then evaluated on 30 disjoint Arabic--Chinese test pairs. ``All-feature'' averages the complete dictionary; ``selective'' restricts it to the training-selected sentence-oriented subset.}
+\label{tab:app-flores-sae}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrrr@{}}
+\toprule
+Input & Sentence & Language & Mixed & All-feature & Selective \\
+\midrule
+Raw $H$ & 19.1\% & $<0.1\%$ & 80.8\% & .811 & .718 \\
+$z_C$ & 99.8\% & 0.0\% & 0.2\% & .526 & .526 \\
+$z_S$ & 0.0\% & 60.9\% & 39.1\% & .553 & -- \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Controlled synthetic data}
+\paragraph{Controlled setup.}
+To test the matched-pair mechanism under exact supervision and unseen surface variation, we use a controlled fact-and-surface dataset. The 3,948 retained Books, Geography, and Science facts are sourced from direct Wikidata claims \citep{vrandecic2014wikidata} and rendered through five observed surface families and one held-out indirect family. Training balances the three domains at 83 subjects each (747 facts; 8,964 rows) and maps frozen layer-8 Gemma activations to a 256-dimensional preserved-dominant bottleneck. Positives express the same fact through different surfaces; matched negatives express different facts with the same template variant.
+
+\paragraph{Learned pair geometry.}
+The learned geometry separates these controlled relations cleanly. Across 10,000 sampled pairs of each type, mean cosine similarity is $.936$ for same-fact/different-surface positives and $.020$ for different-fact/same-template negatives; the positive exceeds the matched negative in $99.98\%$ of comparisons. Retrieval from the held-out indirect family into the observed-family bank reaches R@1 $=.997$ and MRR $=.998$. Surface suppression remains relative rather than universal: the held-out indirect family is still decoded with $.963$ accuracy (chance $=.167$), although independently authored training rewrites reduce this leakage relative to matched fixed templates ($.994$) without reducing fact retrieval.
+
+\paragraph{Coverage limitation.}
+A fixed-design coverage ablation expanded the observed surface set from three to four families. Probe accuracy on observed-family rows fell from $.433$ to $.340$, but the unseen structured family remained perfectly identifiable. With five observed families, unseen-indirect retrieval reached R@1 $=.991$ while indirect-family decodability was also $.991$. This matches the coverage term in Theorem~\ref{thm:stability}: broader support does not imply invariance to arbitrary unseen transformations.
+
+\paragraph{Feature-level check.}
+Matched fourfold Top-$k$ SAEs provide the corresponding feature-level check. Across $k\in\{16,32,64,128\}$, the conditioned dictionary has mean surface-family purity between $.282$ and $.287$, compared with $.483$--$.626$ for raw Gemma. Relation-selective features occupy $12.6\%$--$17.8\%$ of the conditioned dictionary but only $0.6\%$--$2.9\%$ of the raw dictionary. The conditioned SAE has no surface-selective features at $k=16,64,$ or $128$ and only one at $k=32$. These controlled results motivate upstream conditioning while showing why the paper claims relative specialization rather than unseen-surface erasure.
+
+\subsection{SAE width sweep}
+To test whether the controlled-data result depends on dictionary width, we vary width while keeping the conditioned 256-dimensional representation frozen, Top-$k$ fixed at 64, and all 8,964 training rows, optimization settings, seed, and 30-epoch budget unchanged. Table~\ref{tab:app-width} compares fourfold, eightfold, and sixteenfold expansion. Relation purity rises only modestly with width, from $.548$ to $.564$, while reconstruction error increases and the relation-selective fraction does not improve monotonically. Surface-selective features remain rare: zero at width 1,024, one at width 2,048 ($0.05\%$), and four at width 4,096 ($0.10\%$). Under this matched budget, additional overcompleteness provides no clear factorization benefit.
+
+\begin{table}[H]
+\centering\scriptsize
+\caption{Controlled-data SAE width sweep with $k=64$. Selective fractions use the complete dictionary as denominator.}
+\label{tab:app-width}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}rrrrrr@{}}
+\toprule
+Width & Active & MSE & Rel. purity & Surf. purity & Rel. selective \\
+\midrule
+1,024 & 99.6\% & .217 & .548 & .283 & 14.6\% \\
+2,048 & 94.7\% & .238 & .558 & .293 & 15.4\% \\
+4,096 & 82.2\% & .266 & .564 & .301 & 13.0\% \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Token-level canonicalization controls}
+\label{app:scope-controls}
+This audit tests route conditioning with Gemma Scope at its original residual site and token-level input form. The pooled 2,304-dimensional vectors used in the main partition are dimensionally compatible with the layer-8 Gemma Scope residual dictionary \citep{lieberum2024gemmascope}, but they are not sampled from its token-level activation distribution. We therefore did not apply the pretrained dictionary to pooled vectors or pooled canonical-English decoder outputs. Instead, we selected two semantic IDs per intent, retained all available training-locale realizations, and extracted every non-BOS activation at \texttt{blocks.8.hook\_resid\_post}. This produced 75,254 training tokens and 1,734 held-out Arabic and Chinese tokens. A separate pair of normalized 2,304-to-128 linear heads was trained for 30 epochs with batch size 256, temperature $.07$, and AdamW \citep{loshchilov2019adamw} with learning rate $10^{-3}$ and weight decay $10^{-4}$. This preserves the model, layer, residual site, and dimensionality expected by the official canonical layer-8, 16k-width Gemma Scope dictionary.
+
+Because translations do not provide token-position alignment, supervision uses token sets. Across 5,568 same-ID foreign--English pairs, the mean maximum token-set cosine is $.554$, compared with $.449$ after shuffling English IDs; the matched pair is higher in $94.7\%$ of cases. This establishes semantic alignment at the set level without claiming word-level correspondence.
+
+Direct token decoding provides two important controls. The linear $D_C:\mathbb{R}^{128}\rightarrow\mathbb{R}^{2304}$ decoder is trained for five epochs on 5,568 foreign--English same-ID token-set pairs, using AdamW with learning rate $3\times10^{-4}$, weight decay $10^{-4}$, and batch size 16. Its entropically regularized Sinkhorn objective \citep{cuturi2013sinkhorn} uses squared Euclidean cost, uniform marginals, regularization $\epsilon=5000$, and 30 iterations, without token-position alignment. This decoder reduces held-out similarity to English from $.6175$ to $.5287$ and shrinks the mean activation norm from $114.03$ to $35.61$ (English target: $119.88$). Its coordinate standard deviation is $.205$ and mean random-pair cosine is $.932$, indicating a compressed output distribution. A direct raw decoder $D_H(h)$ trained under the same set-matching protocol is much stronger for reconstruction, reaching $.7678$ similarity with mean norm $91.73$, coordinate standard deviation $.851$, and random-pair cosine $.793$. These controls rule out interpreting the $z_C$ decoder as the best canonical reconstructor.
+
+For the Gemma Scope audit, we instead use additive residual conditioning, $h+R_C(z_C)$, trained with aligned English token-set Sinkhorn supervision and an $\ell_2$ correction penalty. The additive form retains the original token residual rather than replacing it with a decoded vector. It improves token-set similarity to English from $.6175$ to $.6491$. In the frozen Gemma Scope dictionary, aligned-English feature-set cosine rises from $.4609$ to $.5133$ and top-100 overlap from $.1736$ to $.2498$, while the mean number of active features decreases from $109.90$ to $86.58$ (Table~\ref{tab:app-scope-controls}). The exact historical $R_C$ checkpoint and correction coefficient were not retained, so this result is treated as a single-run external audit rather than part of the reproducible multi-seed evidence. The stronger raw decoder on direct reconstruction further limits the interpretation: residual conditioning improves feature agreement, not optimal reconstruction of English activations.
+
+\begin{table}[H]
+\centering\scriptsize
+\caption{Held-out token-level canonicalization controls. Gemma Scope metrics are reported only for inputs that retain the original residual activation site.}
+\label{tab:app-scope-controls}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrr@{}}
+\toprule
+Condition & Token sim. & Feature cosine & Top-100 & Active \\
+\midrule
+Raw $h$ & .6175 & .4609 & .1736 & 109.90 \\
+$D_C(z_C)$ & .5287 & -- & -- & -- \\
+$D_H(h)$ & .7678 & -- & -- & -- \\
+$h+R_C(z_C)$ & .6491 & .5133 & .2498 & 86.58 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Generation and failure-regime limitations}
+We test two limits of route specialization: generation-level steering and incomplete structural coverage.
+\paragraph{Generation steering.}
+Generation experiments use the frozen model, partition, and decoder with greedy decoding and at most 32 new tokens. The intervention adds a uniform donor-derived delta to non-BOS prompt residuals during prefill only; generated-token activations are not modified. A 20-example alpha sweep selected $\alpha=.75$ as a compromise between locale transfer and source-intent preservation. On a separately sampled 200-example evaluation, $z_S$ steering changes the generated language to the donor locale in $19.5\%$ of cases, compared with $0\%$ without intervention and $2.5\%$ for a random-$z_S$ control. Source-intent preservation remains near baseline ($29.0\%$ versus $29.5\%$), as does donor-intent leakage ($3.0\%$ versus $3.5\%$), making this a partial rather than reliable control effect.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.82\textwidth,trim=20 0 0 0,clip]{Figures/figure4_generation_appendix.pdf}
+\caption{Generation-level $z_S$ steering with Wilson 95\% confidence intervals \citep{wilson1927inference}. Target-language success rises, but this partial effect is excluded from the main representation-swap claim.}
+\label{fig:generation-steering-appendix}
+\end{figure}
+
+Generation steering is exploratory and excluded from the main claim; Section~5.4 concerns representation-level swaps evaluated with frozen probes.
+
+\paragraph{RAVEL failure regime.}
+RAVEL \citep{huang2024ravel} provides a boundary case in which $C$ is the instantiated entity--attribute fact and $S$ is the published prompt template. The partition is trained on 42,355 rows spanning 14,120 facts and 718 training templates, then evaluated on 21,541 rows from 230 disjoint test templates. The varying-dominant route retrieves template identity at R@1 $=.996$, while $z_C$ remains template-sensitive: same-fact retrieval across test templates is only R@1 $=.268$ and template accuracy is $.926$. Adding the published answer raises $z_C$ fact retrieval to R@1 $=.561$, while template accuracy remains $.890$.
+
+The larger number of RAVEL templates does not imply better coverage than MASSIVE's 49 locales. MASSIVE forms a complete parallel grid in which every semantic ID is observed in every training locale; RAVEL instead evaluates on disjoint templates, and the dataset provides no metric showing that each test template lies near a training template. The failure is therefore consistent with a structural coverage gap rather than simple numerical sparsity, but this remains an interpretation because we do not define or measure template distance. The lack of reciprocal specialization shows that pairability alone does not establish Corollary~\ref{cor:condition}'s geometric condition; we therefore do not train a downstream SAE.
+
+\section{Primary MASSIVE Reproducibility and Robustness}
+\label{app:massive-details}
+This section documents the protocol behind Tables~\ref{tab:partition}--\ref{tab:extractors}, Figure~\ref{fig:intervention-specificity}, and the multi-seed evidence cited in the main text.
+
+\subsection{Protocol and metrics}
+\label{app:massive-protocol}
+This subsection records the complete protocol needed to reproduce the primary MASSIVE results.
+\paragraph{Data and partition training.}
+We use the published MASSIVE train and test splits \citep{fitzgerald2023massive}. After restricting to the 58 intents present throughout the selected locales, the partition-training set contains 563,108 rows: 11,492 semantic IDs, each realized in 49 training locales. Arabic (\texttt{ar-SA}) and Chinese (\texttt{zh-CN}) are excluded from partition training and contribute 5,936 test rows, corresponding to 2,968 IDs realized once in each held-out locale. We extract frozen \texttt{google/gemma-2-2b} hidden states at layer 8, truncate inputs to 128 tokens, and apply masked-mean pooling, producing $H\in\mathbb{R}^{2304}$. The two branches are independent linear maps from 2,304 to 128 dimensions followed by $\ell_2$ normalization. We train for 30 epochs with batch size 256, temperature $\tau=.07$, and AdamW with learning rate $10^{-3}$ and weight decay $10^{-4}$. For every anchor, the $z_C$ positive is the same ID in a uniformly sampled different locale and the matched negative is a uniformly sampled different ID in the anchor locale; $z_S$ reverses those two choices. The implementation minimizes the mean of the two branch losses, which differs from $\mathcal{L}_{\mathrm{part}}$ in Section~\ref{sec:method} only by a constant factor. The primary checkpoint uses seed 20260827.
+
+\paragraph{Baselines and SAEs.}
+The 128-dimensional random baseline uses Gaussian projections scaled by $1/\sqrt{128}$ and reports five seeds. PCA-128 is fitted only to the frozen training activations. Naive InfoNCE uses the same two linear heads, split, optimizer, batch size, temperature, epoch budget, and seed as matched conditioning, but treats the other keys in the minibatch as negatives instead of using the matched negative relation. Inputs to every Top-$k$ SAE are standardized coordinate-wise using training statistics. All SAEs use fourfold expansion, $k=64$, 30 epochs, and AdamW with learning rate $10^{-3}$ and weight decay $10^{-4}$. Consequently, the raw dictionary has width 9,216, while each 128-dimensional partition or InfoNCE dictionary has width 512.
+
+\paragraph{Representation and feature metrics.}
+Cross-language retrieval uses every Arabic item as a query and all Chinese items as candidates; the unique item with the same MASSIVE ID is relevant. Locale probes are standardized logistic regressions trained on one random half of held-out rows and evaluated on the disjoint half. Effective rank is the participation ratio of the centered covariance spectrum. For SAE evaluation, a fixed seed selects 20,000 seen-language training rows. For feature $j$, intent selectivity is the largest intent-conditioned increase over its global mean divided by its global standard deviation; locale selectivity is defined analogously. A feature is active when its training mean exceeds $10^{-6}$, intent-oriented when intent selectivity is more than $1.1$ times locale selectivity, language-oriented under the reverse inequality, and mixed/other otherwise. Active-feature stability is the mean, over all training-active features, of the Arabic--Chinese activation correlation across 2,968 aligned held-out IDs. Separately, the intent-level AUC analysis selects one feature per intent on seen-language rows by its class-versus-rest activation margin; held-out Arabic and Chinese affect neither that feature choice nor its threshold.
+
+For paired bootstrap inference \citep{efron1993bootstrap}, we rewrite stability as per-ID contributions after featurewise standardization and resample the 2,968 IDs 10,000 times with seed 20260828. Frozen-checkpoint recomputation gives $.399$ for InfoNCE $z_C$ and $.521$ for uncontrolled-negative $z_C$; these values support Figure~\ref{fig:quantitative-evidence} and the ablation below. A separate InfoNCE audit gives $.405$ because it drops numerically degenerate features rather than retaining them with the $10^{-6}$ variance floor; no model is retrained.
+
+\paragraph{Representation-swap protocol.}
+For the main intervention, Gemma, the partition, and the diagnostic probes remain frozen. A linear decoder $D:\mathbb{R}^{256}\rightarrow\mathbb{R}^{2304}$ is fitted for four epochs by mean-squared reconstruction of the pooled activation from $[z_C,z_S]$; the saved run uses one global target scale of 3.7508, inverted before evaluation. Unswapped decoder outputs retain intent and locale probe accuracy close to raw $H$ ($.642$ versus $.664$ for intent and $.999$ versus $1.000$ for locale). For each of 5,936 held-out source items, we sample three real-code donors from the opposite held-out locale, giving 17,808 cases. A $z_C$ swap replaces only the preserved-dominant code and scores whether the frozen intent probe follows the donor; a $z_S$ swap replaces only the varying-dominant code and scores whether the frozen locale probe follows the donor. Cross-factor leakage scores the other donor label, and the unrelated-label controls score labels chosen to be unrelated to the sampled donor.
+
+Unless stated otherwise, main-paper tables report the designated seed-20260827 checkpoint. Appendix~\ref{app:seed-robustness} instead reports means and standard deviations over three independently trained partitions and their associated SAEs and decoders; small differences such as $.541$ versus $.539\pm.006$ stability and $97.8\%$ versus $98.5\%\pm0.7\%$ swap success therefore reflect single-checkpoint versus multi-seed summaries.
+
+\subsection{Negative-construction ablation}
+\label{app:negative-ablation}
+To test whether matched negative construction matters, we hold the architecture, optimization, and binary loss fixed and change only the negative from different $C$/same $S$ to different $C$/different $S$. The uncontrolled negative improves retrieval but weakens locale suppression and active-dictionary stability (Table~\ref{tab:negative-ablation}). The matched-minus-uncontrolled stability difference is $.020$ (95\% paired-bootstrap CI $[.016,.024]$), with positive per-ID contributions for $58.3\%$ of 2,968 IDs. The intent-selected metric reverses direction, underscoring its different target. For $z_S$, both variants retain near-perfect locale accuracy; uncontrolled negatives raise semantic R@1 from $.001$ to $.003$.
+
+\begin{table}[H]
+\centering\small
+\caption{MASSIVE $z_C$ negative-construction ablation. ``Active stab.'' averages all training-active SAE features; ``selected stab.'' averages one seen-language-selected feature per intent.}
+\label{tab:negative-ablation}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrrr@{}}
+\toprule
+Negative & R@1 & Locale probe & Active stab. & Selected stab. & Intent-oriented \\
+\midrule
+Matched & .401 & .895 & .541 & .664 & 100.0\% \\
+Both factors change & .418 & .956 & .521 & .690 & 96.8\% \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{MASSIVE locale-coverage sweep}
+\label{app:coverage-sweep}
+To test whether specialization improves with varying-factor coverage, we repeat matched partition training using nested subsets of 4, 8, 16, and 32 of the 49 available training locales, while keeping Arabic and Chinese fully held out. For each subset size, three seeds independently determine both the nested locale ordering and parameter initialization; architecture, loss, batch size, and 30-epoch budget remain fixed. The original three-seed 49-locale audit supplies the full-coverage endpoint. Table~\ref{tab:coverage-sweep} shows a graded trend rather than a threshold effect: semantic retrieval improves and held-out locale decodability falls as observed support broadens. Top-$k$ SAE checks at 4 and 16 locales show the same direction in active-dictionary stability, approaching the three-seed full-coverage result.
+
+\begin{table}[H]
+\centering\small
+\caption{MASSIVE training-locale sweep. Representation metrics are mean $\pm$ standard deviation over three sampled subsets and initializations. Daggered SAE values use one subset and seed; the 49-locale SAE value uses three seeds.}
+\label{tab:coverage-sweep}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}rrrr@{}}
+\toprule
+Training locales & $z_C$ R@1 & Locale probe & Active-feature stability \\
+\midrule
+4  & $.301\pm.034$ & $.989\pm.003$ & $.378^{\dagger}$ \\
+8  & $.337\pm.021$ & $.980\pm.013$ & -- \\
+16 & $.368\pm.021$ & $.950\pm.029$ & $.507^{\dagger}$ \\
+32 & $.394\pm.010$ & $.930\pm.008$ & -- \\
+49 & $.403\pm.009$ & $.895\pm.007$ & $.539\pm.006$ \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+The sweep does not hold the number of training rows fixed: each additional locale contributes another realization of every semantic ID. It therefore tests the practical sparse-coverage regime but cannot separate support breadth from sample count, nor does it assign a metric distance to categorical locales or estimate $\varepsilon$ in Assumption~\ref{ass:coverage}.
+
+\subsection{Seed robustness}
+\label{app:seed-robustness}
+To test seed robustness, we train three independent partitions; route assignments persist across representation, SAE, and swap metrics (Table~\ref{tab:app-seeds}), supporting robust relative specialization rather than perfect separation.
+
+\begin{table}[H]
+\centering\scriptsize
+\caption{Three-seed robustness (mean $\pm$ standard deviation); route-specific definitions follow the text.}
+\label{tab:app-seeds}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrrrrrrr@{}}
+\toprule
+Route & R@1 & R@5 & MRR & Locale & Orient. & Stability & Swap & Leakage & Control \\
+\midrule
+$z_C$ & $.403\pm.009$ & $.661\pm.006$ & $.521\pm.007$ & $.895\pm.007$ & $99.8\%\pm0.4\%$ & $.539\pm.006$ & $61.6\%\pm0.4\%$ & $1.5\%\pm0.7\%$ & $0.65\%$ \\
+$z_S$ & $.0008\pm.0005$ & -- & -- & $.9984\pm.0007$ & $100.0\%$ & $.066\pm.007$ & $98.5\%\pm0.7\%$ & $2.62\%\pm0.04\%$ & $1.54\%$ \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
 \end{document}
