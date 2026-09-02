@@ -6,7 +6,18 @@ dist/
 wheels/
 *.egg-info
 checkpoints/
-data/
+checkpoint/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npy
+*.npz
+data/*
+!data/canonical_evaluation_manifest.json
+archive/
+tmp/
+.pytest_cache/
 
 # Virtual environments
 .venv

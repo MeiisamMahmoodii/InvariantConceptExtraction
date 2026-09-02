@@ -1,0 +1,235 @@
+\section{Frozen Experimental Protocol}
+\label{app:protocol}
+
+\subsection{MASSIVE split and relation audit}
+
+The MASSIVE split is fixed by semantic ID. Representation training contains 10,343 IDs, validation contains 1,149 disjoint IDs, and the untouched Arabic--Chinese test set contains 2,968 IDs. Feature selection uses 5,220 balanced validation rows spanning all 58 intents and 49 seen locales; its fit and scoring semantic IDs are disjoint. Probe fitting uses 5,800 balanced training rows. The canonical manifest hash is \texttt{6c33455d91ccd15fc6054c3f077cb2393f387ab136db71fcea76f581d7344439}.
+
+For $z_C$, half of sampled positives are exact translations and half use a different semantic ID with the same intent. Every opposing example has a different intent and the anchor locale. The aggregate schedule is exactly balanced; intents with only one semantic ID necessarily contribute exact translations, and eligible anchors from other intents compensate with different-ID positives. The $z_S$ route reverses the assignments.
+
+\subsection{Deterministic sampler and evaluator}
+
+The sampler and evaluator follow one frozen sequence for every learned comparison:
+\begin{enumerate}
+\item sample an anchor from the fixed training-ID manifest;
+\item with probability .5, choose its exact translation as the $z_C$ positive; otherwise choose a different semantic ID with the same intent in a different locale;
+\item choose the $z_C$ opposing example with a different intent in the anchor locale, and reverse these assignments for $z_S$;
+\item apply global or blockwise BatchTopK according to the comparison while keeping the same batch order and mean activity budget;
+\item select one coordinate per intent using only the validation fit split, score selection on the disjoint validation score split, and freeze the selected coordinates;
+\item evaluate the frozen model and selected coordinates once on the held-out locale test split.
+\end{enumerate}
+Batch ordering and relation sampling use separate seeded random generators. Ties in ranking metrics follow stable row order, and every method uses the same active-feature, variance-floor, probe, and bootstrap implementations.
+
+\subsection{Shortcut proposition}
+\label{app:shortcut-proof}
+
+Let similarity be cosine similarity and suppose $z_C(x)=f(S(x))$. Since $S(x_a)=S(x_C^-)$, $z_C(x_a)=z_C(x_C^-)$ and therefore $u_C^-=1$ whenever the code is nonzero. Cosine similarity is at most one, so $u_C^+>u_C^-$ is impossible. Consequently, an $S$-only representation cannot satisfy the strict ranking required by every matched relation. The argument does not require statistical independence between $C$ and $S$; it uses only the matched construction in Equation~\ref{eq:c-relations}.
+
+\subsection{Metric definitions}
+
+Intent concept AUC is the mean one-vs-rest held-out AUC of one validation-selected coordinate per intent. Cross-locale stability is the mean Pearson correlation of paired Arabic--Chinese feature activations across active coordinates. An intent-oriented feature has intent selectivity greater than $1.1$ times locale selectivity; locale orientation is defined symmetrically. Locale leakage is balanced locale-probe accuracy on $z_C$. Opposing-route diagnostics report locale accuracy and intent balanced accuracy \citep{brodersen2010balanced} on $z_S$. Probe coordinates are selected by training-only one-way ANOVA \citep{fisher1925statistical} before the standardized logistic model is fitted.
+
+Interpretability selects one feature per intent on the disjoint validation fit split. Held-out Arabic and Chinese translations are merged by semantic ID using the larger activation, then ranked. Purity@20 is the fraction of the first 20 unique IDs carrying the selected intent. Reliable coverage is the fraction of eligible intents whose purity is at least .8. The headline calculation contains the 46 intents with at least 20 held-out IDs.
+
+All feature metrics use variance floor $10^{-12}$, activation threshold $10^{-8}$, and minimum activity rate $10^{-3}$. Bootstrap confidence intervals use 10,000 resamples \citep{efron1993bootstrap}. Tables report mean $\pm$ standard deviation over seeds 20260827, 20260828, and 20260829.
+
+\subsection{Training configuration}
+
+All learned comparisons use AdamW \citep{loshchilov2019adamw}. Table~\ref{tab:appendix-training} gives the exact dimensions, route budgets, optimization settings, and training duration for the main experiment.
+
+\begin{table}[h]
+\centering
+\caption{Frozen fourfold MASSIVE configuration.}
+\label{tab:appendix-training}
+\begin{tabular}{lr}
+\toprule
+Choice & Value \\
+\midrule
+Activation source & Gemma 2 2B, hidden state 8 \\
+Input / dictionary width & 2,304 / 9,216 \\
+$z_C / z_S$ widths & 2,765 / 6,451 \\
+BatchTopK budgets & $13B / 51B$ \\
+Mean training $L_0$ & 64 \\
+Batch size / epochs & 128 / 30 \\
+Optimizer / learning rate & AdamW / $10^{-4}$ \\
+Temperature $\tau$ / weight $\lambda$ & .07 / 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At eightfold width, the dictionary contains 18,432 coordinates and uses budgets $26B/102B$, preserving route proportions and active fraction. MTOP uses the main fourfold configuration. Pythia-160M uses 768-dimensional hidden-state-8 activations while retaining the 9,216-coordinate dictionary and $13B/51B$ budgets. Training was performed on a single NVIDIA RTX 3090 with 24GB memory.
+
+\subsection{Layer sensitivity}
+
+The main experiments use Gemma hidden state 8. To test whether the result depends on that choice, we repeat the decisive paired comparison at hidden states 4, 8, 16, and 24. Each layer receives its own training-set normalization, and the proposed model and exact blockwise control start from the same fresh initialization. The manifest, sampler, dictionary, activity budgets, optimizer, training duration, and evaluator are otherwise unchanged. This appendix experiment uses seed 20260827; the main hidden-state-8 result in Table~\ref{tab:factor-sae-test} remains the three-seed estimate.
+
+\begin{table}[h]
+\centering
+\caption{Gemma layer sensitivity. Each entry is exact blockwise control / ours from a paired run. The proposed relations improve intent AUC and cross-locale stability and reduce locale-probe accuracy at all four layers.}
+\label{tab:layer-sensitivity}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{rrrrrr}
+\toprule
+Hidden state & Intent AUC $\uparrow$ & Stability $\uparrow$ & Locale probe $\downarrow$ & FVE $\uparrow$ & Held-out $L_0$ \\
+\midrule
+4  & .6225 / \textbf{.8989} & .0277 / \textbf{.0594} & .9720 / \textbf{.9053} & .4879 / .4367 & 109.13 / 105.03 \\
+8  & .7132 / \textbf{.9097} & .1509 / \textbf{.2184} & .9639 / \textbf{.8908} & .6631 / .6098 & 107.57 / 105.45 \\
+16 & .6847 / \textbf{.8956} & .1613 / \textbf{.2223} & .9879 / \textbf{.9464} & .7222 / .6680 & 117.40 / 118.60 \\
+24 & .6771 / \textbf{.9173} & .0857 / \textbf{.1463} & .9808 / \textbf{.9609} & .6392 / .6030 & 139.18 / 132.72 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+The strongest absolute AUC occurs at hidden state 24, whereas hidden state 8 gives the lowest locale probe and nearly the highest stability. More importantly, the paired direction is invariant to layer choice: AUC improves by .1965--.2764, stability by .0317--.0675, and locale-probe accuracy falls by .0199--.0731. The reconstruction cost is modest and consistent, with FVE decreasing by .0362--.0542.
+
+\subsection{Software and computation}
+
+\begin{table}[h]
+\centering
+\caption{Frozen software and execution environment. Versions are taken from the submitted \texttt{uv.lock}.}
+\label{tab:software-compute}
+\begin{tabular}{ll}
+\toprule
+Component & Version or setting \\
+\midrule
+Python & $\geq 3.12,<3.14$ \\
+PyTorch / CUDA build & 2.7.1 / cu128 \\
+Transformers / Datasets & 5.15.1 / 5.0.1 \\
+NumPy / pandas & 2.5.2 / 3.0.5 \\
+scikit-learn / Accelerate & 1.9.0 / 1.14.0 \\
+SAE Lens & 6.49.1 \\
+Hardware & NVIDIA RTX 3090, 24GB \\
+Gemma extraction & bfloat16 model, float32 pooled arrays \\
+Pythia extraction & float16 model, float32 pooled arrays \\
+Tokenization / pooling & 128 tokens / masked non-padding mean \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The fourfold Gemma/MTOP SAE has 42,478,848 trainable encoder/decoder parameters, the eightfold model has 84,955,392, and the Pythia model has 14,165,760. The final study comprises 53 thirty-epoch training runs: 18 MASSIVE main comparisons, nine eightfold runs, nine MTOP runs, nine Pythia runs, and eight paired layer-sensitivity runs, in addition to the frozen validation candidates. Saved checkpoints are approximately 170MB, 340MB, and 56.7MB for the fourfold Gemma/MTOP, eightfold Gemma, and Pythia configurations, respectively.
+
+\section{Comparison and Selection Details}
+
+Global BatchTopK uses one dictionary and a global $64B$ activity budget. The exact blockwise control has the proposed encoder, decoder, 30/70 route widths, and $13B/51B$ budgets but optimizes reconstruction only. The Matryoshka SAE baseline \citep{kusupati2022matryoshka,karvonen2025saebench} averages the bias-only reconstruction with prefix reconstructions at 576, 1,152, 2,304, 4,608, and 9,216 features. The one-sided ablation applies the controlled loss only to $z_C$. The triplet ablation \citep{schroff2015facenet} replaces the binary loss with $\max(0,m+u^- -u^+)$; validation selects $m=.2$ from $\{.1,.2,.4\}$.
+
+On the frozen validation split, the reciprocal binary objective has the highest sparse-feature stability (.3921) and lowest locale probe (.8373) among candidate SAEs. All learned comparisons use paired initialization, identical normalized inputs, batches, optimizer, epochs, and mean training activity. Raw $H$ is a dense-coordinate reference rather than an SAE baseline.
+
+\begin{table}[h]
+\centering
+\caption{Frozen MASSIVE validation selection. Lower locale probe and locale-oriented fraction are better; all other feature metrics increase. The reciprocal binary objective is selected by stability and locale suppression; $m=.2$ is the retained triplet control.}
+\label{tab:validation-selection}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Method & AUC & Stability & Locale probe & Intent frac. & Locale frac. & FVE \\
+\midrule
+Global BatchTopK & .7264 & .2300 & .9712 & .5068 & .3914 & .7867 \\
+Blockwise control & .6663 & .2683 & .9051 & .5434 & .3546 & .7866 \\
+Matryoshka SAE & .7568 & .2496 & .9737 & .5197 & .3720 & .7742 \\
+One-sided & .8845 & .3239 & .8390 & .7162 & .1903 & .7680 \\
+\textbf{Reciprocal binary} & .8723 & \textbf{.3921} & \textbf{.8373} & .7814 & .1387 & .7467 \\
+Triplet, $m=.1$ & .8288 & .3622 & .8958 & .7137 & .1804 & .7753 \\
+Triplet, $m=.2$ & .8616 & .3537 & .8653 & .7348 & .1703 & .7739 \\
+Triplet, $m=.4$ & .8625 & .3183 & .8746 & .7595 & .1515 & .7696 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Paired per-seed results for the decisive comparison. Each entry is exact blockwise control / reciprocal model. A dash denotes a metric not used in that setting.}
+\label{tab:paired-seeds}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrr}
+\toprule
+Setting & Seed & AUC & Stability & Locale probe & Margin & FVE & Held-out $L_0$ \\
+\midrule
+MASSIVE $4\times$ & 20260827 & .7132/.9127 & .1569/.2208 & .9582/.8979 & -- & .6627/.6107 & 106.52/104.39 \\
+ & 20260828 & .6938/.9150 & .1522/.2275 & .9784/.8912 & -- & .6625/.6086 & 106.40/104.47 \\
+ & 20260829 & .6951/.9097 & .1413/.2260 & .9629/.8942 & -- & .6628/.6102 & 105.06/104.53 \\
+\midrule
+MASSIVE $8\times$ & 20260827 & .7191/.9213 & .0837/.1052 & .9747/.9276 & -- & .7149/.6707 & 226.12/226.21 \\
+ & 20260828 & .7559/.9127 & .0856/.1067 & .9757/.9447 & -- & .7156/.6707 & 224.51/222.96 \\
+ & 20260829 & .7369/.9128 & .0848/.1071 & .9774/.9468 & -- & .7157/.6702 & 224.84/224.41 \\
+\midrule
+MTOP & 20260827 & .6131/.8696 & .3677/.4951 & .9445/.9266 & .0288/.3331 & .1412/.1201 & 64/64 \\
+ & 20260828 & .5985/.8726 & .3830/.4840 & .9445/.9251 & .0283/.3455 & .1408/.1203 & 64/64 \\
+ & 20260829 & .5761/.8698 & .3596/.5143 & .9358/.9316 & .0112/.3538 & .1422/.1230 & 64/64 \\
+\midrule
+Pythia-160M & 20260827 & .5216/.5264 & .0096/.0198 & .9848/.9788 & $-.5888/-.0819$ & .7583/.7062 & 64/64 \\
+ & 20260828 & .5183/.5163 & .0068/.0228 & .9865/.9791 & $-.5268/-.0756$ & .7574/.7096 & 64/64 \\
+ & 20260829 & .5138/.5253 & .0060/.0206 & .9933/.9798 & $-.5874/-.1064$ & .7588/.7022 & 64/64 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Dataset and Model Transfer}
+\label{app:transfer-tables}
+
+For MTOP, German, English, Spanish, and French are used for training; Hindi and Thai are held out. Training contains 10,213 rows, feature selection contains 800 disjoint rows, and test contains 5,261 rows over 50 intents. Because MTOP lacks parallel semantic IDs, stability is the Pearson correlation between each feature's 50-intent mean-activation profiles in Hindi and Thai. The MTOP manifest hash is \texttt{7e3f0c13e42fa7016d0d2d678335eed7ae5cdb73549daa13d28d4cba7ded83e3}.
+
+For model-family transfer, Pythia-160M replaces Gemma while the MASSIVE manifest, sampler, sparse capacity, budgets, optimizer, epochs, and seeds remain fixed. Activations are masked-mean hidden state 8; the complete result appears in Table~\ref{tab:factor-sae-pythia}.
+
+\begin{table}[h]
+\centering
+\caption{MASSIVE model-family transfer with Pythia-160M (three paired seeds). Lower locale probe, locale fraction, and $z_S$ intent are better.}
+\label{tab:factor-sae-pythia}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Method & AUC $\uparrow$ & Stability $\uparrow$ & Margin $\uparrow$ & Locale probe $\downarrow$ & Intent frac. $\uparrow$ & Locale frac. $\downarrow$ & $z_S$ locale $\uparrow$ & $z_S$ intent $\downarrow$ \\
+\midrule
+Raw $H$ & .5824 & .0737 & -.4487 & 1.0000 & .0521 & .9180 & -- & -- \\
+Global BatchTopK & $.5349\pm.0016$ & $.0065\pm.0002$ & $-.5614\pm.0177$ & $.9914\pm.0008$ & $.1493\pm.0052$ & $.7941\pm.0062$ & -- & -- \\
+Blockwise control & $.5179\pm.0039$ & $.0075\pm.0019$ & $-.5677\pm.0354$ & $.9882\pm.0045$ & $.1497\pm.0090$ & $.8016\pm.0085$ & $.9907\pm.0031$ & $.0823\pm.0056$ \\
+\textbf{Ours} & $\mathbf{.5227\pm.0055}$ & $\mathbf{.0211\pm.0016}$ & $\mathbf{-.0879\pm.0163}$ & $\mathbf{.9792\pm.0005}$ & $\mathbf{.1792\pm.0083}$ & $\mathbf{.7604\pm.0048}$ & $\mathbf{.9937\pm.0015}$ & $\mathbf{.0581\pm.0102}$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Feature Examples and Complete Catalogue}
+\label{app:feature-examples}
+
+The machine-readable catalogue contains all methods and seeds. Table~\ref{tab:factor-feature-catalogue} reports every intent for the representative seed 20260827.
+
+\input{factor_sae_feature_catalogue_appendix.tex}
+
+\section{Reproduction Entry Points}
+
+\begin{verbatim}
+uv run python code/run_massive_factor_sae.py --final
+uv run python code/evaluate_massive_factor_sae.py --final
+uv run python code/run_massive_factor_sae.py --final \
+  --width-multiplier 8 --experiment batchtopk \
+  --experiment block_control --experiment reciprocal
+uv run python code/evaluate_massive_factor_sae.py --width8
+uv run python code/run_mtop_factor_sae.py --train
+uv run python code/evaluate_mtop_factor_sae.py --evaluate
+uv run python code/run_pythia_massive_factor_sae.py --extract
+uv run python code/run_pythia_massive_factor_sae.py --train
+uv run python code/run_pythia_massive_factor_sae.py --evaluate
+uv run python code/evaluate_feature_interpretability.py
+uv run python code/run_massive_factor_sae_layer_sensitivity.py
+uv run python code/build_factor_stability_figure.py
+uv run pytest -q
+\end{verbatim}
+
+Machine-readable summaries are:
+\begin{itemize}
+\item \path{Report/factor_sae_step4_definitive_test_summary.csv}
+\item \path{Report/factor_sae_step4_definitive_test_per_seed.csv}
+\item \path{Report/factor_sae_step5_width8_test_summary.csv}
+\item \path{Report/factor_sae_step5_width8_test_per_seed.csv}
+\item \path{Report/factor_sae_step6_mtop_test_summary.csv}
+\item \path{Report/factor_sae_step6_mtop_test_per_seed.csv}
+\item \path{Report/factor_sae_pythia160m_transfer_summary.csv}
+\item \path{Report/factor_sae_pythia160m_transfer_per_seed.csv}
+\item \path{Report/factor_sae_feature_interpretability_per_seed.csv}
+\item \path{Report/factor_sae_layer_sensitivity.csv}
+\end{itemize}
+
+The accompanying supplementary archive \texttt{factor-sae.zip} contains the frozen code, dependency lock, deterministic manifests, protocol tests, per-seed CSVs, and complete feature catalogue. A matching SHA-256 file is supplied beside the archive.

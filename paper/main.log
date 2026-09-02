@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.5)  31 AUG 2026 09:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.5)  2 SEP 2026 22:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -429,66 +429,74 @@ Package graphics Info: Driver file: pdftex.def on input line 106.
 \Gin@req@height=\dimen199
 \Gin@req@width=\dimen256
 )
+(C:\Program Files\MiKTeX\tex/latex/tools\longtable.sty
+Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
+\LTleft=\skip62
+\LTright=\skip63
+\LTpre=\skip64
+\LTpost=\skip65
+\LTchunksize=\count329
+\LTcapwidth=\dimen257
+\LT@head=\box57
+\LT@firsthead=\box58
+\LT@foot=\box59
+\LT@lastfoot=\box60
+\LT@gbox=\box61
+\LT@cols=\count330
+\LT@rows=\count331
+\c@LT@tables=\count332
+\c@LT@chunks=\count333
+\LT@p@ftn=\toks35
+)
 (C:\Program Files\MiKTeX\tex/latex/sttools\stfloats.sty
 Package: stfloats 2025/06/18 v3.4 Improve float mechanism and baselineskip sett
 ings
-\@dblbotnum=\count329
-\c@dblbotnumber=\count330
-)
-(C:\Program Files\MiKTeX\tex/latex/float\float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count331
-\float@exts=\toks35
-\float@box=\box57
-\@float@everytoks=\toks36
-\@floatcapt=\box58
+\@dblbotnum=\count334
+\c@dblbotnumber=\count335
 )
 (C:\Program Files\MiKTeX\tex/latex/placeins\placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
-\c@proposition=\count332
-\c@theorem=\count333
-\c@corollary=\count334
-\c@assumption=\count335
+\c@proposition=\count336
 
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count336
+\l__color_backend_stack_int=\count337
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count337
-\scratchdimen=\dimen257
-\scratchbox=\box59
-\nofMPsegments=\count338
-\nofMParguments=\count339
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count340
-\MPscratchDim=\dimen258
-\MPnumerator=\count341
-\makeMPintoPDFobject=\count342
-\everyMPtoPDFconversion=\toks38
+\scratchcounter=\count338
+\scratchdimen=\dimen258
+\scratchbox=\box62
+\nofMPsegments=\count339
+\nofMParguments=\count340
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count341
+\MPscratchDim=\dimen259
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
+\everyMPtoPDFconversion=\toks37
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -532,21 +540,24 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+(C:\Program Files\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 30.
-(main.out) (main.out)
+Package hyperref Info: Link coloring ON on input line 31.
+ (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 30.
-Package microtype Info: Applying patch `item' on input line 30.
-Package microtype Info: Applying patch `toc' on input line 30.
-Package microtype Info: Applying patch `eqnum' on input line 30.
-Package microtype Info: Applying patch `footnote' on input line 30.
-Package microtype Info: Applying patch `verbatim' on input line 30.
-LaTeX Info: Redefining \microtypesetup on input line 30.
+LaTeX Info: Redefining \microtypecontext on input line 31.
+Package microtype Info: Applying patch `item' on input line 31.
+Package microtype Info: Applying patch `toc' on input line 31.
+Package microtype Info: Applying patch `eqnum' on input line 31.
+Package microtype Info: Applying patch `footnote' on input line 31.
+Package microtype Info: Applying patch `verbatim' on input line 31.
+LaTeX Info: Redefining \microtypesetup on input line 31.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -557,7 +568,7 @@ Package microtype Info: Patching command `\showhyphens'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
- (C:\Program Files\MiKTeX\tex/latex/microtype\mt-ptm.cfg
+(C:\Program Files\MiKTeX\tex/latex/microtype\mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
 (C:\Program Files\MiKTeX\tex/latex/microtype\mt-cmr.cfg
@@ -587,148 +598,139 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (C:\Program Files\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+Underfull \hbox (badness 2165) in paragraph at lines 40--41
+\T1/ptm/m/n/10.95 (+20) model ac-ti-va-tions as sparse com-bi-na-tions of
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
+0.
+(C:\Program Files\MiKTeX\tex/latex/psnfss\ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [1{C:/Users/MPC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program 
 Files/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
-[]\T1/ptm/m/n/10.95 (+20) Experiments on mul-ti-lin-gual MAS-SIVE
+] (factor_sae_method.tex [2]
+<Figures/factor_sae_figure1_method.pdf, id=186, 903.375pt x 409.53pt>
+File: Figures/factor_sae_figure1_method.pdf Graphic file (type pdf)
+<use Figures/factor_sae_figure1_method.pdf>
+Package pdftex.def Info: Figures/factor_sae_figure1_method.pdf  used on input l
+ine 59.
+(pdftex.def)             Requested size: 455.24411pt x 206.38297pt.
+) (factor_sae_validation_results.tex
+Underfull \hbox (badness 3098) in paragraph at lines 9--10
+\T1/ptm/m/n/10.95 (+20) masked-mean hidden-state-8 ac-ti-va-tions from
  []
 
+[3]
+Underfull \vbox (badness 4492) has occurred while \output is active []
 
-Underfull \hbox (badness 1132) in paragraph at lines 47--48
-\T1/ptm/m/n/10.95 (+20) ([][]FitzGer-ald et al.[][], [][]2023[][]) show that ma
-tch-ing
- []
 
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
-1.
-(C:\Program Files\MiKTeX\tex/latex/psnfss\ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+Underfull \vbox (badness 4492) has occurred while \output is active []
+
+ [4 <./Figures/factor_sae_figure1_method.pdf>]
+<Figures/factor_sae_figure3_stability.pdf, id=422, 903.375pt x 481.8pt>
+File: Figures/factor_sae_figure3_stability.pdf Graphic file (type pdf)
+<use Figures/factor_sae_figure3_stability.pdf>
+Package pdftex.def Info: Figures/factor_sae_figure3_stability.pdf  used on inpu
+t line 63.
+(pdftex.def)             Requested size: 455.24411pt x 242.80348pt.
+ [5 <./Figures/factor_sae_figure3_stability.pdf>]
+<Figures/factor_sae_figure4_examples.pdf, id=598, 903.375pt x 463.7325pt>
+File: Figures/factor_sae_figure4_examples.pdf Graphic file (type pdf)
+<use Figures/factor_sae_figure4_examples.pdf>
+Package pdftex.def Info: Figures/factor_sae_figure4_examples.pdf  used on input
+ line 99.
+(pdftex.def)             Requested size: 455.24411pt x 233.69835pt.
+<Figures/factor_sae_figure2_evidence.pdf, id=600, 903.375pt x 415.5525pt>
+File: Figures/factor_sae_figure2_evidence.pdf Graphic file (type pdf)
+<use Figures/factor_sae_figure2_evidence.pdf>
+Package pdftex.def Info: Figures/factor_sae_figure2_evidence.pdf  used on input
+ line 110.
+(pdftex.def)             Requested size: 455.24411pt x 209.418pt.
 )
-Underfull \hbox (badness 5460) in paragraph at lines 55--56
-[]\T1/ptm/m/n/10.95 (+20) Theory char-ac-ter-izes short-cut ex-clu-sion,
- []
+Underfull \vbox (badness 2635) has occurred while \output is active []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 63--64
- []\T1/ptm/b/n/10.95 (+20) Dictionary-based fea-ture de-com-po-si-tion of
- []
+Underfull \vbox (badness 2635) has occurred while \output is active []
 
-[2]
-<Figures/Figure1.png, id=234, 1342.2647pt x 648.92438pt>
-File: Figures/Figure1.png Graphic file (type png)
-<use Figures/Figure1.png>
-Package pdftex.def Info: Figures/Figure1.png  used on input line 94.
-(pdftex.def)             Requested size: 355.08984pt x 171.66708pt.
- [3] [4 <./Figures/Figure1.png>]
-Underfull \hbox (badness 1297) in paragraph at lines 168--169
- []\T1/ptm/b/n/10.95 (+20) Connection to sparse fea-tures.[] \T1/ptm/m/n/10.95 
-(+20) On re-gions
- []
-
-<Figures/figure2_hybrid_candidate.png, id=274, 459.96844pt x 623.32875pt>
-File: Figures/figure2_hybrid_candidate.png Graphic file (type png)
-<use Figures/figure2_hybrid_candidate.png>
-Package pdftex.def Info: Figures/figure2_hybrid_candidate.png  used on input li
-ne 200.
-(pdftex.def)             Requested size: 219.08614pt x 296.90219pt.
-[5 <./Figures/figure2_hybrid_candidate.png>]
-<Figures/figure3_quantitative.pdf, id=297, 976.84903pt x 340.87146pt>
-File: Figures/figure3_quantitative.pdf Graphic file (type pdf)
-<use Figures/figure3_quantitative.pdf>
-Package pdftex.def Info: Figures/figure3_quantitative.pdf  used on input line 2
-42.
-(pdftex.def)             Requested size: 455.24411pt x 158.85727pt.
- [6]
-<Figures/figure4.png, id=316, 429.85594pt x 357.58594pt>
-File: Figures/figure4.png Graphic file (type png)
-<use Figures/figure4.png>
-Package pdftex.def Info: Figures/figure4.png  used on input line 294.
-(pdftex.def)             Requested size: 164.31459pt x 136.69159pt.
- [7 <./Figures/figure3_quantitative.pdf>] (main.bbl
-Underfull \hbox (badness 1067) in paragraph at lines 54--64
+ [6 <./Figures/factor_sae_figure4_examples.pdf>] [7 <./Figures/factor_sae_figur
+e2_evidence.pdf>] (main.bbl
+Underfull \hbox (badness 1067) in paragraph at lines 85--95
 \T1/ptm/m/n/10 (+20) Swetha Ran-ganath, Lau-rie Crist, Misha Bri-tan,
  []
 
-[8 <./Figures/figure4.png>]
-Underfull \hbox (badness 1478) in paragraph at lines 139--144
-\T1/ptm/m/n/10 (+20) Hen-gel, and Javen Qin-feng Shi. 2026.  [][]Con-
+[8]
+Underfull \hbox (badness 3219) in paragraph at lines 139--146
+[]\T1/ptm/m/n/10 (+20) Aditya Kusu-pati, Gan-tavya Bhatt, Aniket Rege,
  []
 
 
-Underfull \hbox (badness 2012) in paragraph at lines 178--186
+Underfull \hbox (badness 2012) in paragraph at lines 210--218
 \T1/ptm/m/n/10 (+20) Wieland Bren-del, Bern-hard Schölkopf, Michel
  []
 
-) [9]
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
-[][]\T1/ptm/b/n/10.95 (+20) Assumption 1 \T1/ptm/m/n/10.95 (+20) (Ob-served ali
-gn-ment and sep-a-ra-tion)\T1/ptm/b/n/10.95 (+20) . []\T1/ptm/m/it/10.95 (+20) 
-Ob-served pos-i-tives obey
- []
-
-[10
+) [9] (factor_sae_appendix.tex
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 6.
 
 
-]
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 43
-4.
- (C:\Program Files\MiKTeX\tex/latex/psnfss\t1pcr.fd
+(C:\Program Files\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [11] [12] [13]
-<Figures/figure4_generation_appendix.pdf, id=611, 512.8761pt x 350.26859pt>
-File: Figures/figure4_generation_appendix.pdf Graphic file (type pdf)
-<use Figures/figure4_generation_appendix.pdf>
-Package pdftex.def Info: Figures/figure4_generation_appendix.pdf  used on input
- line 540.
-(pdftex.def)             Requested size: 373.3035pt x 265.34105pt.
+ [10
 
-[14] [15 <./Figures/figure4_generation_appendix.pdf>] [16] [17] (main.aux)
+
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12] (factor_sae_feature_catalogue_appendix.tex
+ignored: Infinite glue shrinkage found in
+ box being split [13]
+ignored: Infinite glue shrinkage found in box being split [14])) [1
+5] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0137B2E01D7D273920E40A045A87DC9B;6998.
+(rerunfilecheck)             Checksum: 67B3AB2AD2641FA7F95D49AA9B692703;4979.
  ) 
 Here is how much of TeX's memory you used:
- 16172 strings out of 467691
- 253904 string characters out of 5425061
- 730123 words of memory out of 5000000
- 44460 multiletter control sequences out of 15000+600000
- 692790 words of font info for 365 fonts, out of 8000000 for 9000
+ 16124 strings out of 467691
+ 254933 string characters out of 5425061
+ 739151 words of memory out of 5000000
+ 44494 multiletter control sequences out of 15000+600000
+ 680342 words of font info for 328 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,93p,1407b,620s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Progra
-m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8
-.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Prog
-ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Progr
-am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
-onts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/courier/ucrr8a
-.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program F
-iles/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX/fonts/typ
-e1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/times/utmri8a.
-pfb>
-Output written on main.pdf (17 pages, 951773 bytes).
+ 84i,12n,93p,1319b,640s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pro
+gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols
+/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Pro
+gram Files/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX/
+fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/times
+/utmr8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (15 pages, 667103 bytes).
 PDF statistics:
- 813 PDF objects out of 1000 (max. 8388607)
- 147 named destinations out of 1000 (max. 500000)
- 56104 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1171 PDF objects out of 1200 (max. 8388607)
+ 106 named destinations out of 1000 (max. 500000)
+ 42717 words of extra memory for PDF output out of 42996 (max. 10000000)
 

@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\train_massive_zc_to_english_decoder.py", line 48, in <module>
-    if __name__=='__main__':main()
-                            ^^^^^^
-  File "C:\Users\MPC\Documents\code\InvariantConceptExtraction\code\train_massive_zc_to_english_decoder.py", line 33, in main
-    full=pd.read_parquet(TEST);eng=full[(full.locale=='en-US')&full.intent.isin(STABLE)].sort_values('id').reset_index(drop=True);assert len(eng)==te.id.nunique();english=english_activations(eng.utt.tolist());eng_pos=pd.Series(np.arange(len(eng)),index=eng.id);held_english_rows=te.id.map(eng_pos);assert held_english_rows.notna().all();target_hold=np.asarray(english[held_english_rows.to_numpy(dtype=np.int64)])
-                                                                                                                                                                                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError

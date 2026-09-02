@@ -1,0 +1,323 @@
+{
+  "status": "complete",
+  "checkpoint": "C:\\Users\\MPC\\Documents\\code\\InvariantConceptExtraction\\checkpoint\\mtop_factor_sae\\mtop_reciprocal_seed20260828.pt",
+  "config": {
+    "dataset": "MTOP",
+    "manifest_sha256": "7e3f0c13e42fa7016d0d2d678335eed7ae5cdb73549daa13d28d4cba7ded83e3",
+    "architecture": "2304 -> 9216 direct blockwise BatchTopK -> 2304",
+    "route_widths": [
+      2765,
+      6451
+    ],
+    "training_activity": {
+      "zC": 13,
+      "zS": 51,
+      "total": 64
+    },
+    "relation": "same-intent/different-language positive; different-intent/anchor-language opposing example",
+    "exact_id_positive_fraction": 0.0,
+    "epochs": 30,
+    "batch_size": 128,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "temperature": 0.07,
+    "seeds": [
+      20260827,
+      20260828,
+      20260829
+    ],
+    "experiments": [
+      "batchtopk",
+      "block_control",
+      "reciprocal"
+    ],
+    "manifest_audit": {
+      "manifest_sha256": "7e3f0c13e42fa7016d0d2d678335eed7ae5cdb73549daa13d28d4cba7ded83e3",
+      "training_rows": 10213,
+      "feature_selection_rows": 800,
+      "test_rows": 5261,
+      "intents": 50,
+      "seen_languages": [
+        "de",
+        "en",
+        "es",
+        "fr"
+      ],
+      "held_out_languages": [
+        "hi",
+        "th"
+      ],
+      "relation_pairs": 5261,
+      "relation_checks": {
+        "zC_same_intent_fraction": 1.0,
+        "zC_different_language_fraction": 1.0,
+        "zC_different_id_fraction": 1.0,
+        "zS_same_language_fraction": 1.0,
+        "zS_different_intent_fraction": 1.0
+      }
+    },
+    "training_relation_audit": {
+      "pairs": 10000,
+      "zC_same_intent_fraction": 1.0,
+      "zC_different_locale_fraction": 1.0,
+      "zC_exact_id_fraction": 0.0,
+      "zC_nonexact_different_id_fraction": 1.0,
+      "zS_same_locale_fraction": 1.0,
+      "zS_different_intent_fraction": 1.0
+    },
+    "experiment": "reciprocal",
+    "seed": 20260828,
+    "sparsifier": "block",
+    "route_mode": "reciprocal",
+    "batchtopk_inference_thresholds": [
+      1.761015772819519,
+      1.9470043182373047
+    ],
+    "sparse_width": 9216,
+    "c_fraction": 0.3,
+    "total_k": 64,
+    "c_k": 13
+  },
+  "history": [
+    {
+      "loss": 1.3840536922216415,
+      "reconstruction": 0.7677195481956005,
+      "zC_relation": 0.49498817659914496,
+      "zS_relation": 0.7376801233738661,
+      "l0": 64.0,
+      "epoch": 1
+    },
+    {
+      "loss": 0.8383625358343124,
+      "reconstruction": 0.6364835441112519,
+      "zC_relation": 0.26262053437530997,
+      "zS_relation": 0.14113744413480162,
+      "l0": 64.0,
+      "epoch": 2
+    },
+    {
+      "loss": 0.6423356711864472,
+      "reconstruction": 0.5501748234033584,
+      "zC_relation": 0.15322217484936118,
+      "zS_relation": 0.03109952269587666,
+      "l0": 64.0,
+      "epoch": 3
+    },
+    {
+      "loss": 0.5560533180832863,
+      "reconstruction": 0.4884950902312994,
+      "zC_relation": 0.11552965943701565,
+      "zS_relation": 0.019586799701210113,
+      "l0": 64.0,
+      "epoch": 4
+    },
+    {
+      "loss": 0.4931673422455788,
+      "reconstruction": 0.4416605532169342,
+      "zC_relation": 0.08920555696822703,
+      "zS_relation": 0.0138080227363389,
+      "l0": 64.0,
+      "epoch": 5
+    },
+    {
+      "loss": 0.4518590487539768,
+      "reconstruction": 0.40461215674877166,
+      "zC_relation": 0.08227757066488266,
+      "zS_relation": 0.012216216762317345,
+      "l0": 64.0,
+      "epoch": 6
+    },
+    {
+      "loss": 0.4120263785123825,
+      "reconstruction": 0.37428683042526245,
+      "zC_relation": 0.06465072047431022,
+      "zS_relation": 0.010828376674908213,
+      "l0": 64.0,
+      "epoch": 7
+    },
+    {
+      "loss": 0.3810002576559782,
+      "reconstruction": 0.34841792844235897,
+      "zC_relation": 0.05505510880611837,
+      "zS_relation": 0.01010955032252241,
+      "l0": 64.0,
+      "epoch": 8
+    },
+    {
+      "loss": 0.3563983257859945,
+      "reconstruction": 0.3267243728041649,
+      "zC_relation": 0.04920681841904297,
+      "zS_relation": 0.010141088525415398,
+      "l0": 64.0,
+      "epoch": 9
+    },
+    {
+      "loss": 0.33334173522889615,
+      "reconstruction": 0.3075688660144806,
+      "zC_relation": 0.044064791803248224,
+      "zS_relation": 0.007480947097064927,
+      "l0": 64.0,
+      "epoch": 10
+    },
+    {
+      "loss": 0.3142435781657696,
+      "reconstruction": 0.29039167053997517,
+      "zC_relation": 0.04026199204381555,
+      "zS_relation": 0.0074418244039407,
+      "l0": 64.0,
+      "epoch": 11
+    },
+    {
+      "loss": 0.29844129718840123,
+      "reconstruction": 0.27509627491235733,
+      "zC_relation": 0.040394757268950345,
+      "zS_relation": 0.0062952877400675785,
+      "l0": 64.0,
+      "epoch": 12
+    },
+    {
+      "loss": 0.28258694633841513,
+      "reconstruction": 0.26211395878344773,
+      "zC_relation": 0.03539210183662363,
+      "zS_relation": 0.005553874926408753,
+      "l0": 64.0,
+      "epoch": 13
+    },
+    {
+      "loss": 0.26898998096585275,
+      "reconstruction": 0.25004142969846727,
+      "zC_relation": 0.031786040315637365,
+      "zS_relation": 0.006111060008697678,
+      "l0": 64.0,
+      "epoch": 14
+    },
+    {
+      "loss": 0.25733393896371126,
+      "reconstruction": 0.23897005058825016,
+      "zC_relation": 0.030954887060215697,
+      "zS_relation": 0.00577288992353715,
+      "l0": 64.0,
+      "epoch": 15
+    },
+    {
+      "loss": 0.24651586096733807,
+      "reconstruction": 0.22904087845236062,
+      "zC_relation": 0.029507769108749925,
+      "zS_relation": 0.005442195637442637,
+      "l0": 64.0,
+      "epoch": 16
+    },
+    {
+      "loss": 0.23598997723311185,
+      "reconstruction": 0.21999528724700212,
+      "zC_relation": 0.02719261068268679,
+      "zS_relation": 0.004796767293009907,
+      "l0": 64.0,
+      "epoch": 17
+    },
+    {
+      "loss": 0.2272386159747839,
+      "reconstruction": 0.21162715051323175,
+      "zC_relation": 0.02749098482017871,
+      "zS_relation": 0.003731945517938584,
+      "l0": 64.0,
+      "epoch": 18
+    },
+    {
+      "loss": 0.21949647907167674,
+      "reconstruction": 0.2038569524884224,
+      "zC_relation": 0.027085906549473293,
+      "zS_relation": 0.004193147340265569,
+      "l0": 64.0,
+      "epoch": 19
+    },
+    {
+      "loss": 0.21033722776919603,
+      "reconstruction": 0.19648718871176243,
+      "zC_relation": 0.023733426348189823,
+      "zS_relation": 0.00396665080479579,
+      "l0": 64.0,
+      "epoch": 20
+    },
+    {
+      "loss": 0.20309358201920985,
+      "reconstruction": 0.18961513247340916,
+      "zC_relation": 0.02358609869988868,
+      "zS_relation": 0.003370800845732447,
+      "l0": 64.0,
+      "epoch": 21
+    },
+    {
+      "loss": 0.19503409266471863,
+      "reconstruction": 0.18321153298020362,
+      "zC_relation": 0.02073708325915504,
+      "zS_relation": 0.0029080353604513222,
+      "l0": 64.0,
+      "epoch": 22
+    },
+    {
+      "loss": 0.18727206774055957,
+      "reconstruction": 0.17693366277962924,
+      "zC_relation": 0.017915236647240818,
+      "zS_relation": 0.0027615733437414748,
+      "l0": 64.0,
+      "epoch": 23
+    },
+    {
+      "loss": 0.1841552948579192,
+      "reconstruction": 0.17157777193933726,
+      "zC_relation": 0.02158608887111768,
+      "zS_relation": 0.003568958021060098,
+      "l0": 64.0,
+      "epoch": 24
+    },
+    {
+      "loss": 0.17880655117332936,
+      "reconstruction": 0.16666994001716376,
+      "zC_relation": 0.021562800748506562,
+      "zS_relation": 0.0027104219305329027,
+      "l0": 64.0,
+      "epoch": 25
+    },
+    {
+      "loss": 0.17190989051014186,
+      "reconstruction": 0.161527013219893,
+      "zC_relation": 0.01838916738051921,
+      "zS_relation": 0.002376585538877407,
+      "l0": 64.0,
+      "epoch": 26
+    },
+    {
+      "loss": 0.16710385195910932,
+      "reconstruction": 0.15676061771810054,
+      "zC_relation": 0.017498784279450775,
+      "zS_relation": 0.0031876833250862545,
+      "l0": 64.0,
+      "epoch": 27
+    },
+    {
+      "loss": 0.16332663167268038,
+      "reconstruction": 0.15262005142867566,
+      "zC_relation": 0.01929077407112345,
+      "zS_relation": 0.0021223855881544297,
+      "l0": 64.0,
+      "epoch": 28
+    },
+    {
+      "loss": 0.15927308592945338,
+      "reconstruction": 0.14831608422100545,
+      "zC_relation": 0.019808631503838114,
+      "zS_relation": 0.0021053706957900433,
+      "l0": 64.0,
+      "epoch": 29
+    },
+    {
+      "loss": 0.15456870775669812,
+      "reconstruction": 0.14466735664755107,
+      "zC_relation": 0.017301576570025644,
+      "zS_relation": 0.0025011256380821577,
+      "l0": 64.0,
+      "epoch": 30
+    }
+  ]
+}

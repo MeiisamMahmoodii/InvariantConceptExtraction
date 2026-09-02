@@ -1,0 +1,192 @@
+{
+  "protocol": {
+    "status": "frozen-checkpoint feature interpretability evaluation",
+    "selection": "features and qualitative intents selected on disjoint validation fit/score IDs only",
+    "evaluation": "top-20 unique semantic IDs on held-out Arabic/Chinese; headline purity covers intents with at least 20 test IDs",
+    "top_k": 20,
+    "eligible_intents": 46,
+    "seeds": [
+      20260827,
+      20260828,
+      20260829
+    ],
+    "summary": [
+      {
+        "method": "BatchTopK SAE",
+        "seeds": 3,
+        "eligible_intents_mean": 46.0,
+        "eligible_intents_std": 0.0,
+        "mean_locale_entropy_mean": 0.635783336398791,
+        "mean_locale_entropy_std": 0.030544972706659124,
+        "mean_selected_feature_stability_mean": 0.4570244976248215,
+        "mean_selected_feature_stability_std": 0.004411859192008303,
+        "mean_top20_intent_purity_mean": 0.6525664251207729,
+        "mean_top20_intent_purity_std": 0.020479095600459518,
+        "mean_top_id_overlap_mean": 0.002474823174144956,
+        "mean_top_id_overlap_std": 0.0005355584254884964,
+        "reliable_intent_coverage_mean": 0.3695652173913044,
+        "reliable_intent_coverage_std": 0.021739130434782622,
+        "unique_selected_feature_fraction_mean": 1.0,
+        "unique_selected_feature_fraction_std": 0.0
+      },
+      {
+        "method": "Blockwise SAE control",
+        "seeds": 3,
+        "eligible_intents_mean": 46.0,
+        "eligible_intents_std": 0.0,
+        "mean_locale_entropy_mean": 0.5948094737906983,
+        "mean_locale_entropy_std": 0.04739893002020737,
+        "mean_selected_feature_stability_mean": 0.37470749653244156,
+        "mean_selected_feature_stability_std": 0.03966506697774006,
+        "mean_top20_intent_purity_mean": 0.5808233350432839,
+        "mean_top20_intent_purity_std": 0.06824200270394869,
+        "mean_top_id_overlap_mean": 0.003390954145950951,
+        "mean_top_id_overlap_std": 0.001176536704330433,
+        "reliable_intent_coverage_mean": 0.34057971014492755,
+        "reliable_intent_coverage_std": 0.09050721736809272,
+        "unique_selected_feature_fraction_mean": 0.9770114942528737,
+        "unique_selected_feature_fraction_std": 0.026336641925033558
+      },
+      {
+        "method": "Reciprocal factor SAE",
+        "seeds": 3,
+        "eligible_intents_mean": 46.0,
+        "eligible_intents_std": 0.0,
+        "mean_locale_entropy_mean": 0.6334866717478426,
+        "mean_locale_entropy_std": 0.03994126862400141,
+        "mean_selected_feature_stability_mean": 0.5626437558385723,
+        "mean_selected_feature_stability_std": 0.002996146015932878,
+        "mean_top20_intent_purity_mean": 0.8170716112531972,
+        "mean_top20_intent_purity_std": 0.011969336787080464,
+        "mean_top_id_overlap_mean": 0.0022032054213830103,
+        "mean_top_id_overlap_std": 0.00012796084438136365,
+        "reliable_intent_coverage_mean": 0.7246376811594203,
+        "reliable_intent_coverage_std": 0.045253608684046376,
+        "unique_selected_feature_fraction_mean": 1.0,
+        "unique_selected_feature_fraction_std": 0.0
+      }
+    ]
+  },
+  "features": [
+    {
+      "method": "Reciprocal factor SAE",
+      "seed": 20260827,
+      "intent_id": 16,
+      "intent_name": "takeaway_order",
+      "feature_id": 299,
+      "test_intent_support": 22,
+      "active_test_ids": 242,
+      "top_k_observed": 20,
+      "top20_intent_purity": 0.6,
+      "top20_locale_entropy": 0.6098403047164004,
+      "cross_locale_stability": 0.6921394071544492,
+      "heldout_auc": 0.9699669814231932,
+      "validation_auc": 0.9945776255707762,
+      "validation_stability": 0.9363670566647656,
+      "top_ids": "5488|1379|6112|1831|3835|1516|2414|2338|4934|3671|2480|3295|168|3021|4544|2255|5840|169|2610|2336",
+      "examples": [
+        {
+          "id": "5488",
+          "locale": "zh-CN",
+          "activation": 15.433534622192383,
+          "english": "order pizza for delivery",
+          "heldout": "点比萨外送"
+        },
+        {
+          "id": "1379",
+          "locale": "ar-SA",
+          "activation": 13.752717971801758,
+          "english": "does pizza hut have delivery",
+          "heldout": "بيتزا هت توصيل"
+        },
+        {
+          "id": "6112",
+          "locale": "zh-CN",
+          "activation": 12.874326705932617,
+          "english": "hey order two wings with french fries from the chinese food store",
+          "heldout": "从中国食品店点两份鸡翅带炸薯条"
+        }
+      ]
+    },
+    {
+      "method": "Reciprocal factor SAE",
+      "seed": 20260827,
+      "intent_id": 56,
+      "intent_name": "iot_coffee",
+      "feature_id": 1423,
+      "test_intent_support": 36,
+      "active_test_ids": 47,
+      "top_k_observed": 20,
+      "top20_intent_purity": 1.0,
+      "top20_locale_entropy": 0.8812908992306927,
+      "cross_locale_stability": 0.9058588606430341,
+      "heldout_auc": 0.9859784750644233,
+      "validation_auc": 0.9583333333333333,
+      "validation_stability": 0.9717692965256899,
+      "top_ids": "4244|4084|6034|2512|2026|1276|6061|3321|2868|5917|2753|2812|4988|5017|3568|4798|448|4272|4271|2733",
+      "examples": [
+        {
+          "id": "4244",
+          "locale": "ar-SA",
+          "activation": 13.066947937011719,
+          "english": "olly turn on the coffee machine to make me some coffee",
+          "heldout": "coffee machine coffee maker"
+        },
+        {
+          "id": "4084",
+          "locale": "zh-CN",
+          "activation": 12.092585563659668,
+          "english": "make a coffee",
+          "heldout": "泡一杯咖啡"
+        },
+        {
+          "id": "6034",
+          "locale": "ar-SA",
+          "activation": 10.861509323120117,
+          "english": "coffee",
+          "heldout": "قهوة"
+        }
+      ]
+    },
+    {
+      "method": "Reciprocal factor SAE",
+      "seed": 20260827,
+      "intent_id": 10,
+      "intent_name": "qa_currency",
+      "feature_id": 650,
+      "test_intent_support": 39,
+      "active_test_ids": 110,
+      "top_k_observed": 20,
+      "top20_intent_purity": 0.95,
+      "top20_locale_entropy": 0.28639695711595625,
+      "cross_locale_stability": 0.8914226607069058,
+      "heldout_auc": 0.99965858654831,
+      "validation_auc": 0.9999279123414072,
+      "validation_stability": 0.9294441625890584,
+      "top_ids": "14762|13796|281|14304|14973|14029|13738|13684|14453|14599|14620|13685|14241|14239|14658|13896|14437|14228|13982|14763",
+      "examples": [
+        {
+          "id": "14762",
+          "locale": "zh-CN",
+          "activation": 19.344158172607422,
+          "english": "dollar to euro exchange rate",
+          "heldout": "美元兑欧元汇率"
+        },
+        {
+          "id": "13796",
+          "locale": "zh-CN",
+          "activation": 18.57143211364746,
+          "english": "what is the exchange rate between us and mexico",
+          "heldout": "美元对墨西哥比索的兑换汇率是多少"
+        },
+        {
+          "id": "281",
+          "locale": "zh-CN",
+          "activation": 18.22235870361328,
+          "english": "what is the exchange rate of us dollar to pound sterling",
+          "heldout": "美元对英镑的兑换率是多少"
+        }
+      ]
+    }
+  ]
+}

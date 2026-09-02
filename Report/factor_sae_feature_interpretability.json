@@ -1,0 +1,68 @@
+{
+  "status": "frozen-checkpoint feature interpretability evaluation",
+  "selection": "features and qualitative intents selected on disjoint validation fit/score IDs only",
+  "evaluation": "top-20 unique semantic IDs on held-out Arabic/Chinese; headline purity covers intents with at least 20 test IDs",
+  "top_k": 20,
+  "eligible_intents": 46,
+  "seeds": [
+    20260827,
+    20260828,
+    20260829
+  ],
+  "summary": [
+    {
+      "method": "BatchTopK SAE",
+      "seeds": 3,
+      "eligible_intents_mean": 46.0,
+      "eligible_intents_std": 0.0,
+      "mean_locale_entropy_mean": 0.635783336398791,
+      "mean_locale_entropy_std": 0.030544972706659124,
+      "mean_selected_feature_stability_mean": 0.4570244976248215,
+      "mean_selected_feature_stability_std": 0.004411859192008303,
+      "mean_top20_intent_purity_mean": 0.6525664251207729,
+      "mean_top20_intent_purity_std": 0.020479095600459518,
+      "mean_top_id_overlap_mean": 0.002474823174144956,
+      "mean_top_id_overlap_std": 0.0005355584254884964,
+      "reliable_intent_coverage_mean": 0.3695652173913044,
+      "reliable_intent_coverage_std": 0.021739130434782622,
+      "unique_selected_feature_fraction_mean": 1.0,
+      "unique_selected_feature_fraction_std": 0.0
+    },
+    {
+      "method": "Blockwise SAE control",
+      "seeds": 3,
+      "eligible_intents_mean": 46.0,
+      "eligible_intents_std": 0.0,
+      "mean_locale_entropy_mean": 0.5948094737906983,
+      "mean_locale_entropy_std": 0.04739893002020737,
+      "mean_selected_feature_stability_mean": 0.37470749653244156,
+      "mean_selected_feature_stability_std": 0.03966506697774006,
+      "mean_top20_intent_purity_mean": 0.5808233350432839,
+      "mean_top20_intent_purity_std": 0.06824200270394869,
+      "mean_top_id_overlap_mean": 0.003390954145950951,
+      "mean_top_id_overlap_std": 0.001176536704330433,
+      "reliable_intent_coverage_mean": 0.34057971014492755,
+      "reliable_intent_coverage_std": 0.09050721736809272,
+      "unique_selected_feature_fraction_mean": 0.9770114942528737,
+      "unique_selected_feature_fraction_std": 0.026336641925033558
+    },
+    {
+      "method": "Reciprocal factor SAE",
+      "seeds": 3,
+      "eligible_intents_mean": 46.0,
+      "eligible_intents_std": 0.0,
+      "mean_locale_entropy_mean": 0.6334866717478426,
+      "mean_locale_entropy_std": 0.03994126862400141,
+      "mean_selected_feature_stability_mean": 0.5626437558385723,
+      "mean_selected_feature_stability_std": 0.002996146015932878,
+      "mean_top20_intent_purity_mean": 0.8170716112531972,
+      "mean_top20_intent_purity_std": 0.011969336787080464,
+      "mean_top_id_overlap_mean": 0.0022032054213830103,
+      "mean_top_id_overlap_std": 0.00012796084438136365,
+      "reliable_intent_coverage_mean": 0.7246376811594203,
+      "reliable_intent_coverage_std": 0.045253608684046376,
+      "unique_selected_feature_fraction_mean": 1.0,
+      "unique_selected_feature_fraction_std": 0.0
+    }
+  ]
+}

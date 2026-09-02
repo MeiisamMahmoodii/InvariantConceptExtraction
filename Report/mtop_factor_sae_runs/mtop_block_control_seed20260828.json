@@ -1,0 +1,323 @@
+{
+  "status": "complete",
+  "checkpoint": "C:\\Users\\MPC\\Documents\\code\\InvariantConceptExtraction\\checkpoint\\mtop_factor_sae\\mtop_block_control_seed20260828.pt",
+  "config": {
+    "dataset": "MTOP",
+    "manifest_sha256": "7e3f0c13e42fa7016d0d2d678335eed7ae5cdb73549daa13d28d4cba7ded83e3",
+    "architecture": "2304 -> 9216 direct blockwise BatchTopK -> 2304",
+    "route_widths": [
+      2765,
+      6451
+    ],
+    "training_activity": {
+      "zC": 13,
+      "zS": 51,
+      "total": 64
+    },
+    "relation": "same-intent/different-language positive; different-intent/anchor-language opposing example",
+    "exact_id_positive_fraction": 0.0,
+    "epochs": 30,
+    "batch_size": 128,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "temperature": 0.07,
+    "seeds": [
+      20260827,
+      20260828,
+      20260829
+    ],
+    "experiments": [
+      "batchtopk",
+      "block_control",
+      "reciprocal"
+    ],
+    "manifest_audit": {
+      "manifest_sha256": "7e3f0c13e42fa7016d0d2d678335eed7ae5cdb73549daa13d28d4cba7ded83e3",
+      "training_rows": 10213,
+      "feature_selection_rows": 800,
+      "test_rows": 5261,
+      "intents": 50,
+      "seen_languages": [
+        "de",
+        "en",
+        "es",
+        "fr"
+      ],
+      "held_out_languages": [
+        "hi",
+        "th"
+      ],
+      "relation_pairs": 5261,
+      "relation_checks": {
+        "zC_same_intent_fraction": 1.0,
+        "zC_different_language_fraction": 1.0,
+        "zC_different_id_fraction": 1.0,
+        "zS_same_language_fraction": 1.0,
+        "zS_different_intent_fraction": 1.0
+      }
+    },
+    "training_relation_audit": {
+      "pairs": 10000,
+      "zC_same_intent_fraction": 1.0,
+      "zC_different_locale_fraction": 1.0,
+      "zC_exact_id_fraction": 0.0,
+      "zC_nonexact_different_id_fraction": 1.0,
+      "zS_same_locale_fraction": 1.0,
+      "zS_different_intent_fraction": 1.0
+    },
+    "experiment": "block_control",
+    "seed": 20260828,
+    "sparsifier": "block",
+    "route_mode": "none",
+    "batchtopk_inference_thresholds": [
+      1.6309146881103516,
+      1.5020124912261963
+    ],
+    "sparse_width": 9216,
+    "c_fraction": 0.3,
+    "total_k": 64,
+    "c_k": 13
+  },
+  "history": [
+    {
+      "loss": 0.7330050930380821,
+      "reconstruction": 0.7330050930380821,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 1
+    },
+    {
+      "loss": 0.5563473179936409,
+      "reconstruction": 0.5563473179936409,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 2
+    },
+    {
+      "loss": 0.46447634398937226,
+      "reconstruction": 0.46447634398937226,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 3
+    },
+    {
+      "loss": 0.40696184784173967,
+      "reconstruction": 0.40696184784173967,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 4
+    },
+    {
+      "loss": 0.3654981218278408,
+      "reconstruction": 0.3654981218278408,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 5
+    },
+    {
+      "loss": 0.3332110822200775,
+      "reconstruction": 0.3332110822200775,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 6
+    },
+    {
+      "loss": 0.3068651583045721,
+      "reconstruction": 0.3068651583045721,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 7
+    },
+    {
+      "loss": 0.2848013684153557,
+      "reconstruction": 0.2848013684153557,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 8
+    },
+    {
+      "loss": 0.26592908836901186,
+      "reconstruction": 0.26592908836901186,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 9
+    },
+    {
+      "loss": 0.24942372348159553,
+      "reconstruction": 0.24942372348159553,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 10
+    },
+    {
+      "loss": 0.23500590156763793,
+      "reconstruction": 0.23500590156763793,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 11
+    },
+    {
+      "loss": 0.22197637986391783,
+      "reconstruction": 0.22197637986391783,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 12
+    },
+    {
+      "loss": 0.21047163642942907,
+      "reconstruction": 0.21047163642942907,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 13
+    },
+    {
+      "loss": 0.20001997742801905,
+      "reconstruction": 0.20001997742801905,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 14
+    },
+    {
+      "loss": 0.19052459634840488,
+      "reconstruction": 0.19052459634840488,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 15
+    },
+    {
+      "loss": 0.18194082826375962,
+      "reconstruction": 0.18194082826375962,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 16
+    },
+    {
+      "loss": 0.17417273819446563,
+      "reconstruction": 0.17417273819446563,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 17
+    },
+    {
+      "loss": 0.16692184153944253,
+      "reconstruction": 0.16692184153944253,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 18
+    },
+    {
+      "loss": 0.16024086773395538,
+      "reconstruction": 0.16024086773395538,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 19
+    },
+    {
+      "loss": 0.15414732806384562,
+      "reconstruction": 0.15414732806384562,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 20
+    },
+    {
+      "loss": 0.14839747734367847,
+      "reconstruction": 0.14839747734367847,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 21
+    },
+    {
+      "loss": 0.1431275699287653,
+      "reconstruction": 0.1431275699287653,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 22
+    },
+    {
+      "loss": 0.13814241904765368,
+      "reconstruction": 0.13814241904765368,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 23
+    },
+    {
+      "loss": 0.1335727909579873,
+      "reconstruction": 0.1335727909579873,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 24
+    },
+    {
+      "loss": 0.12928688675165176,
+      "reconstruction": 0.12928688675165176,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 25
+    },
+    {
+      "loss": 0.12523643532767892,
+      "reconstruction": 0.12523643532767892,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 26
+    },
+    {
+      "loss": 0.1214314647950232,
+      "reconstruction": 0.1214314647950232,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 27
+    },
+    {
+      "loss": 0.11786070326343179,
+      "reconstruction": 0.11786070326343179,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 28
+    },
+    {
+      "loss": 0.11450200816616415,
+      "reconstruction": 0.11450200816616415,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 29
+    },
+    {
+      "loss": 0.11127191511914133,
+      "reconstruction": 0.11127191511914133,
+      "zC_relation": 0.0,
+      "zS_relation": 0.0,
+      "l0": 64.0,
+      "epoch": 30
+    }
+  ]
+}
